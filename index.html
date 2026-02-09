@@ -1,13 +1,646 @@
-<html>
-<head><title>Markus van Kempen - Extensions</title></head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Markus van Kempen — Developer Extensions &amp; Tools</title>
+    <meta name="description" content="Open-source developer tools for IBM Maximo by Markus van Kempen. VS Code &amp; Cursor extensions for API exploration, code generation, and AI-assisted development.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cds-blue-60: #0f62fe;
+            --cds-blue-70: #0043ce;
+            --cds-blue-80: #002d9c;
+            --cds-gray-10: #f4f4f4;
+            --cds-gray-20: #e0e0e0;
+            --cds-gray-30: #c6c6c6;
+            --cds-gray-50: #8d8d8d;
+            --cds-gray-70: #525252;
+            --cds-gray-80: #393939;
+            --cds-gray-90: #262626;
+            --cds-gray-100: #161616;
+            --cds-purple-60: #8a3ffc;
+            --cds-teal-50: #009d9a;
+            --cds-green-50: #24a148;
+            --cds-cyan-40: #33b1ff;
+            --transition: 150ms cubic-bezier(0.2, 0, 0.38, 0.9);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--cds-gray-90);
+            background: #fff;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── Header ─────────────────────────────────── */
+        .header {
+            background: var(--cds-gray-100);
+            color: #fff;
+            padding: 0 2rem;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header__name {
+            font-size: 14px;
+            font-weight: 600;
+            letter-spacing: 0.1px;
+        }
+        .header__nav {
+            margin-left: auto;
+            display: flex;
+            gap: 0;
+        }
+        .header__nav a {
+            color: var(--cds-gray-30);
+            text-decoration: none;
+            font-size: 14px;
+            padding: 0 1rem;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            transition: background var(--transition), color var(--transition);
+        }
+        .header__nav a:hover {
+            background: var(--cds-gray-80);
+            color: #fff;
+        }
+
+        /* ── Hero ───────────────────────────────────── */
+        .hero {
+            background: linear-gradient(135deg, var(--cds-gray-100) 0%, var(--cds-blue-80) 100%);
+            color: #fff;
+            padding: 5rem 2rem 4rem;
+        }
+        .hero__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+        .hero__label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--cds-cyan-40);
+            margin-bottom: 1rem;
+        }
+        .hero h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            line-height: 1.15;
+            margin-bottom: 1.5rem;
+        }
+        .hero h1 strong {
+            font-weight: 600;
+        }
+        .hero p {
+            font-size: 1.125rem;
+            line-height: 1.7;
+            color: var(--cds-gray-30);
+            margin-bottom: 2rem;
+            max-width: 520px;
+        }
+        .hero__actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .hero__graphic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero__icon-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+        .hero__icon-card {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px;
+            padding: 1.5rem;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            transition: transform var(--transition), background var(--transition);
+        }
+        .hero__icon-card:hover {
+            transform: translateY(-2px);
+            background: rgba(255,255,255,0.1);
+        }
+        .hero__icon-card .icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+        .hero__icon-card .label {
+            font-size: 12px;
+            color: var(--cds-gray-30);
+            font-weight: 500;
+        }
+
+        /* ── Buttons ────────────────────────────────── */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.875rem 1.5rem;
+            font-family: inherit;
+            font-size: 14px;
+            font-weight: 500;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background var(--transition);
+            white-space: nowrap;
+        }
+        .btn--primary {
+            background: var(--cds-blue-60);
+            color: #fff;
+        }
+        .btn--primary:hover { background: var(--cds-blue-70); }
+        .btn--ghost {
+            background: transparent;
+            color: #fff;
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+        .btn--ghost:hover { background: rgba(255,255,255,0.1); }
+        .btn svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ── Section ────────────────────────────────── */
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+        .section__label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--cds-blue-60);
+            margin-bottom: 0.75rem;
+        }
+        .section__title {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+        .section__desc {
+            font-size: 1rem;
+            color: var(--cds-gray-70);
+            max-width: 640px;
+            margin-bottom: 3rem;
+            line-height: 1.7;
+        }
+
+        /* ── Extension Cards ────────────────────────── */
+        .ext-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--cds-gray-20);
+            border: 1px solid var(--cds-gray-20);
+        }
+        .ext-card {
+            background: #fff;
+            padding: 2.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .ext-card__badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.375rem;
+            font-size: 12px;
+            font-weight: 500;
+            padding: 0.25rem 0.75rem;
+            border-radius: 100px;
+            width: fit-content;
+            margin-bottom: 1.25rem;
+        }
+        .ext-card__badge--vscode {
+            background: #e8f0fe;
+            color: var(--cds-blue-70);
+        }
+        .ext-card__badge--cursor {
+            background: #f3e8ff;
+            color: var(--cds-purple-60);
+        }
+        .ext-card__badge--mcp {
+            background: #e6f7f6;
+            color: var(--cds-teal-50);
+        }
+        .ext-card__title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+        .ext-card__desc {
+            font-size: 14px;
+            color: var(--cds-gray-70);
+            line-height: 1.65;
+            flex: 1;
+            margin-bottom: 1.5rem;
+        }
+        .ext-card__features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+        .ext-card__features li {
+            font-size: 13px;
+            color: var(--cds-gray-70);
+            padding: 0.3rem 0;
+            padding-left: 1.25rem;
+            position: relative;
+        }
+        .ext-card__features li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.65rem;
+            width: 6px;
+            height: 6px;
+            background: var(--cds-blue-60);
+            border-radius: 50%;
+        }
+        .ext-card__links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+        }
+        .ext-card__link {
+            font-size: 14px;
+            font-weight: 500;
+            color: var(--cds-blue-60);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: color var(--transition);
+        }
+        .ext-card__link:hover { color: var(--cds-blue-70); }
+        .ext-card__link svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+        }
+
+        /* ── Tech Strip ─────────────────────────────── */
+        .tech-strip {
+            background: var(--cds-gray-10);
+            border-top: 1px solid var(--cds-gray-20);
+            border-bottom: 1px solid var(--cds-gray-20);
+        }
+        .tech-strip__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+        .tech-item {
+            text-align: center;
+        }
+        .tech-item__value {
+            font-size: 2.5rem;
+            font-weight: 300;
+            color: var(--cds-gray-90);
+        }
+        .tech-item__label {
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: var(--cds-gray-50);
+            text-transform: uppercase;
+            margin-top: 0.25rem;
+        }
+
+        /* ── About ──────────────────────────────────── */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .about-text p {
+            font-size: 1rem;
+            color: var(--cds-gray-70);
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+        .about-links {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+        .about-link {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            background: var(--cds-gray-10);
+            text-decoration: none;
+            color: var(--cds-gray-90);
+            font-size: 14px;
+            font-weight: 500;
+            transition: background var(--transition);
+            border-left: 3px solid transparent;
+        }
+        .about-link:hover {
+            background: var(--cds-gray-20);
+            border-left-color: var(--cds-blue-60);
+        }
+        .about-link svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--cds-gray-50);
+            flex-shrink: 0;
+        }
+
+        /* ── Footer ─────────────────────────────────── */
+        .footer {
+            background: var(--cds-gray-100);
+            color: var(--cds-gray-30);
+            padding: 3rem 2rem 2rem;
+        }
+        .footer__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+        .footer__text {
+            font-size: 13px;
+        }
+        .footer__links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        .footer__links a {
+            color: var(--cds-gray-30);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color var(--transition);
+        }
+        .footer__links a:hover { color: #fff; }
+
+        /* ── Responsive ─────────────────────────────── */
+        @media (max-width: 768px) {
+            .hero__inner { grid-template-columns: 1fr; gap: 2rem; }
+            .hero h1 { font-size: 2rem; }
+            .hero__graphic { display: none; }
+            .ext-grid { grid-template-columns: 1fr; }
+            .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .tech-strip__inner { justify-content: center; }
+            .header__nav { display: none; }
+        }
+    </style>
+</head>
 <body>
-  <h1>Maximo Extensions by Markus van Kempen</h1>
-  <ul>
-    <li><a href="https://open-vsx.org/extension/markusvankempen/maximo-cursor-explorer">
-      Maximo Cursor Explorer on Open VSX</a></li>
-    <li><a href="https://open-vsx.org/extension/markusvankempen/maximo-api-explorer">
-      Maximo API Explorer on Open VSX</a></li>
-    <li><a href="https://github.com/markusvankempen/Maximo-MCP">Source Code on GitHub</a></li>
-  </ul>
+
+    <!-- Header -->
+    <header class="header">
+        <span class="header__name">Markus van Kempen</span>
+        <nav class="header__nav">
+            <a href="#extensions">Extensions</a>
+            <a href="#about">About</a>
+            <a href="https://github.com/markusvankempen" target="_blank" rel="noopener">GitHub</a>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero__inner">
+            <div>
+                <div class="hero__label">Open Source Developer Tools</div>
+                <h1>Build smarter with <strong>IBM Maximo</strong> integrations</h1>
+                <p>VS Code extensions, Cursor AI tools, and an MCP server for exploring, testing, and generating code for the Maximo REST API. Free and open source.</p>
+                <div class="hero__actions">
+                    <a class="btn btn--primary" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        View on GitHub
+                    </a>
+                    <a class="btn btn--ghost" href="#extensions">
+                        Explore Extensions
+                        <svg viewBox="0 0 16 16"><path d="M8 1l-.71.71L12.58 7H1v1h11.58l-5.29 5.29L8 14l6.5-6.5z" fill-rule="evenodd"/></svg>
+                    </a>
+                </div>
+            </div>
+            <div class="hero__graphic">
+                <div class="hero__icon-grid">
+                    <div class="hero__icon-card">
+                        <div class="icon">&#128268;</div>
+                        <div class="label">API Explorer</div>
+                    </div>
+                    <div class="hero__icon-card">
+                        <div class="icon">&#129302;</div>
+                        <div class="label">AI Context</div>
+                    </div>
+                    <div class="hero__icon-card">
+                        <div class="icon">&#128203;</div>
+                        <div class="label">Code Gen</div>
+                    </div>
+                    <div class="hero__icon-card">
+                        <div class="icon">&#9889;</div>
+                        <div class="label">MCP Server</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Strip -->
+    <div class="tech-strip">
+        <div class="tech-strip__inner">
+            <div class="tech-item">
+                <div class="tech-item__value">3</div>
+                <div class="tech-item__label">Extensions &amp; Tools</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-item__value">OSLC</div>
+                <div class="tech-item__label">REST API Standard</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-item__value">Carbon</div>
+                <div class="tech-item__label">Design System</div>
+            </div>
+            <div class="tech-item">
+                <div class="tech-item__value">Apache 2.0</div>
+                <div class="tech-item__label">License</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Extensions -->
+    <section class="section" id="extensions">
+        <div class="section__label">Extensions &amp; Tools</div>
+        <h2 class="section__title">Everything you need for Maximo development</h2>
+        <p class="section__desc">A suite of open-source tools that help developers explore Maximo APIs, generate production-ready code, and leverage AI assistants with full Maximo context.</p>
+
+        <div class="ext-grid">
+            <!-- Maximo API Explorer -->
+            <div class="ext-card">
+                <span class="ext-card__badge ext-card__badge--vscode">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z"/></svg>
+                    VS Code
+                </span>
+                <h3 class="ext-card__title">Maximo API Explorer</h3>
+                <p class="ext-card__desc">Discover, browse, and test IBM Maximo REST APIs directly from VS Code. Interactive query builder, schema viewer, code snippet generator, and Carbon Design System app templates.</p>
+                <ul class="ext-card__features">
+                    <li>Browse Object Structures with search &amp; filter</li>
+                    <li>Interactive OSLC query builder with live results</li>
+                    <li>Auto-generate TypeScript, Python, cURL snippets</li>
+                    <li>Carbon Design System app scaffolding</li>
+                    <li>Export project context for AI coding assistants</li>
+                </ul>
+                <div class="ext-card__links">
+                    <a class="ext-card__link" href="https://open-vsx.org/extension/markusvankempen/maximo-api-explorer" target="_blank" rel="noopener">
+                        Open VSX
+                        <svg viewBox="0 0 16 16"><path d="M9 2L9 3 12.29 3 6.15 9.15 6.85 9.85 13 3.71 13 7 14 7 14 2zM4 4C2.9 4 2 4.9 2 6L2 12C2 13.1 2.9 14 4 14H10C11.1 14 12 13.1 12 12V8L11 9V12C11 12.55 10.55 13 10 13H4C3.45 13 3 12.55 3 12V6C3 5.45 3.45 5 4 5H7L8 4z"/></svg>
+                    </a>
+                    <a class="ext-card__link" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options/tree/main/maximo-api-explorer" target="_blank" rel="noopener">
+                        Source Code
+                        <svg viewBox="0 0 16 16"><path d="M9 2L9 3 12.29 3 6.15 9.15 6.85 9.85 13 3.71 13 7 14 7 14 2zM4 4C2.9 4 2 4.9 2 6L2 12C2 13.1 2.9 14 4 14H10C11.1 14 12 13.1 12 12V8L11 9V12C11 12.55 10.55 13 10 13H4C3.45 13 3 12.55 3 12V6C3 5.45 3.45 5 4 5H7L8 4z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Maximo Cursor Explorer -->
+            <div class="ext-card">
+                <span class="ext-card__badge ext-card__badge--cursor">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M2 2l12 5.5L8.5 9 7 14z"/></svg>
+                    Cursor
+                </span>
+                <h3 class="ext-card__title">Maximo Cursor Explorer</h3>
+                <p class="ext-card__desc">All the power of the API Explorer, optimized for Cursor AI. Generates <code>.cursorrules</code>, exports AI context, and includes smart prompt templates for Maximo development.</p>
+                <ul class="ext-card__features">
+                    <li>Generate .cursorrules with Maximo API knowledge</li>
+                    <li>Export schemas to .cursor/context/ directory</li>
+                    <li>6 pre-built AI prompt templates</li>
+                    <li>Full API explorer with OSLC query builder</li>
+                    <li>Auto-export context on connect</li>
+                </ul>
+                <div class="ext-card__links">
+                    <a class="ext-card__link" href="https://open-vsx.org/extension/markusvankempen/maximo-cursor-explorer" target="_blank" rel="noopener">
+                        Open VSX
+                        <svg viewBox="0 0 16 16"><path d="M9 2L9 3 12.29 3 6.15 9.15 6.85 9.85 13 3.71 13 7 14 7 14 2zM4 4C2.9 4 2 4.9 2 6L2 12C2 13.1 2.9 14 4 14H10C11.1 14 12 13.1 12 12V8L11 9V12C11 12.55 10.55 13 10 13H4C3.45 13 3 12.55 3 12V6C3 5.45 3.45 5 4 5H7L8 4z"/></svg>
+                    </a>
+                    <a class="ext-card__link" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options/tree/main/maximo-cursor-extension" target="_blank" rel="noopener">
+                        Source Code
+                        <svg viewBox="0 0 16 16"><path d="M9 2L9 3 12.29 3 6.15 9.15 6.85 9.85 13 3.71 13 7 14 7 14 2zM4 4C2.9 4 2 4.9 2 6L2 12C2 13.1 2.9 14 4 14H10C11.1 14 12 13.1 12 12V8L11 9V12C11 12.55 10.55 13 10 13H4C3.45 13 3 12.55 3 12V6C3 5.45 3.45 5 4 5H7L8 4z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- MCP Server -->
+            <div class="ext-card">
+                <span class="ext-card__badge ext-card__badge--mcp">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M8 1a2 2 0 012 2v1h2a2 2 0 012 2v4a2 2 0 01-2 2h-1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1H2a2 2 0 01-2-2V6a2 2 0 012-2h2V3a2 2 0 012-2h2zm0 1H6a1 1 0 00-1 1v1h4V3a1 1 0 00-1-1z"/></svg>
+                    MCP Server
+                </span>
+                <h3 class="ext-card__title">Maximo MCP Server</h3>
+                <p class="ext-card__desc">Model Context Protocol server that connects AI assistants (Claude, ChatGPT, Copilot) directly to your Maximo instance. Query data, manage work orders, and explore APIs through natural language.</p>
+                <ul class="ext-card__features">
+                    <li>Works with Claude Desktop, ChatGPT, GitHub Copilot</li>
+                    <li>Natural language queries to Maximo data</li>
+                    <li>Full CRUD operations via AI chat</li>
+                    <li>Secure API key authentication</li>
+                </ul>
+                <div class="ext-card__links">
+                    <a class="ext-card__link" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank" rel="noopener">
+                        Source &amp; Setup Guide
+                        <svg viewBox="0 0 16 16"><path d="M9 2L9 3 12.29 3 6.15 9.15 6.85 9.85 13 3.71 13 7 14 7 14 2zM4 4C2.9 4 2 4.9 2 6L2 12C2 13.1 2.9 14 4 14H10C11.1 14 12 13.1 12 12V8L11 9V12C11 12.55 10.55 13 10 13H4C3.45 13 3 12.55 3 12V6C3 5.45 3.45 5 4 5H7L8 4z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- VS Code Extension (basic) -->
+            <div class="ext-card">
+                <span class="ext-card__badge ext-card__badge--vscode">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor"><path d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z"/></svg>
+                    VS Code
+                </span>
+                <h3 class="ext-card__title">Maximo VS Code Extension</h3>
+                <p class="ext-card__desc">Lightweight VS Code extension for quick Maximo API connectivity, authentication management, and API testing without leaving your editor.</p>
+                <ul class="ext-card__features">
+                    <li>Quick connect to Maximo instances</li>
+                    <li>API key &amp; basic authentication</li>
+                    <li>Endpoint testing panel</li>
+                    <li>Minimal footprint</li>
+                </ul>
+                <div class="ext-card__links">
+                    <a class="ext-card__link" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options/tree/main/vscode-extension" target="_blank" rel="noopener">
+                        Source Code
+                        <svg viewBox="0 0 16 16"><path d="M9 2L9 3 12.29 3 6.15 9.15 6.85 9.85 13 3.71 13 7 14 7 14 2zM4 4C2.9 4 2 4.9 2 6L2 12C2 13.1 2.9 14 4 14H10C11.1 14 12 13.1 12 12V8L11 9V12C11 12.55 10.55 13 10 13H4C3.45 13 3 12.55 3 12V6C3 5.45 3.45 5 4 5H7L8 4z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="section" id="about" style="background: var(--cds-gray-10);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <div class="section__label">About</div>
+            <h2 class="section__title">Markus van Kempen</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>I have a keen interest in debating and predicting <em>The Next Big Thing</em> in technology. Based in Toronto, I build open-source developer tools that bridge enterprise platforms like IBM Maximo with modern AI-assisted development workflows.</p>
+                    <p>These tools are part of the <strong>Maximo MCP AI Integration Options</strong> project &mdash; an open-source effort to make Maximo API development faster, more accessible, and AI-ready. Whether you use VS Code, Cursor, Claude, or ChatGPT, there's a tool here for you.</p>
+                    <p>All projects are released under the Apache 2.0 license. Contributions, issues, and feedback are welcome.</p>
+                </div>
+                <div class="about-links">
+                    <a class="about-link" href="https://github.com/markusvankempen" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/></svg>
+                        GitHub &mdash; @markusvankempen
+                    </a>
+                    <a class="about-link" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM8 4a.75.75 0 01.75.75v2.5h2.5a.75.75 0 010 1.5h-2.5v2.5a.75.75 0 01-1.5 0v-2.5h-2.5a.75.75 0 010-1.5h2.5v-2.5A.75.75 0 018 4z"/></svg>
+                        Main Project Repo
+                    </a>
+                    <a class="about-link" href="http://markusvankempen.wordpress.com/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6.5A6.5 6.5 0 001.5 8 6.5 6.5 0 008 14.5 6.5 6.5 0 0014.5 8 6.5 6.5 0 008 1.5zM6.227 4.2A.75.75 0 005.5 5v6a.75.75 0 001.095.667l5-3a.75.75 0 000-1.334l-5-3z"/></svg>
+                        Blog
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <span class="footer__text">&copy; 2026 Markus van Kempen. Open source under Apache 2.0.</span>
+            <div class="footer__links">
+                <a href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank" rel="noopener">GitHub</a>
+                <a href="https://open-vsx.org/namespace/markusvankempen" target="_blank" rel="noopener">Open VSX</a>
+                <a href="http://markusvankempen.wordpress.com/" target="_blank" rel="noopener">Blog</a>
+            </div>
+        </div>
+    </footer>
+
 </body>
 </html>
