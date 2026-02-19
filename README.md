@@ -10,10 +10,11 @@ A single-page site built with IBM Carbon Design System styling that highlights:
 
 | Tool | Platform | Description |
 |------|----------|-------------|
-| **Maximo API Explorer** | VS Code | Browse, test, and generate code for Maximo REST APIs |
+| **Maximo API Explorer** | VS Code | Discover, browse, and test IBM Maximo REST APIs directly from VS Code |
 | **Maximo Cursor Explorer** | Cursor | AI-optimized API explorer with `.cursorrules` and context export |
 | **Maximo MCP Server** | Claude / ChatGPT / Copilot | Model Context Protocol server for AI-assisted Maximo development |
-| **Maximo VS Code Extension** | VS Code | Lightweight Maximo API connectivity |
+| **Watson Orchestrate Builder** | VS Code | Visual tool builder and agent manager for Watson Orchestrate |
+| **Maximo VS Code Extension** | VS Code | Lightweight Maximo API connectivity and testing |
 
 ## Project Source
 
