@@ -15,6 +15,7 @@ A single-page site built with IBM Carbon Design System styling that highlights:
 | **Maximo MCP Server** | Claude / ChatGPT / Copilot | Model Context Protocol server for AI-assisted Maximo development | [Marketplace](https://marketplace.visualstudio.com/items?itemName=MarkusvanKempen.maximo-mcp) • [Open VSX](https://open-vsx.org/extension/markusvankempen/maximo-mcp) • [npm](https://www.npmjs.com/package/maximo-mcp-server) • [Cursor Directory](https://cursor.directory/mcp/maximo-mcp-server) • [Source](https://github.com/markusvankempen/maximo-mcp-ai-integration-options) |
 | **Watson Orchestrate Builder** | VS Code | Visual tool builder and agent manager for Watson Orchestrate | [Marketplace](https://marketplace.visualstudio.com/items?itemName=MarkusvanKempen.wxo-builder) • [Open VSX](https://open-vsx.org/extension/markusvankempen/wxo-builder) • [Source](https://github.com/markusvankempen/wxo-builder-vscode-extension) |
 | **Maximo VS Code Extension** | VS Code | Lightweight Maximo API connectivity and testing | [Source](https://github.com/markusvankempen/maximo-mcp-ai-integration-options/tree/main/vscode-extension) |
+| **WxO CLI Utilities Toolkit** | CLI / Bash | Exporter, Importer, Comparer, and Validator for IBM Watson Orchestrate deployments. | [Source](https://github.com/markusvankempen/WxO-Importer-Export-Comparer-Validator) |
 
 ## Project Source
 
