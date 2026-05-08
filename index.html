@@ -14,21 +14,30 @@
         rel="stylesheet">
     <style>
         :root {
-            --cds-blue-60: #0f62fe;
-            --cds-blue-70: #0043ce;
-            --cds-blue-80: #002d9c;
+            --cds-blue-60: #4589ff;
+            --cds-blue-70: #78a9ff;
+            --cds-blue-80: #a6c8ff;
+            --hero-gradient-end: #002d9c;
+            --hero-gradient-mid: #0043ce;
             --cds-gray-10: #f4f4f4;
             --cds-gray-20: #e0e0e0;
             --cds-gray-30: #c6c6c6;
             --cds-gray-50: #8d8d8d;
-            --cds-gray-70: #525252;
+            --cds-gray-70: #a8a8a8;
             --cds-gray-80: #393939;
             --cds-gray-90: #262626;
             --cds-gray-100: #161616;
-            --cds-purple-60: #8a3ffc;
-            --cds-teal-50: #009d9a;
+            --cds-purple-60: #be95ff;
+            --cds-teal-50: #08bdba;
             --cds-green-50: #24a148;
             --cds-cyan-40: #33b1ff;
+            --surface-page: #0d1117;
+            --surface-raised: #161616;
+            --surface-card: #262626;
+            --surface-border: #393939;
+            --text-primary: #f4f4f4;
+            --text-secondary: #c6c6c6;
+            --text-muted: #8d8d8d;
             --transition: 150ms cubic-bezier(0.2, 0, 0.38, 0.9);
         }
 
@@ -40,8 +49,8 @@
 
         body {
             font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--cds-gray-90);
-            background: #fff;
+            color: var(--text-primary);
+            background: var(--surface-page);
             line-height: 1.5;
             -webkit-font-smoothing: antialiased;
         }
@@ -89,7 +98,7 @@
 
         /* ── Hero ───────────────────────────────────── */
         .hero {
-            background: linear-gradient(135deg, var(--cds-gray-100) 0%, var(--cds-blue-80) 100%);
+            background: linear-gradient(135deg, var(--cds-gray-100) 0%, var(--hero-gradient-mid) 45%, var(--hero-gradient-end) 100%);
             color: #fff;
             padding: 5rem 2rem 4rem;
         }
@@ -228,7 +237,7 @@
             font-weight: 500;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            color: var(--cds-blue-60);
+            color: var(--cds-cyan-40);
             margin-bottom: 0.75rem;
         }
 
@@ -236,11 +245,12 @@
             font-size: 2rem;
             font-weight: 300;
             margin-bottom: 1rem;
+            color: var(--text-primary);
         }
 
         .section__desc {
             font-size: 1rem;
-            color: var(--cds-gray-70);
+            color: var(--text-secondary);
             max-width: 640px;
             margin-bottom: 3rem;
             line-height: 1.7;
@@ -251,12 +261,12 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 1px;
-            background: var(--cds-gray-20);
-            border: 1px solid var(--cds-gray-20);
+            background: var(--surface-border);
+            border: 1px solid var(--surface-border);
         }
 
         .ext-card {
-            background: #fff;
+            background: var(--surface-card);
             padding: 2.5rem;
             display: flex;
             flex-direction: column;
@@ -275,34 +285,45 @@
         }
 
         .ext-card__badge--vscode {
-            background: #e8f0fe;
+            background: rgba(69, 137, 255, 0.15);
             color: var(--cds-blue-70);
+            border: 1px solid rgba(69, 137, 255, 0.35);
         }
 
         .ext-card__badge--cursor {
-            background: #f3e8ff;
+            background: rgba(190, 149, 255, 0.12);
             color: var(--cds-purple-60);
+            border: 1px solid rgba(190, 149, 255, 0.35);
         }
 
         .ext-card__badge--mcp {
-            background: #e6f7f6;
+            background: rgba(8, 189, 186, 0.12);
             color: var(--cds-teal-50);
+            border: 1px solid rgba(8, 189, 186, 0.35);
         }
 
         .ext-card__title {
             font-size: 1.25rem;
             font-weight: 600;
             margin-bottom: 0.75rem;
+            color: var(--text-primary);
         }
 
         .ext-card__desc {
             font-size: 14px;
-            color: var(--cds-gray-70);
+            color: var(--text-secondary);
             line-height: 1.65;
             flex: 1;
             margin-bottom: 1.5rem;
         }
-
+        .ext-card__desc code {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9em;
+            background: var(--cds-gray-80);
+            color: var(--cds-cyan-40);
+            padding: 0.12em 0.4em;
+            border-radius: 3px;
+        }
         .ext-card__features {
             list-style: none;
             margin-bottom: 1.5rem;
@@ -310,7 +331,7 @@
 
         .ext-card__features li {
             font-size: 13px;
-            color: var(--cds-gray-70);
+            color: var(--text-secondary);
             padding: 0.3rem 0;
             padding-left: 1.25rem;
             position: relative;
@@ -323,7 +344,7 @@
             top: 0.65rem;
             width: 6px;
             height: 6px;
-            background: var(--cds-blue-60);
+            background: var(--cds-cyan-40);
             border-radius: 50%;
         }
 
@@ -337,18 +358,14 @@
         .ext-card__link {
             font-size: 14px;
             font-weight: 500;
-            color: var(--cds-blue-60);
+            color: var(--cds-blue-70);
             text-decoration: none;
             display: inline-flex;
             align-items: center;
             gap: 0.35rem;
             transition: color var(--transition);
         }
-
-        .ext-card__link:hover {
-            color: var(--cds-blue-70);
-        }
-
+        .ext-card__link:hover { color: var(--cds-blue-80); }
         .ext-card__link svg {
             width: 16px;
             height: 16px;
@@ -357,9 +374,9 @@
 
         /* ── Tech Strip ─────────────────────────────── */
         .tech-strip {
-            background: var(--cds-gray-10);
-            border-top: 1px solid var(--cds-gray-20);
-            border-bottom: 1px solid var(--cds-gray-20);
+            background: var(--surface-raised);
+            border-top: 1px solid var(--surface-border);
+            border-bottom: 1px solid var(--surface-border);
         }
 
         .tech-strip__inner {
@@ -379,14 +396,14 @@
         .tech-item__value {
             font-size: 2.5rem;
             font-weight: 300;
-            color: var(--cds-gray-90);
+            color: var(--text-primary);
         }
 
         .tech-item__label {
             font-size: 12px;
             font-weight: 500;
             letter-spacing: 0.5px;
-            color: var(--cds-gray-50);
+            color: var(--text-muted);
             text-transform: uppercase;
             margin-top: 0.25rem;
         }
@@ -401,7 +418,7 @@
 
         .about-text p {
             font-size: 1rem;
-            color: var(--cds-gray-70);
+            color: var(--text-secondary);
             line-height: 1.8;
             margin-bottom: 1rem;
         }
@@ -417,24 +434,25 @@
             align-items: center;
             gap: 0.75rem;
             padding: 1rem 1.25rem;
-            background: var(--cds-gray-10);
+            background: var(--surface-card);
             text-decoration: none;
-            color: var(--cds-gray-90);
+            color: var(--text-primary);
             font-size: 14px;
             font-weight: 500;
-            transition: background var(--transition);
+            transition: background var(--transition), border-color var(--transition);
+            border: 1px solid var(--surface-border);
             border-left: 3px solid transparent;
         }
 
         .about-link:hover {
-            background: var(--cds-gray-20);
-            border-left-color: var(--cds-blue-60);
+            background: var(--cds-gray-80);
+            border-left-color: var(--cds-cyan-40);
         }
 
         .about-link svg {
             width: 20px;
             height: 20px;
-            fill: var(--cds-gray-50);
+            fill: var(--text-muted);
             flex-shrink: 0;
         }
 
@@ -995,7 +1013,7 @@
     </section>
 
     <!-- About -->
-    <section class="section" id="about" style="background: var(--cds-gray-10);">
+    <section class="section" id="about" style="background: var(--surface-raised);">
         <div style="max-width: 1200px; margin: 0 auto;">
             <div class="section__label">About</div>
             <h2 class="section__title">Markus van Kempen</h2>
