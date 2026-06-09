@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Markus van Kempen — Developer Extensions &amp; Tools</title>
     <meta name="description"
-        content="Open-source developer tools for IBM Watsonx Orchestrate, Maximo, and Zendesk by Markus van Kempen. VS Code extensions, MCP servers, and AI integration for enterprise development.">
+        content="Open-source developer tools for IBM Watson, Watsonx Orchestrate, Maximo, and Zendesk by Markus van Kempen. VS Code extensions, MCP servers, and AI integration for enterprise and quantum development.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -545,9 +545,9 @@
         <div class="hero__inner">
             <div>
                 <div class="hero__label">Open Source Developer Tools</div>
-                <h1>Watsonx Orchestrate, Maximo, Zendesk, MCP, and AI Integration</h1>
+                <h1>Watsonx Orchestrate, Maximo, Zendesk, Quantum, MCP, and AI Integration</h1>
                 <p>VS Code extensions, Cursor AI tools, and MCP servers for exploring, testing, and automating
-                    workflows with IBM Watsonx Orchestrate, Maximo, Zendesk, and more. Free and open source.</p>
+                    workflows with IBM Watsonx Orchestrate, Maximo, Zendesk, IBM Quantum OpenQASM, and more. Free and open source.</p>
                 <div class="hero__actions">
                     <a class="btn btn--primary"
                         href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank"
@@ -593,7 +593,7 @@
     <div class="tech-strip">
         <div class="tech-strip__inner">
             <div class="tech-item">
-                <div class="tech-item__value">9</div>
+                <div class="tech-item__value">11</div>
                 <div class="tech-item__label">Extensions &amp; Tools</div>
             </div>
             <div class="tech-item">
@@ -615,8 +615,8 @@
     <section class="section" id="extensions">
         <div class="section__label">Extensions &amp; Tools</div>
         <h2 class="section__title">Enterprise AI &amp; Automation Tools</h2>
-        <p class="section__desc">A suite of open-source tools that help developers explore APIs, build AI agents, and
-            automate workflows with IBM Watsonx Orchestrate and Maximo.</p>
+        <p class="section__desc">A suite of open-source tools that help developers explore APIs, build AI agents, run
+            OpenQASM circuits on IBM Quantum hardware, and automate workflows with IBM Watsonx Orchestrate, Maximo, and Zendesk.</p>
 
         <div class="ext-grid">
             <!-- Maximo API Explorer -->
@@ -1046,6 +1046,132 @@
                 </div>
             </div>
 
+            <!-- Quantum OpenQASM Assistant (VS Code Extension) -->
+            <div class="ext-card">
+                <span class="ext-card__badge ext-card__badge--vscode">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
+                        <path
+                            d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z" />
+                    </svg>
+                    VS Code
+                </span>
+                <h3 class="ext-card__title">Quantum OpenQASM Assistant</h3>
+                <p class="ext-card__desc">VS Code extension for OpenQASM 2.0 on IBM Quantum — Quantum Lab, job polling,
+                    histograms, diagnostics, and one-click MCP setup for Cursor, VS Code, Bob, and Antigravity. Local stdio
+                    or remote Code Engine SSE.</p>
+                <ul class="ext-card__features">
+                    <li>Quantum Lab with Bell-state and example circuits</li>
+                    <li>Submit OpenQASM jobs, poll status, fetch histograms</li>
+                    <li>Setup MCP for AI assistants (npm or bundled server)</li>
+                    <li>Remote MCP mode via Code Engine <code>/sse</code></li>
+                    <li>IBM API key + Service CRN diagnostics panel</li>
+                </ul>
+                <div class="ext-card__links">
+                    <a class="ext-card__link"
+                        href="https://marketplace.visualstudio.com/items?itemName=markusvankempen.quantum-openqasm-assistant"
+                        target="_blank" rel="noopener">
+                        VS Code Marketplace
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z" />
+                        </svg>
+                    </a>
+                    <a class="ext-card__link"
+                        href="https://open-vsx.org/extension/markusvankempen/quantum-openqasm-assistant"
+                        target="_blank" rel="noopener">
+                        Open VSX
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z" />
+                        </svg>
+                    </a>
+                    <a class="ext-card__link"
+                        href="https://github.com/markusvankempen/quantum-openqasm-assistant"
+                        target="_blank" rel="noopener">
+                        Source Code
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Quantum OpenQASM MCP Server -->
+            <div class="ext-card">
+                <span class="ext-card__badge ext-card__badge--mcp">
+                    <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
+                        <path
+                            d="M8 1a2 2 0 012 2v1h2a2 2 0 012 2v4a2 2 0 01-2 2h-1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1H2a2 2 0 01-2-2V6a2 2 0 012-2h2V3a2 2 0 012-2h2zm0 1H6a1 1 0 00-1 1v1h4V3a1 1 0 00-1-1z" />
+                    </svg>
+                    MCP Server
+                </span>
+                <h3 class="ext-card__title">Quantum OpenQASM MCP Server</h3>
+                <p class="ext-card__desc">Model Context Protocol server for IBM Quantum — list backends, submit OpenQASM 2.0
+                    circuits, poll jobs, and fetch histograms via natural language in Cursor, VS Code, Bob, Antigravity,
+                    and Claude Desktop. Deploy remotely on IBM Code Engine with dashboard and SSE gateway.</p>
+                <ul class="ext-card__features">
+                    <li>10 tools — backends, jobs, QASM submit, credentials check</li>
+                    <li><code>npx @markusvankempen/quantum-openqasm-mcp</code> (stdio)</li>
+                    <li>IBM Code Engine SSE — server-side credentials</li>
+                    <li>Setup script: <code>setup-remote-mcp.sh</code> for IDE <code>mcp.json</code></li>
+                    <li>Connection test UI + admin panel on gateway</li>
+                </ul>
+                <div class="ext-card__links">
+                    <a class="ext-card__link"
+                        href="https://www.npmjs.com/package/@markusvankempen/quantum-openqasm-mcp"
+                        target="_blank" rel="noopener">
+                        npm
+                        <svg viewBox="0 0 16 16">
+                            <path d="M1 3v10h14V3H1zm13 9H2V4h12v8zm-1-7H3v6h10V5zm-1 5H4V6h8v4z" />
+                        </svg>
+                    </a>
+                    <a class="ext-card__link"
+                        href="https://github.com/markusvankempen/quantum-openqasm-assistant"
+                        target="_blank" rel="noopener">
+                        Source Code
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+                    <a class="ext-card__link"
+                        href="https://registry.modelcontextprotocol.io/?q=io.github.markusvankempen%2Fquantum-openqasm-mcp"
+                        target="_blank" rel="noopener">
+                        MCP Registry
+                        <svg viewBox="0 0 16 16">
+                            <path d="M2 2l12 5.5L8.5 9 7 14z" />
+                        </svg>
+                    </a>
+                    <a class="ext-card__link"
+                        href="cursor://anysphere.cursor-deeplink/mcp/install?name=Quantum%20OpenQASM%20MCP&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsIkBtYXJrdXN2YW5rZW1wZW4vcXVhbnR1bS1vcGVucWFzbS1tY3AiXSwiZW52Ijp7IklCTV9BUElfS0VZIjoiIiwiSUJNX1NFUlZJQ0VfQ1JOIjoiIn19"
+                        rel="noopener">
+                        Install in Cursor
+                        <svg viewBox="0 0 16 16">
+                            <path d="M2 2l12 5.5L8.5 9 7 14z" />
+                        </svg>
+                    </a>
+                    <a class="ext-card__link"
+                        href="https://vscode.dev/redirect/mcp/install?name=quantum-openqasm-mcp&config=%7B%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22%40markusvankempen%2Fquantum-openqasm-mcp%22%5D%2C%22env%22%3A%7B%22IBM_API_KEY%22%3A%22your-ibm-api-key%22%2C%22IBM_SERVICE_CRN%22%3A%22crn%3Av1%3A...%22%7D%7D"
+                        target="_blank" rel="noopener">
+                        Install in VS Code
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z" />
+                        </svg>
+                    </a>
+                    <a class="ext-card__link"
+                        href="https://github.com/markusvankempen/quantum-openqasm-assistant/tree/master/deployments/code-engine"
+                        target="_blank" rel="noopener">
+                        Code Engine Deploy
+                        <svg viewBox="0 0 16 16">
+                            <path
+                                d="M8 1a2 2 0 012 2v1h2a2 2 0 012 2v4a2 2 0 01-2 2h-1v1a2 2 0 01-2 2H5a2 2 0 01-2-2v-1H2a2 2 0 01-2-2V6a2 2 0 012-2h2V3a2 2 0 012-2h2zm0 1H6a1 1 0 00-1 1v1h4V3a1 1 0 00-1-1z" />
+                        </svg>
+                    </a>
+                </div>
+            </div>
+
             <!-- WxO CLI Utilities -->
             <div class="ext-card">
                 <span class="ext-card__badge" style="background:#e0e0e0; color:#161616;">
@@ -1088,7 +1214,7 @@
                 <div class="about-text">
                     <p>I have a keen interest in debating and predicting <em>The Next Big Thing</em> in technology.
                         Based in Toronto, I build open-source developer tools that bridge enterprise platforms like IBM
-                        Watsonx Orchestrate and Maximo with modern AI-assisted development workflows.</p>
+                        Watsonx Orchestrate, Maximo, and IBM Quantum with modern AI-assisted development workflows.</p>
                     <p>These tools are part of an open-source effort to make enterprise API development faster, more
                         accessible, and AI-ready. Whether you use VS Code, Cursor, Claude, or ChatGPT, there's a tool
                         here for you.</p>
