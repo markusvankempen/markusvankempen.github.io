@@ -1,624 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Markus van Kempen — Developer Extensions &amp; Tools</title>
-    <meta name="description"
-        content="Open-source developer tools for IBM Watson, Watsonx Orchestrate, Maximo, and Zendesk by Markus van Kempen. VS Code extensions, MCP servers, and AI integration for enterprise and quantum development.">
+    <title>Markus van Kempen — MCP &amp; AI IDE Extensions</title>
+    <meta name="description" content="Open-source MCP servers and VS Code / Cursor extensions by Markus van Kempen — IBM Maximo, Watsonx Orchestrate, IBM Quantum, Zendesk, and Code Engine.">
+    <meta name="theme-color" content="#06090f">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --cds-blue-60: #4589ff;
-            --cds-blue-70: #78a9ff;
-            --cds-blue-80: #a6c8ff;
-            --hero-gradient-end: #002d9c;
-            --hero-gradient-mid: #0043ce;
-            --cds-gray-10: #f4f4f4;
-            --cds-gray-20: #e0e0e0;
-            --cds-gray-30: #c6c6c6;
-            --cds-gray-50: #8d8d8d;
-            --cds-gray-70: #a8a8a8;
-            --cds-gray-80: #393939;
-            --cds-gray-90: #262626;
-            --cds-gray-100: #161616;
-            --cds-purple-60: #be95ff;
-            --cds-teal-50: #08bdba;
-            --cds-green-50: #24a148;
-            --cds-cyan-40: #33b1ff;
-            --surface-page: #0d1117;
-            --surface-raised: #161616;
-            --surface-card: #262626;
-            --surface-border: #393939;
-            --text-primary: #f4f4f4;
-            --text-secondary: #c6c6c6;
-            --text-muted: #8d8d8d;
-            --transition: 150ms cubic-bezier(0.2, 0, 0.38, 0.9);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-            color: var(--text-primary);
-            background: var(--surface-page);
-            line-height: 1.5;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ── Header ─────────────────────────────────── */
-        .header {
-            background: var(--cds-gray-100);
-            color: #fff;
-            padding: 0 2rem;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        .header__name {
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.1px;
-        }
-
-        .header__nav {
-            margin-left: auto;
-            display: flex;
-            gap: 0;
-        }
-
-        .header__nav a {
-            color: var(--cds-gray-30);
-            text-decoration: none;
-            font-size: 14px;
-            padding: 0 1rem;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            transition: background var(--transition), color var(--transition);
-        }
-
-        .header__nav a:hover {
-            background: var(--cds-gray-80);
-            color: #fff;
-        }
-
-        /* ── Hero ───────────────────────────────────── */
-        .hero {
-            background: linear-gradient(135deg, var(--cds-gray-100) 0%, var(--hero-gradient-mid) 45%, var(--hero-gradient-end) 100%);
-            color: #fff;
-            padding: 5rem 2rem 4rem;
-        }
-
-        .hero__inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .hero__label {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--cds-cyan-40);
-            margin-bottom: 1rem;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            font-weight: 300;
-            line-height: 1.15;
-            margin-bottom: 1.5rem;
-        }
-
-        .hero h1 strong {
-            font-weight: 600;
-        }
-
-        .hero p {
-            font-size: 1.125rem;
-            line-height: 1.7;
-            color: var(--cds-gray-30);
-            margin-bottom: 2rem;
-            max-width: 520px;
-        }
-
-        .hero__actions {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .hero__graphic {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero__icon-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
-        }
-
-        .hero__icon-card {
-            background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 4px;
-            padding: 1.5rem;
-            text-align: center;
-            backdrop-filter: blur(8px);
-            transition: transform var(--transition), background var(--transition);
-        }
-
-        .hero__icon-card:hover {
-            transform: translateY(-2px);
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .hero__icon-card .icon {
-            font-size: 2rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .hero__icon-card .label {
-            font-size: 12px;
-            color: var(--cds-gray-30);
-            font-weight: 500;
-        }
-
-        /* ── Buttons ────────────────────────────────── */
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            font-family: inherit;
-            font-size: 14px;
-            font-weight: 500;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: background var(--transition);
-            white-space: nowrap;
-        }
-
-        .btn--primary {
-            background: var(--cds-blue-60);
-            color: #fff;
-        }
-
-        .btn--primary:hover {
-            background: var(--cds-blue-70);
-        }
-
-        .btn--ghost {
-            background: transparent;
-            color: #fff;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .btn--ghost:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
-
-        .btn svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        /* ── Section ────────────────────────────────── */
-        .section {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 5rem 2rem;
-        }
-
-        .section__label {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--cds-cyan-40);
-            margin-bottom: 0.75rem;
-        }
-
-        .section__title {
-            font-size: 2rem;
-            font-weight: 300;
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .section__desc {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin-bottom: 3rem;
-            line-height: 1.7;
-        }
-
-        /* ── Extension Cards ────────────────────────── */
-        .ext-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 1px;
-            background: var(--surface-border);
-            border: 1px solid var(--surface-border);
-        }
-
-        .ext-card {
-            background: var(--surface-card);
-            padding: 2.5rem;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .ext-card__badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.375rem;
-            font-size: 12px;
-            font-weight: 500;
-            padding: 0.25rem 0.75rem;
-            border-radius: 100px;
-            width: fit-content;
-            margin-bottom: 1.25rem;
-        }
-
-        .ext-card__badge--vscode {
-            background: rgba(69, 137, 255, 0.15);
-            color: var(--cds-blue-70);
-            border: 1px solid rgba(69, 137, 255, 0.35);
-        }
-
-        .ext-card__badge--cursor {
-            background: rgba(190, 149, 255, 0.12);
-            color: var(--cds-purple-60);
-            border: 1px solid rgba(190, 149, 255, 0.35);
-        }
-
-        .ext-card__badge--mcp {
-            background: rgba(8, 189, 186, 0.12);
-            color: var(--cds-teal-50);
-            border: 1px solid rgba(8, 189, 186, 0.35);
-        }
-
-        .ext-card__title {
-            font-size: 1.25rem;
-            font-weight: 600;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-        }
-
-        .ext-card__desc {
-            font-size: 14px;
-            color: var(--text-secondary);
-            line-height: 1.65;
-            flex: 1;
-            margin-bottom: 1.5rem;
-        }
-        .ext-card__desc code {
-            font-family: 'IBM Plex Mono', monospace;
-            font-size: 0.9em;
-            background: var(--cds-gray-80);
-            color: var(--cds-cyan-40);
-            padding: 0.12em 0.4em;
-            border-radius: 3px;
-        }
-        .ext-card__features {
-            list-style: none;
-            margin-bottom: 1.5rem;
-        }
-
-        .ext-card__features li {
-            font-size: 13px;
-            color: var(--text-secondary);
-            padding: 0.3rem 0;
-            padding-left: 1.25rem;
-            position: relative;
-        }
-
-        .ext-card__features li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 0.65rem;
-            width: 6px;
-            height: 6px;
-            background: var(--cds-cyan-40);
-            border-radius: 50%;
-        }
-
-        .ext-card__links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: auto;
-        }
-
-        .ext-card__link {
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--cds-blue-70);
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            transition: color var(--transition);
-        }
-        .ext-card__link:hover { color: var(--cds-blue-80); }
-        .ext-card__link svg {
-            width: 16px;
-            height: 16px;
-            fill: currentColor;
-        }
-
-        /* ── Tech Strip ─────────────────────────────── */
-        .tech-strip {
-            background: var(--surface-raised);
-            border-top: 1px solid var(--surface-border);
-            border-bottom: 1px solid var(--surface-border);
-        }
-
-        .tech-strip__inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 3rem 2rem;
-            display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 2rem;
-        }
-
-        .tech-item {
-            text-align: center;
-        }
-
-        .tech-item__value {
-            font-size: 2.5rem;
-            font-weight: 300;
-            color: var(--text-primary);
-        }
-
-        .tech-item__label {
-            font-size: 12px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            margin-top: 0.25rem;
-        }
-
-        /* ── About ──────────────────────────────────── */
-        .about-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr;
-            gap: 4rem;
-            align-items: start;
-        }
-
-        .about-text p {
-            font-size: 1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1rem;
-        }
-
-        .about-links {
-            display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
-        }
-
-        .about-link {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            padding: 1rem 1.25rem;
-            background: var(--surface-card);
-            text-decoration: none;
-            color: var(--text-primary);
-            font-size: 14px;
-            font-weight: 500;
-            transition: background var(--transition), border-color var(--transition);
-            border: 1px solid var(--surface-border);
-            border-left: 3px solid transparent;
-        }
-
-        .about-link:hover {
-            background: var(--cds-gray-80);
-            border-left-color: var(--cds-cyan-40);
-        }
-
-        .about-link svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--text-muted);
-            flex-shrink: 0;
-        }
-
-        /* ── Footer ─────────────────────────────────── */
-        .footer {
-            background: var(--cds-gray-100);
-            color: var(--cds-gray-30);
-            padding: 3rem 2rem 2rem;
-        }
-
-        .footer__inner {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-        }
-
-        .footer__text {
-            font-size: 13px;
-        }
-
-        .footer__links {
-            display: flex;
-            gap: 1.5rem;
-        }
-
-        .footer__links a {
-            color: var(--cds-gray-30);
-            text-decoration: none;
-            font-size: 13px;
-            transition: color var(--transition);
-        }
-
-        .footer__links a:hover {
-            color: #fff;
-        }
-
-        /* ── Responsive ─────────────────────────────── */
-        @media (max-width: 768px) {
-            .hero__inner {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .hero h1 {
-                font-size: 2rem;
-            }
-
-            .hero__graphic {
-                display: none;
-            }
-
-            .ext-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .tech-strip__inner {
-                justify-content: center;
-            }
-
-            .header__nav {
-                display: none;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/agent-bridge.css">
 </head>
-
 <body>
 
-    <!-- Header -->
     <header class="header">
-        <span class="header__name">Markus van Kempen</span>
-        <nav class="header__nav">
-            <a href="#extensions">Extensions</a>
-            <a href="#about">About</a>
-            <a href="https://github.com/markusvankempen" target="_blank" rel="noopener">GitHub</a>
-        </nav>
+        <div class="container header__inner">
+            <a class="header__brand" href="#">
+                <span class="header__logo">MV</span>
+                <span>
+                    <span class="header__name">Markus van Kempen</span><br>
+                    <span class="header__tag">Agent Bridge · MCP &amp; IDE tools</span>
+                </span>
+            </a>
+            <nav class="header__nav">
+                <a href="#how">How it works</a>
+                <a href="#maximo">Maximo</a>
+                <a href="#watsonx">WxO</a>
+                <a href="#mcp-servers">MCP</a>
+                <a href="#quantum">Quantum</a>
+                <a href="#about">About</a>
+                <a href="https://github.com/markusvankempen" target="_blank" rel="noopener">GitHub</a>
+            </nav>
+        </div>
     </header>
 
-    <!-- Hero -->
     <section class="hero">
-        <div class="hero__inner">
+        <div class="container hero__grid">
             <div>
-                <div class="hero__label">Open Source Developer Tools</div>
-                <h1>Watsonx Orchestrate, Maximo, Zendesk, Quantum, MCP, and AI Integration</h1>
-                <p>VS Code extensions, Cursor AI tools, and MCP servers for exploring, testing, and automating
-                    workflows with IBM Watsonx Orchestrate, Maximo, Zendesk, IBM Quantum OpenQASM, and more. Free and open source.</p>
+                <div class="hero__eyebrow">Agent Bridge · Open Source</div>
+                <h1>Bridge <em>enterprise APIs</em> to AI-native development</h1>
+                <p class="hero__lead">MCP servers and IDE extensions that connect Cursor, VS Code, Bob, and Antigravity to IBM Maximo, Watsonx Orchestrate, IBM Quantum, Zendesk, and IBM Cloud — with one-click setup and remote Code Engine deploys.</p>
                 <div class="hero__actions">
-                    <a class="btn btn--primary"
-                        href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank"
-                        rel="noopener">
-                        <svg viewBox="0 0 16 16">
-                            <path
-                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
-                        </svg>
-                        View on GitHub
+                    <a class="btn btn--primary" href="https://github.com/markusvankempen" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        GitHub
                     </a>
-                    <a class="btn btn--ghost" href="#extensions">
-                        Explore Extensions
-                        <svg viewBox="0 0 16 16">
-                            <path d="M8 1l-.71.71L12.58 7H1v1h11.58l-5.29 5.29L8 14l6.5-6.5z" fill-rule="evenodd" />
-                        </svg>
+                    <a class="btn btn--ghost" href="#projects">
+                        Browse projects
+                        <svg viewBox="0 0 16 16"><path d="M8 1l-.71.71L12.58 7H1v1h11.58l-5.29 5.29L8 14l6.5-6.5z" fill-rule="evenodd"/></svg>
                     </a>
                 </div>
+                <div class="hero__platforms">
+                    <a class="platform-pill" href="#maximo">Maximo</a>
+                    <a class="platform-pill" href="#watsonx">Watsonx Orchestrate</a>
+                    <a class="platform-pill" href="#quantum">IBM Quantum</a>
+                    <a class="platform-pill" href="#mcp-servers">Zendesk MCP</a>
+                    <a class="platform-pill" href="#mcp-servers">Code Engine</a>
+                    <span class="platform-pill">MCP Protocol</span>
+                </div>
             </div>
-            <div class="hero__graphic">
-                <div class="hero__icon-grid">
-                    <div class="hero__icon-card">
-                        <div class="icon">&#128268;</div>
-                        <div class="label">API Explorer</div>
-                    </div>
-                    <div class="hero__icon-card">
-                        <div class="icon">&#129302;</div>
-                        <div class="label">AI Context</div>
-                    </div>
-                    <div class="hero__icon-card">
-                        <div class="icon">&#128203;</div>
-                        <div class="label">Code Gen</div>
-                    </div>
-                    <div class="hero__icon-card">
-                        <div class="icon">&#9889;</div>
-                        <div class="label">MCP Server</div>
-                    </div>
+            <div class="hero__flow">
+                <div class="flow-title">Model Context Protocol flow</div>
+                <div class="flow-chain">
+                    <div class="flow-node flow-node--ide">Cursor · VS Code · Bob · Antigravity</div>
+                    <div class="flow-connector">MCP stdio / SSE</div>
+                    <div class="flow-node flow-node--mcp">@markusvankempen/*-mcp</div>
+                    <div class="flow-connector">REST / OpenAPI</div>
+                    <div class="flow-node flow-node--api">Maximo · WxO · Quantum · Zendesk · IBM Cloud</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Stats Strip -->
-    <div class="tech-strip">
-        <div class="tech-strip__inner">
-            <div class="tech-item">
-                <div class="tech-item__value">11</div>
-                <div class="tech-item__label">Extensions &amp; Tools</div>
+    <div class="stats">
+        <div class="container stats__inner">
+            <div class="stat">
+                <div class="stat__value">11</div>
+                <div class="stat__label">Extensions &amp; tools</div>
             </div>
-            <div class="tech-item">
-                <div class="tech-item__value">OSLC</div>
-                <div class="tech-item__label">REST API Standard</div>
+            <div class="stat">
+                <div class="stat__value">6</div>
+                <div class="stat__label">MCP servers</div>
             </div>
-            <div class="tech-item">
-                <div class="tech-item__value">Carbon</div>
-                <div class="tech-item__label">Design System</div>
+            <div class="stat">
+                <div class="stat__value">5+</div>
+                <div class="stat__label">AI IDEs supported</div>
             </div>
-            <div class="tech-item">
-                <div class="tech-item__value">Apache 2.0</div>
-                <div class="tech-item__label">License</div>
+            <div class="stat">
+                <div class="stat__value">Apache 2.0</div>
+                <div class="stat__label">Open source</div>
             </div>
         </div>
     </div>
 
-    <!-- Extensions -->
-    <section class="section" id="extensions">
-        <div class="section__label">Extensions &amp; Tools</div>
-        <h2 class="section__title">Enterprise AI &amp; Automation Tools</h2>
-        <p class="section__desc">A suite of open-source tools that help developers explore APIs, build AI agents, run
-            OpenQASM circuits on IBM Quantum hardware, and automate workflows with IBM Watsonx Orchestrate, Maximo, and Zendesk.</p>
+    <section class="how" id="how">
+        <div class="container">
+            <div class="section-eyebrow">How it works</div>
+            <h2 class="section-title">From IDE chat to live enterprise data</h2>
+            <p class="section-lead">Every project follows the same pattern: an AI assistant calls MCP tools; the server talks to your platform APIs. Extensions add visual UIs, diagnostics, and one-click <code style="font-family:IBM Plex Mono,monospace;font-size:0.9em;color:#3ddbd9">mcp.json</code> setup.</p>
+            <div class="steps">
+                <div class="step">
+                    <div class="step__num">01</div>
+                    <h3>Install &amp; connect</h3>
+                    <p>VS Code Marketplace, Open VSX, <code style="font-family:monospace;font-size:0.85em">npx</code>, or Cursor one-click install. Credentials stay local or on Code Engine.</p>
+                </div>
+                <div class="step">
+                    <div class="step__num">02</div>
+                    <h3>MCP tools in your IDE</h3>
+                    <p>Ask the AI to list backends, query Maximo, manage WxO agents, submit OpenQASM, or handle Zendesk tickets — via typed MCP tools.</p>
+                </div>
+                <div class="step">
+                    <div class="step__num">03</div>
+                    <h3>Deploy remotely (optional)</h3>
+                    <p>IBM Code Engine SSE gateways share one URL across the team — server-side secrets, dashboard, and connection test UI.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <div class="ext-grid">
+    <section class="projects" id="projects">
+        <div class="container">
+            <div class="section-eyebrow">Projects</div>
+            <h2 class="section-title">Extensions, MCP servers &amp; CLIs</h2>
+            <p class="section-lead">Organized by platform. All projects are free, open source, and built for real enterprise workflows.</p>
+            <div class="ext-grid">
+                                <div class="cat-header cat-header--maximo" id="maximo">
+                <div class="cat-header__icon">&#9881;</div>
+                <div>
+                    <h2>IBM Maximo</h2>
+                    <p>API exploration, Cursor AI context, VS Code extensions, and MCP</p>
+                </div>
+            </div>
+
             <!-- Maximo API Explorer -->
             <div class="ext-card">
                 <span class="ext-card__badge ext-card__badge--vscode">
@@ -790,6 +303,14 @@
                 </div>
             </div>
 
+                        <div class="cat-header cat-header--wxo" id="watsonx">
+                <div class="cat-header__icon">&#129302;</div>
+                <div>
+                    <h2>Watsonx Orchestrate</h2>
+                    <p>Agent builders, WxO MCP, and deployment automation CLI</p>
+                </div>
+            </div>
+
             <!-- WxO Builder MCP Server -->
             <div class="ext-card">
                 <span class="ext-card__badge ext-card__badge--mcp">
@@ -922,6 +443,14 @@
                 </div>
             </div>
 
+                        <div class="cat-header cat-header--mcp" id="mcp-servers">
+                <div class="cat-header__icon">&#9889;</div>
+                <div>
+                    <h2>MCP Servers &amp; Remote Gateways</h2>
+                    <p>Model Context Protocol — stdio, npm, and Code Engine SSE</p>
+                </div>
+            </div>
+
             <!-- Code Engine MCP Server -->
             <div class="ext-card">
                 <span class="ext-card__badge ext-card__badge--mcp">
@@ -1043,6 +572,14 @@
                                 d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z" />
                         </svg>
                     </a>
+                </div>
+            </div>
+
+                        <div class="cat-header cat-header--quantum" id="quantum">
+                <div class="cat-header__icon">&#9883;</div>
+                <div>
+                    <h2>IBM Quantum</h2>
+                    <p>OpenQASM 2.0 circuits, Quantum Lab, and remote MCP on Code Engine</p>
                 </div>
             </div>
 
@@ -1174,7 +711,7 @@
 
             <!-- WxO CLI Utilities -->
             <div class="ext-card">
-                <span class="ext-card__badge" style="background:#e0e0e0; color:#161616;">
+                <span class="ext-card__badge ext-card__badge--cli">
                     <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
                         <path
                             d="M12 1H4a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V2a1 1 0 00-1-1zM5 3h6v1H5V3zm3 9H5v-1h3v1zm3 0H9v-1h2v1zm0-3H5V8h6v1zm0-3H5V6h6v1z" />
@@ -1202,46 +739,35 @@
                     </a>
                 </div>
             </div>
+            </div>
         </div>
     </section>
 
-    <!-- About -->
-    <section class="section" id="about" style="background: var(--surface-raised);">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <div class="section__label">About</div>
-            <h2 class="section__title">Markus van Kempen</h2>
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-eyebrow">About</div>
+            <h2 class="section-title">Markus van Kempen</h2>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>I have a keen interest in debating and predicting <em>The Next Big Thing</em> in technology.
-                        Based in Toronto, I build open-source developer tools that bridge enterprise platforms like IBM
-                        Watsonx Orchestrate, Maximo, and IBM Quantum with modern AI-assisted development workflows.</p>
-                    <p>These tools are part of an open-source effort to make enterprise API development faster, more
-                        accessible, and AI-ready. Whether you use VS Code, Cursor, Claude, or ChatGPT, there's a tool
-                        here for you.</p>
-                    <p>All projects are released under the Apache 2.0 license. Contributions, issues, and feedback are
-                        welcome.</p>
+                    <p>Based in Toronto, I build open-source tools at the intersection of <strong style="font-weight:500;color:#eef2f8">enterprise platforms</strong> and <strong style="font-weight:500;color:#eef2f8">AI-assisted development</strong> — bridging IBM Watsonx Orchestrate, Maximo, IBM Quantum, and Zendesk with MCP and modern IDEs.</p>
+                    <p>The <em>Agent Bridge</em> theme reflects what these projects do: connect AI agents to systems of record through the Model Context Protocol — securely, repeatably, and with great developer ergonomics.</p>
+                    <p>All projects are Apache 2.0. Contributions, issues, and feedback are welcome.</p>
                 </div>
                 <div class="about-links">
                     <a class="about-link" href="https://github.com/markusvankempen" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 16 16">
-                            <path
-                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-                        </svg>
-                        GitHub &mdash; @markusvankempen
+                        <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
+                        GitHub — @markusvankempen
                     </a>
-                    <a class="about-link" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options"
-                        target="_blank" rel="noopener">
-                        <svg viewBox="0 0 16 16">
-                            <path
-                                d="M1.75 0A1.75 1.75 0 000 1.75v12.5C0 15.216.784 16 1.75 16h12.5A1.75 1.75 0 0016 14.25V1.75A1.75 1.75 0 0014.25 0H1.75zM1.5 1.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v12.5a.25.25 0 01-.25.25H1.75a.25.25 0 01-.25-.25V1.75zM8 4a.75.75 0 01.75.75v2.5h2.5a.75.75 0 010 1.5h-2.5v2.5a.75.75 0 01-1.5 0v-2.5h-2.5a.75.75 0 010-1.5h2.5v-2.5A.75.75 0 018 4z" />
-                        </svg>
-                        Main Project Repo
+                    <a class="about-link" href="https://open-vsx.org/namespace/markusvankempen" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M10.94 0L6.33 4.4 2.68 1.6.44 2.53l4.09 5.47L.44 13.47 2.68 14.4l3.65-2.8 4.61 4.4 2.56-1.2V1.2L10.94 0zM11 11.83L6.95 8 11 4.17v7.66z"/></svg>
+                        Open VSX — markusvankempen
+                    </a>
+                    <a class="about-link" href="https://registry.modelcontextprotocol.io/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M2 2l12 5.5L8.5 9 7 14z"/></svg>
+                        MCP Registry
                     </a>
                     <a class="about-link" href="http://markusvankempen.wordpress.com/" target="_blank" rel="noopener">
-                        <svg viewBox="0 0 16 16">
-                            <path
-                                d="M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6.5A6.5 6.5 0 001.5 8 6.5 6.5 0 008 14.5 6.5 6.5 0 0014.5 8 6.5 6.5 0 008 1.5zM6.227 4.2A.75.75 0 005.5 5v6a.75.75 0 001.095.667l5-3a.75.75 0 000-1.334l-5-3z" />
-                        </svg>
+                        <svg viewBox="0 0 16 16"><path d="M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6.5A6.5 6.5 0 001.5 8 6.5 6.5 0 008 14.5 6.5 6.5 0 0014.5 8 6.5 6.5 0 008 1.5zM6.227 4.2A.75.75 0 005.5 5v6a.75.75 0 001.095.667l5-3a.75.75 0 000-1.334l-5-3z"/></svg>
                         Blog
                     </a>
                 </div>
@@ -1249,19 +775,16 @@
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="footer">
-        <div class="footer__inner">
-            <span class="footer__text">&copy; 2026 Markus van Kempen. Open source under Apache 2.0.</span>
+        <div class="container footer__inner">
+            <span class="footer__text">&copy; 2026 Markus van Kempen · Agent Bridge · Apache 2.0</span>
             <div class="footer__links">
-                <a href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank"
-                    rel="noopener">GitHub</a>
+                <a href="https://github.com/markusvankempen" target="_blank" rel="noopener">GitHub</a>
                 <a href="https://open-vsx.org/namespace/markusvankempen" target="_blank" rel="noopener">Open VSX</a>
+                <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a>
                 <a href="http://markusvankempen.wordpress.com/" target="_blank" rel="noopener">Blog</a>
             </div>
         </div>
     </footer>
-
 </body>
-
 </html>
