@@ -1,4 +1,4 @@
-/* Agent Bridge — Markus van Kempen developer portal theme */
+/* Agentic AI Bridge — Markus van Kempen developer portal theme */
 :root {
     --bg-void: #06090f;
     --bg-page: #0a0f18;
@@ -95,15 +95,16 @@ a { color: inherit; }
 }
 
 .header__logo {
-    width: 32px;
+    width: 38px;
     height: 32px;
     border-radius: 8px;
     background: linear-gradient(135deg, var(--accent-blue), var(--accent-teal));
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 14px;
+    font-size: 11px;
     font-weight: 700;
+    letter-spacing: -0.02em;
     color: #fff;
     box-shadow: 0 0 20px rgba(69, 137, 255, 0.35);
 }
@@ -386,111 +387,6 @@ a { color: inherit; }
     margin-top: 0.5rem;
 }
 
-/* ── New in 2026 spotlight ──────────────────── */
-.spotlight {
-    padding: 4rem 0;
-    border-bottom: 1px solid var(--border);
-    background: linear-gradient(180deg, rgba(255, 131, 43, 0.04) 0%, transparent 100%);
-}
-
-.spotlight-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
-    margin-bottom: 1.75rem;
-}
-
-.spot-card {
-    display: flex;
-    flex-direction: column;
-    padding: 1.35rem 1.25rem;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    text-decoration: none;
-    color: inherit;
-    transition: border-color var(--transition), transform var(--transition), box-shadow var(--transition);
-}
-
-.spot-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 28px rgba(0, 0, 0, 0.22);
-}
-
-.spot-card--quantum:hover { border-color: rgba(138, 63, 252, 0.45); }
-.spot-card--mcp:hover { border-color: rgba(61, 219, 217, 0.45); }
-.spot-card--wxo:hover { border-color: rgba(190, 149, 255, 0.45); }
-
-.spot-card__year {
-    font-family: var(--font-mono);
-    font-size: 10px;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: #ff832b;
-    margin-bottom: 0.6rem;
-}
-
-.spot-card h3 {
-    font-size: 1rem;
-    font-weight: 600;
-    margin-bottom: 0.45rem;
-    line-height: 1.3;
-}
-
-.spot-card p {
-    font-size: 12px;
-    color: var(--text-secondary);
-    line-height: 1.55;
-    flex: 1;
-    margin-bottom: 0.85rem;
-}
-
-.spot-card p code {
-    font-family: var(--font-mono);
-    font-size: 0.9em;
-    color: var(--accent-teal);
-}
-
-.spot-card__cta {
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--accent-blue-soft);
-}
-
-.spot-card:hover .spot-card__cta { color: var(--accent-teal); }
-
-.spotlight-more {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 0.6rem 0.75rem;
-}
-
-.spotlight-more__label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-}
-
-.spotlight-pill {
-    font-size: 12px;
-    font-weight: 500;
-    padding: 0.35rem 0.85rem;
-    border-radius: 100px;
-    border: 1px solid var(--border);
-    background: var(--bg-raised);
-    color: var(--text-secondary);
-    text-decoration: none;
-    transition: border-color var(--transition), color var(--transition);
-}
-
-.spotlight-pill:hover {
-    border-color: var(--border-glow);
-    color: var(--accent-teal);
-}
-
 /* ── How it works ───────────────────────────── */
 .how {
     padding: 4rem 0;
@@ -672,11 +568,10 @@ a { color: inherit; }
     border: 1px solid rgba(141, 141, 141, 0.3);
 }
 
-.ext-card__badge--new {
-    background: rgba(255, 131, 43, 0.12);
-    color: #ff832b;
-    border: 1px solid rgba(255, 131, 43, 0.35);
-    margin-bottom: 0.4rem;
+.ext-card__badge--wxo {
+    background: rgba(190, 149, 255, 0.12);
+    color: var(--accent-purple);
+    border: 1px solid rgba(190, 149, 255, 0.3);
 }
 
 .ext-card__title {
@@ -849,7 +744,6 @@ a { color: inherit; }
     .hero__grid { grid-template-columns: 1fr; }
     .hero__flow { order: -1; }
     .stats__inner { grid-template-columns: repeat(2, 1fr); }
-    .spotlight-grid { grid-template-columns: repeat(2, 1fr); }
     .ext-card--labs { grid-column: 1 / -1; }
     .steps { grid-template-columns: 1fr; }
     .ext-grid { grid-template-columns: 1fr; }
@@ -860,5 +754,4 @@ a { color: inherit; }
     .header__tag { display: none; }
     .header__nav a:not(:last-child) { display: none; }
     .stats__inner { grid-template-columns: 1fr 1fr; }
-    .spotlight-grid { grid-template-columns: 1fr; }
 }
