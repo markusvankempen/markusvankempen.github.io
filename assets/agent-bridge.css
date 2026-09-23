@@ -210,10 +210,8 @@ a { color: inherit; }
 }
 
 .hero__grid {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 3rem;
-    align-items: center;
+    display: block;
+    max-width: 52rem;
 }
 
 .hero__eyebrow {
@@ -271,6 +269,14 @@ a { color: inherit; }
     color: var(--text-primary);
     margin-bottom: 0.85rem;
     letter-spacing: -0.01em;
+}
+
+.hero__credential {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    max-width: 36rem;
+    margin: -0.15rem 0 1.1rem;
 }
 
 .hero__lead {
@@ -360,38 +366,41 @@ a { color: inherit; }
 .hero__flow {
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 2rem 1.5rem;
-    box-shadow: 0 8px 40px rgba(0, 0, 0, 0.35);
+    border-radius: var(--radius);
+    padding: 0.7rem 0.85rem;
+    margin-bottom: 1.25rem;
 }
 
 .flow-title {
-    font-size: 11px;
+    font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--text-muted);
-    text-align: center;
-    margin-bottom: 1.5rem;
+    text-align: left;
+    margin-bottom: 0.45rem;
 }
 
 .flow-chain {
     display: flex;
-    flex-direction: column;
-    gap: 0;
-    align-items: stretch;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.35rem 0.4rem;
+    align-items: center;
 }
 
 .flow-node {
-    padding: 1rem 1.25rem;
-    border-radius: var(--radius);
+    padding: 0.35rem 0.55rem;
+    border-radius: 6px;
     border: 1px solid var(--border);
     background: var(--bg-raised);
-    text-align: center;
-    font-size: 13px;
+    text-align: left;
+    font-size: 12px;
     font-weight: 500;
     color: var(--text-secondary);
-    line-height: 1.4;
+    line-height: 1.35;
+    max-width: 100%;
+    overflow-wrap: anywhere;
 }
 
 .flow-node--ide {
@@ -415,23 +424,23 @@ a { color: inherit; }
 }
 
 .flow-connector {
-    display: flex;
-    flex-direction: column;
+    display: inline-flex;
+    flex-direction: row;
     align-items: center;
-    padding: 0.35rem 0;
+    gap: 0.3rem;
+    padding: 0;
     color: var(--text-muted);
     font-size: 10px;
     font-weight: 600;
-    letter-spacing: 0.08em;
+    letter-spacing: 0.06em;
     text-transform: uppercase;
 }
 
 .flow-connector::before {
     content: '';
-    width: 2px;
-    height: 12px;
-    background: linear-gradient(var(--border), var(--accent-teal));
-    margin-bottom: 4px;
+    width: 12px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--border), var(--accent-teal));
 }
 
 /* ── Stats ──────────────────────────────────── */
@@ -1196,8 +1205,7 @@ section,
 
 /* ── Responsive ─────────────────────────────── */
 @media (max-width: 900px) {
-    .hero__grid { grid-template-columns: 1fr; }
-    .hero__flow { order: -1; }
+    .hero__grid { display: block; }
     .stats__inner { grid-template-columns: repeat(2, 1fr); }
     .ext-card--labs { grid-column: 1 / -1; }
     .steps { grid-template-columns: 1fr; }
