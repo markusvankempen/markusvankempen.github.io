@@ -2,6 +2,8 @@
 
 Personal site for **Markus van Kempen** — open-source MCP servers and IDE tools, devices, the Englishtown ferry, STEM teaching, and talks.
 
+Most MCP servers and extensions work in VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline. Marketplace and Open VSX links are the install path for those editors.
+
 **Live site:** [https://markusvankempen.github.io](https://markusvankempen.github.io)
 
 ## What's Here
@@ -25,11 +27,12 @@ A single-page site built with IBM Carbon Design System styling that highlights:
 | **FerryLight** | Community | Englishtown ↔ Jersey Cove ferry tracker — blog, slides, and live app | [Blog](https://markusvankempen.github.io/FerryLight-Blog/) • [App](https://ferrylight.online) • [GitHub](https://github.com/markusvankempen/FerryLight-Blog) |
 | **Slack ↔ WxO Gateway** | MCP · Apache 2.0 | Route Slack channels to Watsonx Orchestrate agents | [npm](https://www.npmjs.com/package/@markusvankempen/slack-wxo-mcp-gateway) • [GitHub](https://github.com/markusvankempen/slack-wxo-mcp-gateway) |
 | **TTGO T-Beam Sensor Node** | ESP32 · Apache 2.0 | LoRaWAN node with BME280, GPS, and a web map | [GitHub](https://github.com/markusvankempen/TTGO-T-Beam-Sensor-Node-with-Web-Dashboard) |
+| **ThinkLab 1239** | Think 2020 | Hyper-localized weather and crop prediction with Watson IoT, Node-RED, and Watson Studio | [GitHub](https://github.com/markusvankempen/ThinkLab1239) • [Lab setup](https://github.com/markusvankempen/ThinkLab1239/blob/master/labsetup.md) |
 | **RAM-TEST** | Amiga · 1988 | Recovered GIGATRON memory diagnostic | [GitHub](https://github.com/markusvankempen/amiga-ram-test) |
 
 Maximo tools live in [maximo-mcp-ai-integration-options](https://github.com/markusvankempen/maximo-mcp-ai-integration-options). The ticket demo and its extension live in [mcp-ticket-demo](https://github.com/markusvankempen/mcp-ticket-demo).
 
-The About section also covers [HackMIT 2023](https://markusvankempen.wordpress.com/2024/01/11/mit-hackaton-2023/), [STEM classes at Six Nations Polytechnic](https://markusvankempen.wordpress.com/2018/05/16/techwednesday-2018-sixnationpolytechnic-with-watson-ibm-cloud-and-pis/), and field demos: [sonification](https://markusvankempen.wordpress.com/2018/02/27/127/), [LoRaWAN rhino tracking](https://www.youtube.com/watch?v=Xh_DIKPzCWk), and [Watson Visual Recognition at CeBIT](https://www.youtube.com/watch?v=P9rdW2wjIgg). Topic tags, `robots.txt`, and `sitemap.xml` point search engines at [github.com/markusvankempen](https://github.com/markusvankempen).
+The About section also covers [HackMIT 2023](https://markusvankempen.wordpress.com/2024/01/11/mit-hackaton-2023/), [STEM classes at Six Nations Polytechnic](https://markusvankempen.wordpress.com/2018/05/16/techwednesday-2018-sixnationpolytechnic-with-watson-ibm-cloud-and-pis/), [IBM SPEED and beyond](https://www.youtube.com/watch?v=BLWSACMIS_k), and field demos: [sonification](https://markusvankempen.wordpress.com/2018/02/27/127/), [LoRaWAN rhino tracking](https://www.youtube.com/watch?v=Xh_DIKPzCWk), and [Watson Visual Recognition at CeBIT](https://www.youtube.com/watch?v=P9rdW2wjIgg). Topic tags, `robots.txt`, and `sitemap.xml` point search engines at [github.com/markusvankempen](https://github.com/markusvankempen).
 
 ## Tech Stack
 

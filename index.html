@@ -6,7 +6,7 @@
     <title>Markus van Kempen · Maker, advocate, open source</title>
     <meta name="description" content="Markus van Kempen (@markusvankempen), developer advocate in Toronto. Open-source MCP servers and IDE tools, word clocks, FerryLight, IoT, HackMIT mentoring, and STEM classes at Six Nations Polytechnic.">
     <meta name="author" content="Markus van Kempen">
-    <meta name="keywords" content="Markus van Kempen, markusvankempen, GitHub, MCP, Model Context Protocol, MCP server, IBM Maximo, Maximo MCP, Watsonx Orchestrate, Watson Orchestrate, IBM Quantum, OpenQASM, Zendesk MCP, IBM Code Engine, VS Code extension, GitHub Copilot, Cursor, Antigravity, Windsurf, Cline, Bob, ESP32, word clock, FerryLight, Stanza Clock, IoT, Node-RED, Raspberry Pi, MQTT, STEM, STEAM, Six Nations Polytechnic, SN Polytechnic, Hackathon, HackMIT, Developer Advocate, Toronto, open source">
+    <meta name="keywords" content="Markus van Kempen, markusvankempen, GitHub, MCP, Model Context Protocol, MCP server, IBM Maximo, Maximo MCP, Watsonx Orchestrate, Watson Orchestrate, IBM Quantum, OpenQASM, Zendesk MCP, IBM Code Engine, VS Code extension, GitHub Copilot, Cursor, Antigravity, Windsurf, Cline, Bob, ESP32, word clock, FerryLight, Stanza Clock, IoT, Node-RED, Raspberry Pi, MQTT, STEM, STEAM, Six Nations Polytechnic, SN Polytechnic, Hackathon, HackMIT, Think 2020, Watson Studio, IBM SPEED, Developer Advocate, Toronto, open source">
     <link rel="canonical" href="https://markusvankempen.github.io/">
     <link rel="me" href="https://github.com/markusvankempen">
     <link rel="me" href="https://markusvankempen.wordpress.com/">
@@ -90,7 +90,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/agent-bridge.css?v=20260923l">
+    <link rel="stylesheet" href="assets/agent-bridge.css?v=20260923o">
 </head>
 <body>
 
@@ -109,7 +109,11 @@
                 <button type="button" id="project-query-clear" hidden>Clear</button>
                 <p class="project-search__status" id="project-search-status" aria-live="polite"></p>
             </form>
-            <nav class="header__nav">
+            <button class="header__menu" type="button" aria-expanded="false" aria-controls="site-nav">
+                <span class="visually-hidden">Menu</span>
+                <span class="header__menu-icon" aria-hidden="true"></span>
+            </button>
+            <nav class="header__nav" id="site-nav">
                 <a href="#projects">Projects</a>
                 <a href="#maximo">Maximo</a>
                 <a href="#watsonx">Watsonx</a>
@@ -143,6 +147,7 @@
                 </div>
                 <div class="hero__platforms">
                     <a class="platform-pill" href="#maximo">Maximo</a>
+                    <a class="platform-pill" href="https://markusvankempen.github.io/wxo-labs/" target="_blank" rel="noopener">WXO Labs</a>
                     <a class="platform-pill" href="#mcp-servers">MCP servers</a>
                     <a class="platform-pill" href="#devices">Clocks &amp; devices</a>
                     <a class="platform-pill" href="#ferrylight">FerryLight</a>
@@ -188,12 +193,12 @@
         <div class="container">
             <div class="section-eyebrow">MCP projects</div>
             <h2 class="section-title">From IDE chat to live enterprise data</h2>
-            <p class="section-lead">The MCP servers follow this pattern: an AI assistant calls tools, and the server talks to the platform APIs. Extensions add visual UIs, diagnostics, and one-click <code style="font-family:IBM Plex Mono,monospace;font-size:0.9em;color:#3ddbd9">mcp.json</code> setup. Clocks, the ferry, and the classroom work live further down.</p>
+            <p class="section-lead">The MCP servers follow this pattern: an AI assistant calls tools, and the server talks to the platform APIs. Most of the MCP servers and extensions work in the same editors: VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline. Extensions add visual UIs, diagnostics, and one-click <code style="font-family:IBM Plex Mono,monospace;font-size:0.9em;color:#3ddbd9">mcp.json</code> setup. Clocks, the ferry, and the classroom work live further down.</p>
             <div class="steps">
                 <div class="step">
                     <div class="step__num">01</div>
                     <h3>Install &amp; connect</h3>
-                    <p>VS Code Marketplace, Open VSX, <code style="font-family:monospace;font-size:0.85em">npx</code>, or Cursor one-click install. Credentials stay local or on Code Engine.</p>
+                    <p>VS Code Marketplace, Open VSX, or <code style="font-family:monospace;font-size:0.85em">npx</code>. The same package installs in VS Code, Cursor, Antigravity, Bob, and Windsurf. Credentials stay local or on Code Engine.</p>
                 </div>
                 <div class="step">
                     <div class="step__num">02</div>
@@ -220,7 +225,7 @@
                 <div class="cat-header__icon">&#9881;</div>
                 <div>
                     <h2>IBM Maximo</h2>
-                    <p>API exploration, Cursor AI context, VS Code extensions, and MCP</p>
+                    <p>API exploration, editor extensions, and MCP — same tools in VS Code, Cursor, Bob, and the other editors</p>
                 </div>
             </div>
 
@@ -234,7 +239,7 @@
                     VS Code
                 </span>
                 <h3 class="ext-card__title">Maximo API Explorer</h3>
-                <p class="ext-card__desc">Discover, browse, and test IBM Maximo REST APIs directly from VS Code.
+                <p class="ext-card__desc">Discover, browse, and test IBM Maximo REST APIs from VS Code, Cursor, Antigravity, Bob, or Windsurf.
                     Interactive query builder, schema viewer, code snippet generator, and Carbon Design System app
                     templates.</p>
                 <ul class="ext-card__features">
@@ -291,7 +296,7 @@
                     Copilot) directly to your Maximo instance. Query data, manage work orders, and explore APIs through
                     natural language.</p>
                 <ul class="ext-card__features">
-                    <li>Works with Claude Desktop, ChatGPT, GitHub Copilot</li>
+                    <li>Works in VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline</li>
                     <li>Natural language queries to Maximo data</li>
                     <li>Full CRUD operations via AI chat</li>
                     <li>Secure API key authentication</li>
@@ -344,14 +349,14 @@
                 <div class="cat-header__icon">&#129302;</div>
                 <div>
                     <h2>Watsonx Orchestrate</h2>
-                    <p>Agent builders, WxO MCP, hands-on labs, and deployment automation</p>
+                    <p>Agent builders, WxO MCP, and the <a href="https://markusvankempen.github.io/wxo-labs/">WXO Labs</a> catalog</p>
                 </div>
             </div>
 
             <!-- WXO Labs Tutorial -->
             <div class="ext-card ext-card--labs" id="wxo-labs">
                 <span class="ext-card__badge ext-card__badge--wxo">🎓 Tutorial · 14 labs</span>
-                <h3 class="ext-card__title">WXO Labs — From Zero to Hero</h3>
+                <h3 class="ext-card__title"><a href="https://markusvankempen.github.io/wxo-labs/">WXO Labs — From Zero to Hero</a></h3>
                 <p class="ext-card__desc">Hands-on watsonx Orchestrate learning path: Python tools, MCP, SSO, RBAC, observability, and RAG — with runnable source for each lab.</p>
                 <div class="ext-card__links">
                     <a class="ext-card__link" href="https://markusvankempen.github.io/wxo-labs/" target="_blank" rel="noopener">
@@ -375,13 +380,13 @@
                     MCP Server
                 </span>
                 <h3 class="ext-card__title">WxO (Watsonx Orchestrate) Builder MCP Server</h3>
-                <p class="ext-card__desc">Manage IBM Watsonx Orchestrate tools, agents, and connections directly from
-                    Cursor, Copilot, or Claude. Accelerate your agentic workflow development.</p>
+                <p class="ext-card__desc">Manage IBM Watsonx Orchestrate tools, agents, and connections from
+                    VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, or Cline. Accelerate your agentic workflow development.</p>
                 <ul class="ext-card__features">
                     <li>Manage tools, agents, and connections</li>
                     <li>Scale your Orchestrate capabilities with AI</li>
                     <li>Interactive connection management</li>
-                    <li>Built for Cursor, Copilot, and Claude</li>
+                    <li>Same MCP server in VS Code, Cursor, Bob, and the other editors</li>
                 </ul>
                 <div class="ext-card__links">
                     <a class="ext-card__link"
@@ -421,7 +426,7 @@
                 </span>
                 <h3 class="ext-card__title">WxO Agent MCP</h3>
                 <p class="ext-card__desc">Minimal MCP server that invokes a single Watson Orchestrate agent remotely.
-                    Configure once via env vars — ideal for Langflow, Cursor, and VS Code when you only need chat with one agent.</p>
+                    Configure once via env vars — the same stdio server in VS Code, Cursor, Bob, Antigravity, Windsurf, Cline, and Langflow when you only need chat with one agent.</p>
                 <ul class="ext-card__features">
                     <li><code>invoke_agent(message)</code> and <code>get_agent()</code> tools</li>
                     <li>No tool management, listing, or flows — just agent chat</li>
@@ -450,7 +455,7 @@
             <div class="ext-card" id="slack-wxo-gateway">
                 <span class="ext-card__badge ext-card__badge--mcp">MCP Server · Apache 2.0</span>
                 <h3 class="ext-card__title">Slack ↔ WxO MCP Gateway</h3>
-                <p class="ext-card__desc">Gateway that routes many Slack channels to many Watsonx Orchestrate agents, with in-thread replies and a streamable HTTP toolkit for Cursor, VS Code, Bob, and Antigravity. Install from npm. The GitHub repo is the docs and registry metadata.</p>
+                <p class="ext-card__desc">Gateway that routes many Slack channels to many Watsonx Orchestrate agents, with in-thread replies and a streamable HTTP toolkit for VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline. Install from npm. The GitHub repo is the docs and registry metadata.</p>
                 <ul class="ext-card__features">
                     <li>Channel-to-agent bindings in one config</li>
                     <li>Poller or Slack Events wake the agent</li>
@@ -473,7 +478,7 @@
                 </span>
                 <h3 class="ext-card__title">WxO Builder (Watsonx Orchestrate Development Tool)</h3>
                 <p class="ext-card__desc">Visual tool builder and agent manager for Watsonx Orchestrate. Develop, test,
-                    and deploy skills and agents directly from VS Code.</p>
+                    and deploy skills and agents from VS Code, Cursor, Antigravity, Bob, or Windsurf.</p>
                 <ul class="ext-card__features">
                     <li>Visual &amp; JSON tool editor with templates</li>
                     <li>Import OpenAPI or public APIs</li>
@@ -521,7 +526,7 @@
                 </span>
                 <h3 class="ext-card__title">WxO ToolBox (VS Code Extension)</h3>
                 <p class="ext-card__desc">Export, import, compare, and replicate Watson Orchestrate agents, tools, flows,
-                    and connections from VS Code. Activity bar browser, form-based editors, observability traces, and
+                    and connections from VS Code, Cursor, Antigravity, Bob, or Windsurf. Activity bar browser, form-based editors, observability traces, and
                     multi-environment management — powered by the bundled WxO-ToolBox CLI.</p>
                 <ul class="ext-card__features">
                     <li>Browse agents, tools, toolkits, flows, connections, plugins</li>
@@ -576,8 +581,8 @@
                     VS Code
                 </span>
                 <h3 class="ext-card__title">Maximo VS Code Extension</h3>
-                <p class="ext-card__desc">Lightweight VS Code extension for quick Maximo API connectivity,
-                    authentication management, and API testing without leaving your editor.</p>
+                <p class="ext-card__desc">Lightweight editor extension for quick Maximo API connectivity,
+                    authentication management, and API testing in VS Code, Cursor, Antigravity, Bob, or Windsurf.</p>
                 <ul class="ext-card__features">
                     <li>Quick connect to Maximo instances</li>
                     <li>API key &amp; basic authentication</li>
@@ -601,7 +606,7 @@
                 <div class="cat-header__icon">&#9889;</div>
                 <div>
                     <h2>MCP Servers &amp; Remote Gateways</h2>
-                    <p>Model Context Protocol — stdio, npm, and Code Engine SSE</p>
+                    <p>Same servers in VS Code, Cursor, Bob, Antigravity, Windsurf, and Cline — stdio, npm, and Code Engine SSE</p>
                 </div>
             </div>
 
@@ -626,7 +631,7 @@
             <div class="ext-card" id="mcp-ticket-extension">
                 <span class="ext-card__badge ext-card__badge--vscode">VS Code extension · MIT</span>
                 <h3 class="ext-card__title">LF MCP Demo</h3>
-                <p class="ext-card__desc">Control-plane extension for the ticket demo. Registers the server with your IDE, then checks health, tools, and diagnostics from the editor. Published as <code>MarkusvanKempen.lf-mcp-summit-demo</code>.</p>
+                <p class="ext-card__desc">Control-plane extension for the ticket demo. Registers the server in VS Code, Cursor, Antigravity, Bob, or Windsurf, then checks health, tools, and diagnostics from the editor. Published as <code>MarkusvanKempen.lf-mcp-summit-demo</code>.</p>
                 <ul class="ext-card__features">
                     <li>Register the server from the extension</li>
                     <li>Diagnostics panel for health and tool inventory</li>
@@ -651,13 +656,12 @@
                 </span>
                 <h3 class="ext-card__title">Code Engine MCP Server</h3>
                 <p class="ext-card__desc">Model Context Protocol server for IBM Code Engine and Docker/Podman.
-                    Deploy, manage, and monitor containerized workloads directly from GitHub Copilot,
-                    Claude, or Cursor — no CLI required.</p>
+                    Deploy, manage, and monitor containerized workloads from VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, or Cline — no CLI required.</p>
                 <ul class="ext-card__features">
                     <li>43 tools: apps, jobs, builds, secrets, configmaps</li>
                     <li>Build &amp; run containers with Docker or Podman</li>
                     <li>Full application lifecycle management</li>
-                    <li>Works with GitHub Copilot, Claude, and Cursor</li>
+                    <li>Works in VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline</li>
                     <li>IBM Cloud IAM authentication via API key</li>
                 </ul>
                 <div class="ext-card__links">
@@ -708,13 +712,13 @@
                 </span>
                 <h3 class="ext-card__title">Zendesk MCP Server</h3>
                 <p class="ext-card__desc">Model Context Protocol server that connects AI agents to Zendesk Support.
-                    Create, search, assign, comment, and close tickets through natural language in Cursor, VS Code,
+                    Create, search, assign, comment, and close tickets through natural language in VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, Cline,
                     Claude Desktop, or watsonx Orchestrate. Solves requester attribution so Zendesk email replies
                     route correctly.</p>
                 <ul class="ext-card__features">
                     <li>14 tools — create, get, update, search, assign, close tickets</li>
                     <li>TypeScript (<code>npx</code>) and Python (<code>pip</code>) implementations</li>
-                    <li>Works with Cursor, VS Code, Bob, Antigravity, Claude Desktop</li>
+                    <li>Works in VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline</li>
                     <li>IBM Code Engine SSE deployment for remote access</li>
                     <li>watsonx Orchestrate agent integration</li>
                 </ul>
@@ -783,7 +787,7 @@
                 </span>
                 <h3 class="ext-card__title">Quantum OpenQASM Assistant</h3>
                 <p class="ext-card__desc">VS Code extension for OpenQASM 2.0 on IBM Quantum — Quantum Lab, job polling,
-                    histograms, diagnostics, and one-click MCP setup for Cursor, VS Code, Bob, and Antigravity. Local stdio
+                    histograms, diagnostics, and one-click MCP setup in VS Code, Cursor, Antigravity, Bob, Windsurf, and Cline. Local stdio
                     or remote Code Engine SSE.</p>
                 <ul class="ext-card__features">
                     <li>Quantum Lab with Bell-state and example circuits</li>
@@ -834,8 +838,8 @@
                 </span>
                 <h3 class="ext-card__title">Quantum OpenQASM MCP Server</h3>
                 <p class="ext-card__desc">Model Context Protocol server for IBM Quantum — list backends, submit OpenQASM 2.0
-                    circuits, poll jobs, and fetch histograms via natural language in Cursor, VS Code, Bob, Antigravity,
-                    and Claude Desktop. Deploy remotely on IBM Code Engine with dashboard and SSE gateway.</p>
+                    circuits, poll jobs, and fetch histograms via natural language in VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf,
+                    and Cline. Deploy remotely on IBM Code Engine with dashboard and SSE gateway.</p>
                 <ul class="ext-card__features">
                     <li>10 tools — backends, jobs, QASM submit, credentials check</li>
                     <li><code>npx @markusvankempen/quantum-openqasm-mcp</code> (stdio)</li>
@@ -1092,11 +1096,33 @@
                 <div class="cat-header__icon">&#128190;</div>
                 <div>
                     <h2>Earlier</h2>
-                    <p>Recovered work from before the MCP servers</p>
+                    <p>Think 2020 lab, and work from before the MCP servers</p>
+                </div>
+            </div>
+
+            <div class="ext-card" id="thinklab-1239">
+                <a class="ext-card__thumb" href="https://github.com/markusvankempen/ThinkLab1239" target="_blank" rel="noopener">
+                    <img src="assets/thumbs/thinklab.jpg" alt="IBM Think logo for the Think 2020 IoT lab" width="960" height="540">
+                </a>
+                <span class="ext-card__badge ext-card__badge--device">Think 2020 · IoT lab</span>
+                <h3 class="ext-card__title">ThinkLab 1239</h3>
+                <p class="ext-card__desc">Hyper-localized weather and crop prediction for IBM Think 2020. A Raspberry Pi, temperature sensors, and a camera feed Watson IoT. Node-RED sends that into Weather Underground, Watson Studio builds a model from historic and live data, and Visual Recognition reads the camera image. Vegetable attributes extend the forecast to what would grow in a garden three to six months out.</p>
+                <ul class="ext-card__features">
+                    <li>Lab setup, Node-RED flows, and notebooks</li>
+                    <li>Session 1239, with a PDF of the lab</li>
+                </ul>
+                <div class="ext-card__links">
+                    <a class="ext-card__link" href="https://github.com/markusvankempen/ThinkLab1239" target="_blank" rel="noopener">GitHub repo</a>
+                    <a class="ext-card__link" href="https://github.com/markusvankempen/ThinkLab1239/blob/master/labsetup.md" target="_blank" rel="noopener">Lab setup</a>
+                    <a class="ext-card__link" href="https://github.com/markusvankempen/ThinkLab1239/blob/master/1239.pdf" target="_blank" rel="noopener">Lab PDF</a>
+                    <a class="ext-card__link" href="#speed-and-beyond">SPEED and beyond</a>
                 </div>
             </div>
 
             <div class="ext-card" id="amiga-ram-test">
+                <a class="ext-card__thumb" href="https://github.com/markusvankempen/amiga-ram-test" target="_blank" rel="noopener">
+                    <img src="assets/thumbs/ram-test.png" alt="RAM-TEST V3.11 GIGATRON logo screen, written by Markus van Kempen" width="740" height="539">
+                </a>
                 <span class="ext-card__badge ext-card__badge--device">Amiga · 1988</span>
                 <h3 class="ext-card__title">RAM-TEST</h3>
                 <p class="ext-card__desc">Memory diagnostic for GIGATRON Amiga 500 and 1000 expansion boards, written as a teenager in a living-room startup and recovered so it runs again in Amiberry.</p>
@@ -1121,6 +1147,20 @@
                 <div class="about-text">
                     <p>Developer at heart. I'm always looking for ways to connect it, sense it, or make it easier for people to use data — especially with IoT and AI. I open-source things because I want them to exist, not because anyone asked. 25+ years building things at IBM. The badge says Executive Architect. The soul says developer advocate.</p>
                     <p>Based in Toronto, that work shows up here as open-source MCP servers, IDE extensions, clocks, and community devices. Projects are Apache 2.0 or MIT.</p>
+                    <article class="about-session" id="speed-and-beyond">
+                        <p class="about-session__label">Video</p>
+                        <h3>IBM SPEED and beyond</h3>
+                        <p>A film about the work and the experiments — projects from the day job, and the ones built after 6pm. Weather labs, sensors, clocks, and the rest of the making.</p>
+                        <a class="thumb" href="https://www.youtube.com/watch?v=BLWSACMIS_k" target="_blank" rel="noopener">
+                            <img src="assets/thumbs/yt-speed.jpg" alt="Markus van Kempen speaking in IBM SPEED and beyond" width="960" height="540">
+                            <span>IBM SPEED and beyond</span>
+                        </a>
+                        <div class="about-session__links">
+                            <a href="https://www.youtube.com/watch?v=BLWSACMIS_k" target="_blank" rel="noopener">Watch the video</a>
+                            <a href="https://www.youtube.com/@MarkusVankempen" target="_blank" rel="noopener">YouTube channel</a>
+                            <a href="#thinklab-1239">Think 2020 lab</a>
+                        </div>
+                    </article>
                     <article class="about-session" id="speaker-session">
                         <p class="about-session__label">Session</p>
                         <h3>MCP as a Platform: What I Learned Building a Portfolio of MCP Servers</h3>
@@ -1196,6 +1236,10 @@
                         <svg viewBox="0 0 16 16"><path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 1.2A5.8 5.8 0 1113.8 8 5.8 5.8 0 018 2.2zM7.2 4.6h1.6v4.2H7.2zm0 5.2h1.6V11H7.2z"/></svg>
                         Sessionize — speaker profile
                     </a>
+                    <a class="about-link" href="https://markusvankempen.github.io/wxo-labs/" target="_blank" rel="noopener">
+                        <svg viewBox="0 0 16 16"><path d="M2 2.5h12v11H2v-11zm1.2 1.2v8.6h9.6V3.7H3.2zM4.4 5.2h7.2v1.2H4.4V5.2zm0 2.2h7.2v1.1H4.4V7.4zm0 2.1h4.6v1.1H4.4V9.5z"/></svg>
+                        WXO Labs — 14 hands-on labs
+                    </a>
                     <a class="about-link" href="https://github.com/markusvankempen" target="_blank" rel="noopener">
                         <svg viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.01.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.11.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.19 0 .21.15.46.55.38A8.013 8.013 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></svg>
                         GitHub — @markusvankempen
@@ -1232,6 +1276,14 @@
                         <svg viewBox="0 0 16 16"><path d="M8 1.2l1.6 3.3 3.6.5-2.6 2.5.6 3.6L8 9.4 4.8 11.1l.6-3.6L2.8 5l3.6-.5L8 1.2z"/></svg>
                         Six Nations Polytechnic
                     </a>
+                    <a class="about-link" href="#speed-and-beyond">
+                        <svg viewBox="0 0 16 16"><path d="M15.3 4.1a2 2 0 00-1.4-1.4C12.7 2.3 8 2.3 8 2.3s-4.7 0-5.9.4A2 2 0 00.7 4.1 21 21 0 000 8a21 21 0 00.7 3.9 2 2 0 001.4 1.4c1.2.4 5.9.4 5.9.4s4.7 0 5.9-.4a2 2 0 001.4-1.4A21 21 0 0016 8a21 21 0 00-.7-3.9zM6.4 10.4V5.6L10.6 8 6.4 10.4z"/></svg>
+                        IBM SPEED and beyond
+                    </a>
+                    <a class="about-link" href="#thinklab-1239">
+                        <svg viewBox="0 0 16 16"><path d="M3 2.5h10v2.2H3V2.5zm0 3.4h10V14H3V5.9zm2.2 2.1v1.6h5.6V8H5.2zm0 2.8v1.5h3.6v-1.5H5.2z"/></svg>
+                        Think 2020 weather lab
+                    </a>
                     <a class="about-link" href="#demos">
                         <svg viewBox="0 0 16 16"><path d="M3 3.2h10v7.2H3V3.2zm1.2 1.2v4.8h7.6V4.4H4.2zM6.2 12h3.6v1.2H6.2z"/></svg>
                         Sonification, rhinos, CeBIT
@@ -1250,6 +1302,7 @@
                     <a href="#maximo">IBM Maximo</a>
                     <a href="#maximo-mcp-server">Maximo MCP</a>
                     <a href="#watsonx">Watsonx Orchestrate</a>
+                    <a href="https://markusvankempen.github.io/wxo-labs/">WXO Labs</a>
                     <a href="#watsonx">Watson Orchestrate</a>
                     <a href="#quantum">IBM Quantum</a>
                     <a href="#quantum-openqasm-mcp">OpenQASM</a>
@@ -1267,6 +1320,9 @@
                     <a href="#ferrylight">FerryLight</a>
                     <a href="#slack-wxo-gateway">Slack</a>
                     <a href="#ttgo-t-beam">TTGO T-Beam</a>
+                    <a href="#thinklab-1239">Think 2020</a>
+                    <a href="#thinklab-1239">Watson Studio</a>
+                    <a href="#speed-and-beyond">IBM SPEED</a>
                     <a href="#amiga-ram-test">Amiga</a>
                     <a href="#devices">Stanza Clock</a>
                     <a href="#devices">Ink O'Clock</a>
@@ -1301,6 +1357,7 @@
                 <a href="https://open-vsx.org/namespace/markusvankempen" target="_blank" rel="noopener">Open VSX</a>
                 <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a>
                 <a href="http://markusvankempen.wordpress.com/" target="_blank" rel="noopener">Blog</a>
+                <a href="https://markusvankempen.github.io/wxo-labs/" target="_blank" rel="noopener">WXO Labs</a>
             </div>
         </div>
     </footer>
@@ -1385,6 +1442,30 @@
         });
         if (location.hash === '#search') input.focus();
         apply();
+    }());
+    (function () {
+        var header = document.querySelector('.header');
+        var button = document.querySelector('.header__menu');
+        var nav = document.getElementById('site-nav');
+        if (!header || !button || !nav) return;
+
+        function setOpen(open) {
+            header.classList.toggle('is-open', open);
+            button.setAttribute('aria-expanded', open ? 'true' : 'false');
+        }
+
+        button.addEventListener('click', function () {
+            setOpen(button.getAttribute('aria-expanded') !== 'true');
+        });
+        nav.addEventListener('click', function (event) {
+            if (event.target.closest('a')) setOpen(false);
+        });
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') setOpen(false);
+        });
+        document.addEventListener('click', function (event) {
+            if (!header.contains(event.target)) setOpen(false);
+        });
     }());
     </script>
 </body>
