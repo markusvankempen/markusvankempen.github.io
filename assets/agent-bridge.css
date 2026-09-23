@@ -1,4 +1,23 @@
 /* Agentic AI Bridge — Markus van Kempen developer portal theme */
+
+/* ── Skip link ──────────────────────────────── */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0.5rem;
+    z-index: 100;
+    padding: 0.6rem 1.1rem;
+    background: var(--accent-blue);
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: var(--radius);
+    text-decoration: none;
+}
+.skip-link:focus {
+    left: 1rem;
+}
+
 :root {
     --bg-void: #06090f;
     --bg-page: #0a0f18;
@@ -26,6 +45,7 @@
     --cat-cli: #8d8d8d;
     --cat-devices: #ff8389;
     --cat-talk: #42be65;
+    --cat-earlier: #8d8d8d;
 
     --radius: 8px;
     --radius-lg: 12px;
@@ -349,7 +369,10 @@ a { color: inherit; }
     font-size: 12px;
     font-weight: 500;
     color: var(--text-muted);
-    padding: 0.3rem 0.7rem;
+    padding: 0.55rem 0.9rem;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     border-radius: 100px;
     border: 1px solid var(--border);
     background: rgba(255, 255, 255, 0.02);
@@ -387,6 +410,14 @@ a { color: inherit; }
     flex-wrap: wrap;
     gap: 0.35rem 0.4rem;
     align-items: center;
+}
+
+/* ── Mensch note ────────────────────────────── */
+.hero__mensch-note {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: -0.75rem 0 1rem;
+    font-style: italic;
 }
 
 .flow-node {
@@ -717,6 +748,7 @@ section,
 .cat-header--quantum .cat-header__icon { background: rgba(138, 63, 252, 0.15); }
 .cat-header--devices .cat-header__icon { background: rgba(255, 131, 137, 0.15); }
 .cat-header--talk .cat-header__icon { background: rgba(66, 190, 101, 0.15); }
+.cat-header--earlier .cat-header__icon { background: rgba(141, 141, 141, 0.15); }
 
 .cat-header h2 {
     font-size: 1.25rem;
@@ -735,10 +767,11 @@ section,
 .cat-header--quantum h2 { color: var(--cat-quantum); }
 .cat-header--devices h2 { color: var(--cat-devices); }
 .cat-header--talk h2 { color: var(--cat-talk); }
+.cat-header--earlier h2 { color: var(--cat-earlier); }
 
 .ext-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
     gap: 1.25rem;
 }
 
@@ -967,6 +1000,8 @@ section,
     display: inline-flex;
     align-items: center;
     gap: 0.3rem;
+    min-height: 44px;
+    padding: 0.25rem 0.1rem;
     transition: color var(--transition);
 }
 
@@ -1203,6 +1238,52 @@ section,
 
 .footer__links a:hover { color: var(--accent-blue-soft); }
 
+/* ── Back to top ────────────────────────────── */
+.back-to-top {
+    position: fixed;
+    bottom: 1.75rem;
+    right: 1.5rem;
+    z-index: 30;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: var(--bg-raised);
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--transition), background var(--transition), border-color var(--transition);
+}
+.back-to-top.visible {
+    opacity: 1;
+    pointer-events: auto;
+}
+.back-to-top:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--accent-blue-soft);
+    color: var(--accent-teal);
+}
+.back-to-top svg {
+    width: 16px;
+    height: 16px;
+    fill: currentColor;
+}
+
+/* ── Nav active (scrollspy) ─────────────────── */
+.header__nav a.is-active {
+    color: var(--accent-teal);
+    background: rgba(61, 219, 217, 0.08);
+}
+
+/* ── Stat count-up ──────────────────────────── */
+.stat__value[data-target] {
+    transition: none;
+}
+
 /* ── Responsive ─────────────────────────────── */
 @media (max-width: 900px) {
     .hero__grid { display: block; }
@@ -1211,6 +1292,9 @@ section,
     .steps { grid-template-columns: 1fr; }
     .ext-grid { grid-template-columns: 1fr; }
     .about-grid { grid-template-columns: 1fr; }
+    /* Stack about-links above the text articles on mobile */
+    .about-grid { display: flex; flex-direction: column; }
+    .about-links { order: -1; }
 }
 
 @media (max-width: 1080px) {
@@ -1265,5 +1349,43 @@ section,
 
 @media (max-width: 600px) {
     .header__tag { display: none; }
+    /* 4th stat (MIT & Apache) goes full-width on small screens */
     .stats__inner { grid-template-columns: 1fr 1fr; }
+    .stat:last-child { grid-column: 1 / -1; }
+    /* Flow diagram: vertical on small screens */
+    .flow-chain {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    .flow-connector {
+        flex-direction: row;
+        writing-mode: horizontal-tb;
+        margin: 0;
+    }
+    .flow-connector::before {
+        width: 2px;
+        height: 10px;
+        background: linear-gradient(180deg, var(--border), var(--accent-teal));
+    }
+}
+
+/* ── Print ──────────────────────────────────── */
+@media print {
+    body { background: #fff; color: #111; }
+    .header, .footer, .hero__flow, .hero__actions, .hero__platforms,
+    .back-to-top, .skip-link, .stats, .how { display: none; }
+    .hero { padding: 1rem 0; border: none; }
+    .ext-card {
+        background: #fff;
+        border: 1px solid #ccc;
+        break-inside: avoid;
+        box-shadow: none;
+    }
+    .ext-grid { grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+    .cat-header h2, .ext-card__title { color: #111; }
+    .ext-card__desc, .ext-card__features li { color: #444; }
+    .about { background: #fff; }
+    .about-text p, .about-session p { color: #333; }
+    a[href]::after { content: " (" attr(href) ")"; font-size: 10px; color: #666; }
+    .ext-card__link::after, .about-link::after { content: none; }
 }

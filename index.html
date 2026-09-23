@@ -90,9 +90,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="assets/agent-bridge.css?v=20260923p">
+    <link rel="stylesheet" href="assets/agent-bridge.css?v=20260924">
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
 
     <header class="header">
         <div class="container header__inner">
@@ -105,7 +106,7 @@
             </a>
             <form class="project-search header__search" id="search" role="search">
                 <label class="visually-hidden" for="project-query">Search projects</label>
-                <input id="project-query" type="search" placeholder="Search projects…" autocomplete="off" enterkeyhint="search">
+                <input id="project-query" type="search" placeholder="Search projects…" autocomplete="off" enterkeyhint="search" inputmode="search">
                 <button type="button" id="project-query-clear" hidden>Clear</button>
                 <p class="project-search__status" id="project-search-status" aria-live="polite"></p>
             </form>
@@ -114,13 +115,14 @@
                 <span class="header__menu-icon" aria-hidden="true"></span>
             </button>
             <nav class="header__nav" id="site-nav">
+                <a href="#how">How it works</a>
                 <a href="#projects">Projects</a>
                 <a href="#maximo">Maximo</a>
                 <a href="#watsonx">Watsonx</a>
                 <a href="#mcp-servers">MCP</a>
                 <a href="#quantum">Quantum</a>
                 <a href="#devices">Devices</a>
-                <a href="#talks">Talk</a>
+                <a href="#talks">Talks</a>
                 <a href="#earlier">Earlier</a>
                 <a href="#about">About</a>
                 <a href="https://github.com/markusvankempen" target="_blank" rel="noopener">GitHub</a>
@@ -128,6 +130,7 @@
         </div>
     </header>
 
+    <main id="main-content">
     <section class="hero">
         <div class="container hero__grid">
             <div>
@@ -135,6 +138,7 @@
                 <h1>Mensch, Maker and Nerd</h1>
                 <p class="hero__tagline">Enterprise AI, devices, classrooms, and the odd ferry</p>
                 <p class="hero__credential">25+ years building things at IBM. The badge says Executive Architect. The soul says developer advocate.</p>
+                <p class="hero__mensch-note" title="Mensch is Yiddish/German for a person of integrity and good character">✦ Mensch — Yiddish/German for a person of integrity &amp; good character</p>
                 <div class="hero__flow">
                     <div class="flow-title">One slice of the work: MCP</div>
                     <div class="flow-chain">
@@ -172,19 +176,19 @@
     <div class="stats">
         <div class="container stats__inner">
             <div class="stat">
-                <div class="stat__value">25</div>
+                <div class="stat__value" data-target="25">25</div>
                 <div class="stat__label">Extensions &amp; tools</div>
             </div>
             <div class="stat">
-                <div class="stat__value">8</div>
+                <div class="stat__value" data-target="8">8</div>
                 <div class="stat__label">MCP servers</div>
             </div>
             <div class="stat">
-                <div class="stat__value">5+</div>
+                <div class="stat__value" data-target="5">5+</div>
                 <div class="stat__label">AI IDEs supported</div>
             </div>
             <div class="stat">
-                <div class="stat__value">MIT &amp; Apache</div>
+                <div class="stat__value">MIT / Apache 2.0</div>
                 <div class="stat__label">Open source</div>
             </div>
         </div>
@@ -194,7 +198,7 @@
         <div class="container">
             <div class="section-eyebrow">MCP projects</div>
             <h2 class="section-title">From IDE chat to live enterprise data</h2>
-            <p class="section-lead">The MCP servers follow this pattern: an AI assistant calls tools, and the server talks to the platform APIs. Most of the MCP servers and extensions work in the same editors: VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline. Extensions add visual UIs, diagnostics, and one-click <code style="font-family:IBM Plex Mono,monospace;font-size:0.9em;color:#3ddbd9">mcp.json</code> setup. Clocks, the ferry, and the classroom work live further down.</p>
+            <p class="section-lead">MCP (Model Context Protocol) is the open standard that lets AI assistants call real APIs instead of just talking about them. An AI assistant calls tools, and the MCP server talks to the platform APIs on its behalf. Most of the MCP servers and extensions here work in the same editors: VS Code, Copilot, Cursor, Antigravity, Bob, Windsurf, and Cline. Extensions add visual UIs, diagnostics, and one-click <code style="font-family:IBM Plex Mono,monospace;font-size:0.9em;color:#3ddbd9">mcp.json</code> setup. Clocks, the ferry, and the classroom work live further down.</p>
             <div class="steps">
                 <div class="step">
                     <div class="step__num">01</div>
@@ -283,7 +287,7 @@
             <!-- MCP Server -->
             <div class="ext-card" id="maximo-mcp-server">
                 <a class="ext-card__thumb" href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options" target="_blank" rel="noopener">
-                    <img src="assets/thumbs/maximo-explorer.png" alt="Maximo asset dashboard listing pumps, generated with the Maximo MCP server" width="1400" height="788">
+                    <img src="assets/thumbs/maximo-explorer.png" alt="Maximo asset dashboard listing pumps, generated with the Maximo MCP server" width="1400" height="788" loading="lazy">
                 </a>
                 <span class="ext-card__badge ext-card__badge--mcp">
                     <svg viewBox="0 0 16 16" width="12" height="12" fill="currentColor">
@@ -961,7 +965,7 @@
 
             <div class="ext-card" id="esp-wordclock">
                 <a class="ext-card__thumb" href="https://github.com/markusvankempen/ESP-WordClock8x8" target="_blank" rel="noopener">
-                    <img src="assets/thumbs/word-clock.jpg" alt="ESP word clock with HALF and PAST lit on an 8 by 8 letter face" width="1400" height="1400">
+                    <img src="assets/thumbs/word-clock.jpg" alt="ESP word clock with HALF and PAST lit on an 8 by 8 letter face" width="1400" height="1400" loading="lazy">
                 </a>
                 <span class="ext-card__badge ext-card__badge--device">ESP32 · MIT</span>
                 <h3 class="ext-card__title">ESP Word Clock 8×8</h3>
@@ -979,7 +983,7 @@
 
             <div class="ext-card" id="ink-oclock">
                 <a class="ext-card__thumb" href="https://github.com/markusvankempen/ink-oclock" target="_blank" rel="noopener">
-                    <img src="assets/thumbs/ink-oclock.png" alt="Ink O'Clock on a screen, showing 11:38 with a line from The Circle" width="1400" height="788">
+                    <img src="assets/thumbs/ink-oclock.png" alt="Ink O'Clock on a screen, showing 11:38 with a line from The Circle" width="1400" height="788" loading="lazy">
                 </a>
                 <span class="ext-card__badge ext-card__badge--voice">Alexa skill</span>
                 <h3 class="ext-card__title">Ink O'Clock</h3>
@@ -996,7 +1000,7 @@
 
             <div class="ext-card" id="plane-radar">
                 <a class="ext-card__thumb" href="https://github.com/markusvankempen/ESP-TFT-PlaneRadar" target="_blank" rel="noopener">
-                    <img src="assets/thumbs/plane-radar.jpg" alt="Round ESP32 radar display plotting nearby flights" width="1400" height="1400">
+                    <img src="assets/thumbs/plane-radar.jpg" alt="Round ESP32 radar display plotting nearby flights" width="1400" height="1400" loading="lazy">
                 </a>
                 <span class="ext-card__badge ext-card__badge--device">ESP32-C3 · MIT</span>
                 <h3 class="ext-card__title">ESP TFT Plane Radar</h3>
@@ -1042,10 +1046,10 @@
             <div class="ext-card" id="ferrylight">
                 <div class="ext-card__thumbs">
                     <a class="ext-card__thumb" href="https://ferrylight.online" target="_blank" rel="noopener">
-                        <img src="assets/thumbs/ferry-app.jpg" alt="FerryLight app showing Englishtown to Jersey Cove ferry status" width="640" height="940">
+                        <img src="assets/thumbs/ferry-app.jpg" alt="FerryLight app showing Englishtown to Jersey Cove ferry status" width="640" height="940" loading="lazy">
                     </a>
                     <a class="ext-card__thumb" href="https://markusvankempen.github.io/FerryLight-Blog/" target="_blank" rel="noopener">
-                        <img src="assets/thumbs/ferry-englishtown.jpg" alt="The Torquil MacLeod ferry boarding at Englishtown, Cape Breton" width="800" height="600">
+                        <img src="assets/thumbs/ferry-englishtown.jpg" alt="The Torquil MacLeod ferry boarding at Englishtown, Cape Breton" width="800" height="600" loading="lazy">
                     </a>
                 </div>
                 <span class="ext-card__badge ext-card__badge--device">Nova Scotia · public</span>
@@ -1074,7 +1078,7 @@
 
             <div class="ext-card" id="mcp-dev-summit">
                 <a class="ext-card__thumb" href="https://markusvankempen.github.io/linuxfoundation-mcp-dev-summit/#1" target="_blank" rel="noopener">
-                    <img src="assets/thumbs/mcp-banner.jpg" alt="MCP as a Platform talk banner for MCP Dev Summit Toronto, Markus van Kempen" width="1400" height="787">
+                    <img src="assets/thumbs/mcp-banner.jpg" alt="MCP as a Platform talk banner for MCP Dev Summit Toronto, Markus van Kempen" width="1400" height="787" loading="lazy">
                 </a>
                 <span class="ext-card__badge ext-card__badge--talk">Talk · MIT</span>
                 <h3 class="ext-card__title">MCP as a Platform</h3>
@@ -1093,17 +1097,17 @@
                 </div>
             </div>
 
-            <div class="cat-header cat-header--talk" id="earlier">
+            <div class="cat-header cat-header--earlier" id="earlier">
                 <div class="cat-header__icon">&#128190;</div>
                 <div>
                     <h2>Earlier</h2>
-                    <p>Think 2020 lab, and work from before the MCP servers</p>
+                    <p>From a teenager's living-room startup in 1988 to IBM Think 2020 — where it all started</p>
                 </div>
             </div>
 
             <div class="ext-card" id="thinklab-1239">
                 <a class="ext-card__thumb" href="https://github.com/markusvankempen/ThinkLab1239" target="_blank" rel="noopener">
-                    <img src="assets/thumbs/thinklab.jpg" alt="IBM Think logo for the Think 2020 IoT lab" width="960" height="540">
+                    <img src="assets/thumbs/thinklab.jpg" alt="IBM Think logo for the Think 2020 IoT lab" width="960" height="540" loading="lazy">
                 </a>
                 <span class="ext-card__badge ext-card__badge--device">Think 2020 · IoT lab</span>
                 <h3 class="ext-card__title">ThinkLab 1239</h3>
@@ -1122,7 +1126,7 @@
 
             <div class="ext-card" id="amiga-ram-test">
                 <a class="ext-card__thumb" href="https://github.com/markusvankempen/amiga-ram-test" target="_blank" rel="noopener">
-                    <img src="assets/thumbs/ram-test.png" alt="RAM-TEST V3.11 GIGATRON logo screen, written by Markus van Kempen" width="740" height="539">
+                    <img src="assets/thumbs/ram-test.png" alt="RAM-TEST V3.11 GIGATRON logo screen, written by Markus van Kempen" width="740" height="539" loading="lazy">
                 </a>
                 <span class="ext-card__badge ext-card__badge--device">Amiga · 1988</span>
                 <h3 class="ext-card__title">RAM-TEST</h3>
@@ -1146,14 +1150,15 @@
             <p class="about-kicker">Mensch, Maker and Nerd — Developer Advocate</p>
             <div class="about-grid">
                 <div class="about-text">
-                    <p>Developer at heart. I'm always looking for ways to connect it, sense it, or make it easier for people to use data — especially with IoT and AI. I open-source things because I want them to exist, not because anyone asked. 25+ years building things at IBM. The badge says Executive Architect. The soul says developer advocate.</p>
+                    <p>Developer at heart. I'm always looking for ways to connect it, sense it, or make it easier for people to use data — especially with IoT and AI. I open-source things because I want them to exist, not because anyone asked.</p>
+                    <p>The projects here span enterprise AI tooling, community devices, ferry trackers, classrooms, and the occasional hackathon. If it connects to something real or helps someone understand a platform, it's worth building and sharing.</p>
                     <p>Based in Toronto, that work shows up here as open-source MCP servers, IDE extensions, clocks, and community devices. Projects are Apache 2.0 or MIT.</p>
                     <article class="about-session" id="speed-and-beyond">
                         <p class="about-session__label">Video</p>
                         <h3>IBM SPEED and beyond</h3>
                         <p>A film about the work and the experiments — projects from the day job, and the ones built after 6pm. Weather labs, sensors, clocks, and the rest of the making.</p>
                         <a class="thumb" href="https://www.youtube.com/watch?v=BLWSACMIS_k" target="_blank" rel="noopener">
-                            <img src="assets/thumbs/yt-speed.jpg" alt="Markus van Kempen speaking in IBM SPEED and beyond" width="960" height="540">
+                            <img src="assets/thumbs/yt-speed.jpg" alt="Markus van Kempen speaking in IBM SPEED and beyond" width="960" height="540" loading="lazy">
                             <span>IBM SPEED and beyond</span>
                         </a>
                         <div class="about-session__links">
@@ -1179,7 +1184,7 @@
                         <p>In September 2023 I mentored at <a href="https://markusvankempen.wordpress.com/2024/01/11/mit-hackaton-2023/">HackMIT</a>, an IBM-sponsored weekend on the MIT campus. The challenge was connecting generative AI to real-world, real-time questions — hardware, embeddable AI, and cloud accounts on the table, any vendor welcome in the build.</p>
                         <p>Sixty-eight IBM submissions. After the pitches, the IBM prizes went to Reflexion Buddy, FireNet, and MediSum. Earlier, at HackMIT 2019, I was on the team that built Pill Safety.</p>
                         <a class="thumb" href="https://www.youtube.com/watch?v=T8_mhYBiAl8&amp;t=7s" target="_blank" rel="noopener">
-                            <img src="assets/thumbs/yt-hackmit.jpg?v=2" alt="HackMIT 2019 team on the floor during the weekend" width="480" height="360">
+                            <img src="assets/thumbs/yt-hackmit.jpg?v=2" alt="HackMIT 2019 team on the floor during the weekend" width="480" height="360" loading="lazy">
                             <span>HackMIT 2019 video</span>
                         </a>
                         <div class="about-session__links">
@@ -1210,15 +1215,15 @@
                         <p>Animal Tracking with LoRaWAN is the saving-rhinos demo: low-power long-range sensors so rangers can follow the animals. At CeBIT, Watson Visual Recognition ran on a drone.</p>
                         <div class="thumb-row">
                             <a class="thumb" href="https://www.youtube.com/watch?v=YSMz_Dfe0eM&amp;t=12s" target="_blank" rel="noopener">
-                                <img src="assets/thumbs/yt-sonification.jpg?v=2" alt="Sonification of sensor events in the IBM IoT building in Munich" width="480" height="360">
+                                <img src="assets/thumbs/yt-sonification.jpg?v=2" alt="Sonification of sensor events in the IBM IoT building in Munich" width="480" height="360" loading="lazy">
                                 <span>Sonification</span>
                             </a>
                             <a class="thumb" href="https://www.youtube.com/watch?v=Xh_DIKPzCWk" target="_blank" rel="noopener">
-                                <img src="assets/thumbs/yt-rhinos.jpg?v=2" alt="Animal tagging slide from the LoRaWAN tracking video" width="480" height="360">
+                                <img src="assets/thumbs/yt-rhinos.jpg?v=2" alt="Animal tagging slide from the LoRaWAN tracking video" width="480" height="360" loading="lazy">
                                 <span>Saving rhinos</span>
                             </a>
                             <a class="thumb" href="https://www.youtube.com/watch?v=P9rdW2wjIgg" target="_blank" rel="noopener">
-                                <img src="assets/thumbs/yt-cebit.jpg?v=2" alt="Drone over a model city at the IBM CeBIT booth" width="480" height="360">
+                                <img src="assets/thumbs/yt-cebit.jpg?v=2" alt="Drone over a model city at the IBM CeBIT booth" width="480" height="360" loading="lazy">
                                 <span>CeBIT</span>
                             </a>
                         </div>
@@ -1265,7 +1270,7 @@
                         <svg viewBox="0 0 16 16"><path d="M2.7 1.3a1.4 1.4 0 100 2.8 1.4 1.4 0 000-2.8zM1.5 5.2h2.4V14H1.5V5.2zM6 5.2h2.3v1.2h.1c.3-.6 1.1-1.3 2.3-1.3 2.5 0 3 1.6 3 3.7V14H11.3V9.3c0-1.1 0-2.6-1.6-2.6s-1.8 1.2-1.8 2.5V14H6V5.2z"/></svg>
                         LinkedIn
                     </a>
-                    <a class="about-link" href="http://markusvankempen.wordpress.com/" target="_blank" rel="noopener">
+                    <a class="about-link" href="https://markusvankempen.wordpress.com/" target="_blank" rel="noopener">
                         <svg viewBox="0 0 16 16"><path d="M0 8a8 8 0 1116 0A8 8 0 010 8zm8-6.5A6.5 6.5 0 001.5 8 6.5 6.5 0 008 14.5 6.5 6.5 0 0014.5 8 6.5 6.5 0 008 1.5zM6.227 4.2A.75.75 0 005.5 5v6a.75.75 0 001.095.667l5-3a.75.75 0 000-1.334l-5-3z"/></svg>
                         Blog — hackathons &amp; STEM
                     </a>
@@ -1348,6 +1353,11 @@
             </div>
         </div>
     </section>
+    </main>
+
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
+        <svg viewBox="0 0 16 16"><path d="M8 3.5l-.71.71L12.08 9H1v1h11.08l-4.79 4.79.71.71L14 8.5z" transform="rotate(-90 8 8)" fill-rule="evenodd"/></svg>
+    </button>
 
     <footer class="footer">
         <div class="container footer__inner">
@@ -1357,7 +1367,7 @@
                 <a href="https://marketplace.visualstudio.com/search?term=markus%20van%20kempen&amp;target=VSCode&amp;category=All%20categories&amp;sortBy=Relevance" target="_blank" rel="noopener">VS Marketplace</a>
                 <a href="https://open-vsx.org/namespace/markusvankempen" target="_blank" rel="noopener">Open VSX</a>
                 <a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">MCP</a>
-                <a href="http://markusvankempen.wordpress.com/" target="_blank" rel="noopener">Blog</a>
+                <a href="https://markusvankempen.wordpress.com/" target="_blank" rel="noopener">Blog</a>
                 <a href="https://markusvankempen.github.io/wxo-labs/" target="_blank" rel="noopener">WXO Labs</a>
             </div>
         </div>
@@ -1467,6 +1477,69 @@
         document.addEventListener('click', function (event) {
             if (!header.contains(event.target)) setOpen(false);
         });
+    }());
+    /* ── Back to top ── */
+    (function () {
+        var btn = document.getElementById('back-to-top');
+        if (!btn) return;
+        window.addEventListener('scroll', function () {
+            btn.classList.toggle('visible', window.scrollY > 400);
+        }, { passive: true });
+        btn.addEventListener('click', function () {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }());
+    /* ── Scrollspy ── */
+    (function () {
+        var navLinks = Array.prototype.slice.call(document.querySelectorAll('.header__nav a[href^="#"]'));
+        var sections = navLinks.map(function (a) {
+            var id = a.getAttribute('href').slice(1);
+            return document.getElementById(id);
+        });
+        function onScroll() {
+            var scrollY = window.scrollY + 80;
+            var active = null;
+            sections.forEach(function (sec, i) {
+                if (sec && sec.offsetTop <= scrollY) active = i;
+            });
+            navLinks.forEach(function (a, i) {
+                a.classList.toggle('is-active', i === active);
+            });
+        }
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+    }());
+    /* ── Stat count-up ── */
+    (function () {
+        var stats = Array.prototype.slice.call(document.querySelectorAll('.stat__value[data-target]'));
+        if (!stats.length) return;
+        var done = false;
+        function countUp() {
+            if (done) return;
+            done = true;
+            stats.forEach(function (el) {
+                var target = parseInt(el.getAttribute('data-target'), 10);
+                var suffix = el.textContent.replace(/[0-9]/g, '');
+                var start = 0;
+                var duration = 900;
+                var startTime = null;
+                function step(ts) {
+                    if (!startTime) startTime = ts;
+                    var progress = Math.min((ts - startTime) / duration, 1);
+                    var ease = 1 - Math.pow(1 - progress, 3);
+                    el.textContent = Math.round(ease * target) + suffix;
+                    if (progress < 1) requestAnimationFrame(step);
+                }
+                requestAnimationFrame(step);
+            });
+        }
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) countUp();
+            });
+        }, { threshold: 0.5 });
+        var statsSection = document.querySelector('.stats');
+        if (statsSection) observer.observe(statsSection);
     }());
     </script>
 </body>
