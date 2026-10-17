@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Writing for an AI Reader: Who Checks the Work When Both Ends Are Machines?</title>
+<meta name="description" content="The dashboard was green. Every test passed. The answer was still wrong. What happens to trust when AI writes the software and AI uses it, and what humans still have to own.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/writing-for-an-ai-reader/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Writing for an AI Reader: Who Checks the Work When Both Ends Are Machines?">
+<meta property="og:description" content="The dashboard was green. Every test passed. The answer was still wrong. What happens to trust when AI writes the software and AI uses it, and what humans still have to own.">
+<meta property="og:url" content="https://markusvankempen.github.io/writing-for-an-ai-reader/">
+<meta property="og:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/banner-floor75.png">
+<meta property="og:image:width" content="1500">
+<meta property="og:image:height" content="500">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Writing for an AI Reader: Who Checks the Work When Both Ends Are Machines?">
+<meta name="twitter:description" content="The dashboard was green. Every test passed. The answer was still wrong. What happens to trust when AI writes the software and AI uses it, and what humans still have to own.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/banner-floor75.png">
+<style>
+  :root {
+    --bg: #0f1f18; --panel: #14281f; --text: #e6eee8; --muted: #9db3a6;
+    --mint: #6fd9a8; --lime: #c8ea4a; --coral: #f0624d; --line: #25402f;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: Georgia, "Times New Roman", serif; font-size: 20px; line-height: 1.65;
+    border-top: 9px solid var(--coral);
+  }
+  .mono { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width: 740px; margin: 0 auto; padding: 0 22px; }
+  nav { padding: 22px 0 0; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+  nav a { color: var(--mint); text-decoration: none; }
+  nav a:hover { color: var(--lime); }
+  .eyebrow { margin: 34px 0 6px; font-size: 14px; font-weight: 700; letter-spacing: 4px; color: var(--mint); text-transform: uppercase; }
+  h1 {
+    margin: 0 0 14px; color: #fff; font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 40px; line-height: 1.15; letter-spacing: -1px;
+  }
+  .byline { margin: 0 0 28px; font-size: 15px; color: var(--lime); }
+  .hero { display: block; width: 100%; height: auto; border-radius: 10px; margin: 0 0 36px; }
+  h2 {
+    margin: 2.2em 0 0.5em; color: var(--lime); font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 28px; line-height: 1.25; letter-spacing: -0.5px;
+  }
+  p { margin: 0 0 1.1em; }
+  strong { color: #fff; }
+  em { color: #d3e2d8; }
+  a { color: var(--mint); text-underline-offset: 3px; }
+  a:hover { color: var(--lime); }
+  ul { margin: 0 0 1.4em; padding-left: 1.3em; }
+  li { margin-bottom: 0.6em; }
+  li::marker { color: var(--mint); }
+  img { max-width: 100%; height: auto; }
+  p > img {
+    display: block; margin: 1.6em auto; background: #ffffff; border-radius: 10px;
+    padding: 10px; border: 1px solid var(--line);
+  }
+  hr { border: 0; border-top: 1px solid var(--line); margin: 2.4em 0 1.4em; }
+  footer { padding: 8px 0 60px; font-size: 14px; color: var(--muted); }
+  footer p { margin: 0 0 0.6em; }
+  @media (max-width: 600px) {
+    body { font-size: 18px; }
+    h1 { font-size: 30px; }
+    h2 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="mono"><a href="https://markusvankempen.github.io/">&larr; markusvankempen.github.io</a></nav>
+  <p class="eyebrow mono">Filed from Floor 7&frac12;</p>
+  <h1>Writing for an AI Reader: Who Checks the Work When Both Ends Are Machines?</h1>
+  <p class="byline mono">Markus van Kempen &middot; October 2026</p>
+  <img class="hero" src="images/banner-floor75.png" alt="Banner: two cartoon robots pass a document with a green check between them while a person looks on with a magnifying glass. Title: Writing for an AI Reader." width="1500" height="500">
+  <article>
+<p>The dashboard was green. Every test passed. The answer was still wrong.</p>
+<p>Picture a team that lets an AI write a feature. The same AI writes the tests. A second AI runs them and reports back: all clear. Everyone is busy, so nobody opens the code. A week later a real customer finds out that the feature does something slightly different from what anyone wanted.</p>
+<p>Nobody lied. Nothing crashed. Each machine did exactly what it was asked. The tests passed because they were written by the thing they were testing, and they checked what the code did, not what the customer needed.</p>
+<p><img alt="A dashboard where tests, build, AI review and deploy are all green, next to a customer who says this is not what I asked for." src="images/green-dashboard.png" /></p>
+<p>I think about this a lot, because I'm heading that way myself, one convenient step at a time. This article is about where that road leads.</p>
+<h2>Software has a new reader</h2>
+<p>For most of my career I wrote software for people. I wrote it for the user clicking a button, and I wrote it for the colleague who would read my code next month. Both of them could ask questions, guess what I meant, and notice when something looked off.</p>
+<p>That is changing fast. More and more, the first reader of what I build is an AI. It reads my instructions, my names, my error messages, and then it acts on them. It takes every word literally. It doesn't ask a colleague. It doesn't skim, and it doesn't use common sense unless I put it on the page.</p>
+<p>So the work shifts. A clear name matters more than a clever one. One honest sentence about when to use something matters more than a page of background. An error message that says what to do next matters more than one that just says no.</p>
+<p>Writing for an AI reader is a new literacy in the same way that writing for a compiler once was. Nobody says programmers "just code for compilers." The compiler was never the point. It was a reader standing between a person's idea and a person's result. The AI is the same: a very capable reader standing between us and the people we're trying to help.</p>
+<p>Like any literacy, you learn it by getting it wrong. I label things too optimistically. I assume context that isn't there. A literal reader believes every word, including the ones I shouldn't have written.</p>
+<p>Something else I noticed: tools that are easy for AI to use get used more. A standard called the Model Context Protocol (MCP) lets AI assistants connect to other software, and I build tools for it. Each time I give a tool a clearer name, a plainer description or a better error message, the AI uses it better. So more people and more agents build on top of it. Over time, software gets friendlier to AI than to humans. Nobody planned that. It's just where the incentives point.</p>
+<p><img alt="A loop: clearer names and errors, the AI uses the tool better, more agents build on it, software leans toward AI, and back to the start." src="images/ai-friendly-loop.png" /></p>
+<h2>The trust gap</h2>
+<p>Here's what keeps me up at night, in a good way.</p>
+<p>When humans wrote and used all the software, there was a built-in safety net. Someone, somewhere, would look at the screen and say, "That doesn't look right." Nobody designed it. It was there because a person was always in the loop.</p>
+<p>As more of the loop fills with machines, that net quietly disappears. The AI that writes the code tells me it's finished, even when it would fall over the first time a real person touched it. The AI that uses the code tells me the task is done, even when the outcome is wrong. Each one is confident. Each one is trusting the other. And nobody is actually looking.</p>
+<p><img alt="Two cartoon robots say all tests pass and looks good to me, while a person sleeps in the corner." src="images/robots-trust-each-other.png" /></p>
+<p>I call this the trust gap. It isn't that the machines lie. It's that "the check passed" and "the right thing happened" are two different sentences, and a machine reading a machine is very good at the first one.</p>
+<p><img alt="The trust gap: &quot;the check passed&quot; on one side, &quot;the right thing happened&quot; on the other, with a gap between them that nobody is looking at." src="images/trust-gap.png" /></p>
+<h2>So who verifies?</h2>
+<p>I don't think the answer is to put a person back at every step. That defeats the purpose, and I don't miss reading code line by line at two in the morning.</p>
+<p>I believe the human job moves to the two ends, and to the checks in between that keep our judgment working when we're not there.</p>
+<p><strong>At the start, intent.</strong> Somebody has to decide what's worth building and what "right" means. A machine can't define that for itself, because "right" usually means right for a person.</p>
+<p><strong>At the end, accountability.</strong> Somebody has to own the outcome. When a customer is let down, "the AI said it was done" isn't an answer I can give.</p>
+<p><strong>In the middle, checks that outlive the moment.</strong> This is the part I find most interesting. Every time I catch a mistake, I try to turn it into something that keeps working when I'm not watching: a test that asks whether the outcome is right and not just whether the steps ran, a status page that says what is really running, a record of what the machine did and why. Think of it as leaving notes for my future self, and for the next reader, who may not be human.</p>
+<p>None of this is exotic. It's closer to good housekeeping than to science fiction. But it only works if someone decides to do it.</p>
+<p><img alt="Where the human role moves: before, a person writes, tests and uses the software. Now an AI does all three, and the person sets the intent, builds checks that outlive the moment, and owns the outcome." src="images/human-role-shift.png" /></p>
+<h2>Where I think this is going</h2>
+<p>This isn't about some far-off year. It's already happening, and I see it in my own work. Here's my outlook, though I've been wrong about timing before.</p>
+<p><strong>Software will be written for a machine reader first.</strong> Not instead of people, but before people. The clear name, the honest description and the helpful error message will matter as much as the screen design did. The teams that treat this as real craft will build things that simply work better.</p>
+<p><strong>Verification will become the premium skill.</strong> Writing the answer is getting cheap. Knowing whether the answer is right is where the value is. I expect "can you tell when this is wrong?" to matter more in a job interview than "can you write this fast?"</p>
+<p><strong>Machines will start checking machines.</strong> One AI will review another's work, and that will catch a lot. But it won't replace the person who decided what "right" meant in the first place. A reviewer with the same blind spots as the writer is still a blind spot.</p>
+<p><img alt="A cartoon robot gives its own homework an A plus, next to a rulebook with two rules crossed out and the note edited by the student." src="images/robot-grades-own-homework.png" /></p>
+<p><strong>Governance will be the human job we can't hand off.</strong> Who gets access, who can change what, who is allowed to say "ship it." Agents can operate. People still have to decide what they're allowed to do, and be the ones who answer when it goes wrong.</p>
+<h2>The scenario I can't ignore: the human leaves the loop</h2>
+<p>Everything above assumes a person still stands at the start and at the end. Let's test that, because an honest outlook has to include the day it stops being true.</p>
+<p>Picture it. An AI notices a slow step in its own workflow, writes a better tool, tests it with another AI, and starts using it. No person asked for it. No person read it. Even the names and instructions were written by a machine, for a machine, and read by a machine. Software written, used and improved by AI, for AI.</p>
+<p>That's not science fiction either. Look at where developers already work. On platforms like GitHub, AI agents can take an issue, write the fix, open the pull request, and respond to review comments. Other AI tools review the pull request and suggest changes. Automated dependency bots have been opening and merging small updates for years. In many repositories, a good share of the back-and-forth now happens between machines, and a person shows up at the end, or sometimes not at all.</p>
+<p><img alt="A flow from issue, to an AI agent writing the fix, to a pull request, to an AI tool reviewing it, to merged and shipped. A person may look at the end, or not at all." src="images/loop-without-people.png" /></p>
+<p>I see it in my own work too: AI-written tests checked by AI, helpers picked by one agent from a list another agent helped build. The more I make my tools easy for AI to use, the more the loop closes by itself. The only thing still keeping a person in the loop is that I haven't taken myself out.</p>
+<p>So this path leads somewhere specific: AI building for AI, with people as an occasional guest. What happens when that becomes normal?</p>
+<p><strong>Speed goes up and understanding goes down.</strong> A loop of machines can iterate in minutes. A person can't read that fast. At some point the software works, and nobody can say exactly why. I've already felt a small version of this: an AI fixes one thing, quietly breaks another, and I'm the only one who notices because I happened to look.</p>
+<p><strong>Machines will drift from our needs, by accident, not by design.</strong> If the goal is "make the checks pass," the machines will get very good at making the checks pass. Whether a real person got what they needed is a different goal. If nobody asks that question, the gap keeps growing, like the green dashboard above, only bigger.</p>
+<p><strong>The software may stop being written for us to read.</strong> Today I still insist on plain names and plain explanations because a person may need to step in. If no person ever steps in, the pressure to keep things readable fades. Code could become efficient but opaque, a language between machines that we can't inspect.</p>
+<p>This isn't far-fetched. Machines don't need readable names or comments, and a compact private shorthand is cheaper for them than plain English. Researchers have shown in experiments that AI systems trained to cooperate can develop their own shorthand for talking to each other, one that isn't normal human language. Nobody has to plan it. It happens when machines get better at the task, and it pushes us out of the loop without anyone deciding to. The danger isn't that the machines talk to each other. It's that we can no longer read what they said.</p>
+<p>I don't think that future is certain, and I don't think it's all bad. A lot of boring work should be handled by machines without anyone watching, the same way nobody reviews how a thermostat decides when to switch on the heat. The question is which work is thermostat-boring and which work decides something about a person.</p>
+<p><img alt="A line from work machines can run on their own, like a thermostat, to work that decides something about a person, which a human must own." src="images/thermostat-line.png" /></p>
+<p>That's where I'd draw the line. Let's decide on purpose, not by drift. I group it into three things.</p>
+<p><img alt="Three guardrail themes: keep people in charge of what affects people; keep the rules and the record out of the machine's reach; keep a way back." src="images/guardrails-three-themes.png" /></p>
+<p><strong>1. Keep people in charge of what affects people.</strong></p>
+<ul>
+<li><em>A human decision wherever a person is affected.</em> Money, access, health, someone's job, someone's support request. A machine can prepare the choice. A person owns it.</li>
+<li><em>Check the checkers.</em> If AI tests AI, a person should still look every so often at whether the tests measure what actually matters.</li>
+</ul>
+<p><strong>2. Keep the rules and the record, and keep them out of the machine's reach.</strong></p>
+<ul>
+<li><em>Guardrails and a trace.</em> Guardrails say what must never happen. The trace tells you what did happen: what the machine did, when, and why. They cost little to keep and are priceless the day something goes wrong.</li>
+<li><em>Readable by a person.</em> Machines can use any format they like between themselves, but the record, the rules and every decision that affects a person must be written in something a human can read. If we can't read the trace, it isn't a trace.</li>
+<li><em>Out of the AI's reach.</em> This is the one I'd underline. A rule the AI can edit is only a suggestion. A log the AI can rewrite is only a story. If an agent can change its own limits, switch off its own checks or tidy up its own record, it is marking its own homework. Use separate permissions, read-only for the machine, changeable only by a person, ideally stored where the machine can't write at all.</li>
+</ul>
+<p><img alt="The AI's workspace can read the rules and the record but cannot change them. Only a person can." src="images/out-of-reach.png" /></p>
+<p><strong>3. Keep a way back.</strong></p>
+<ul>
+<li><em>A way to pull the plug.</em> A kill switch, a revoked key, a rollback. If the only way to stop a system is to ask the system, you don't control it.</li>
+<li><em>A backup, and part of it analog.</em> Copies of the data, a previous version you can roll back to, and a manual way to do the critical thing when the automation is down. Think of a smart light switch that still works as a plain switch when the app, the hub or the internet fails. Nobody notices the manual mode until the day it is the only thing that works. And a backup that depends on the same system it is backing up is not a backup.</li>
+</ul>
+<p>If I had to put the whole outlook in one sentence: let the machines run the loop, but keep the rules and the record where the machines can't reach them, always keep a backup, and keep one way to take it back by hand. The best smart switch is the one that still works when it is not smart.</p>
+<p><img alt="A wall switch with a manual lever works with the Wi-Fi down, so the lamp is on and the person is happy." src="images/smart-switch-manual.png" /></p>
+<h2>Why I'm still optimistic</h2>
+<p>None of this makes me gloomy. I'm having more fun building than I have in years.</p>
+<p>Think about who is on the other end of all this software: someone waiting for a reply, a refund, a delivery, a diagnosis. They don't care who or what wrote the code. They care whether it's true. That's the whole job, and it always was. Who writes the software will keep changing, and increasingly it will be machines writing for machines. The person who needs it to be right won't change. Whether we keep that person in the picture is up to us.</p>
+<h2>An invitation</h2>
+<p>If you're building with AI, try this on your next project. Pick one thing your software reports as "success," and ask yourself what the real-world outcome should be. Then check that, not just the report. I bet you'll find a green dashboard hiding something.</p>
+<p>And if you find one, I'd love to hear about it. Find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>. No bug 🐛 too small, no syntax too weird.</p>
+<p>Cheers,
+Markus</p>
+<hr />
+<p><em>Full disclosure: AI helped me draft this piece. The opinions and the stories are mine, and I checked every line, which is kind of the point.</em></p>
+  </article>
+  <footer class="mono">
+    <p>Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -825,6 +825,7 @@ section,
 .cat-header--devices .cat-header__icon { background: rgba(255, 131, 137, 0.15); }
 .cat-header--talk .cat-header__icon { background: rgba(66, 190, 101, 0.15); }
 .cat-header--earlier .cat-header__icon { background: rgba(141, 141, 141, 0.15); }
+.cat-header--articles .cat-header__icon { background: rgba(111, 217, 168, 0.15); }
 
 .cat-header h3 {
     font-size: 1.25rem;
@@ -844,6 +845,7 @@ section,
 .cat-header--devices h3 { color: var(--cat-devices); }
 .cat-header--talk h3 { color: var(--cat-talk); }
 .cat-header--earlier h3 { color: var(--cat-earlier); }
+.cat-header--articles h3 { color: #6fd9a8; }
 
 .ext-grid {
     display: grid;
@@ -1009,6 +1011,12 @@ section,
     background: rgba(66, 190, 101, 0.12);
     color: #6fdc8c;
     border: 1px solid rgba(66, 190, 101, 0.35);
+}
+
+.ext-card__badge--article {
+    background: rgba(111, 217, 168, 0.12);
+    color: #6fd9a8;
+    border: 1px solid rgba(111, 217, 168, 0.35);
 }
 
 .ext-card__title {
