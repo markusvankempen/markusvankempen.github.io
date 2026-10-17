@@ -11,14 +11,14 @@
 <meta property="og:title" content="Writing for an AI Reader">
 <meta property="og:description" content="The call came back green. The model said done. The answer was still wrong. What happens to trust when AI writes the software and AI uses it, and what humans still have to own.">
 <meta property="og:url" content="https://markusvankempen.github.io/writing-for-an-ai-reader/">
-<meta property="og:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/banner-floor75.png">
-<meta property="og:image:width" content="1500">
-<meta property="og:image:height" content="500">
+<meta property="og:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/feature-image.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
 <meta property="article:author" content="Markus van Kempen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Writing for an AI Reader">
 <meta name="twitter:description" content="The call came back green. The model said done. The answer was still wrong. What happens to trust when AI writes the software and AI uses it, and what humans still have to own.">
-<meta name="twitter:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/banner-floor75.png">
+<meta name="twitter:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/feature-image.png">
 <style>
   :root {
     --bg: #0f1f18; --panel: #14281f; --text: #e6eee8; --muted: #9db3a6;
@@ -37,10 +37,11 @@
   nav a { color: var(--mint); text-decoration: none; }
   nav a:hover { color: var(--lime); }
   h1 {
-    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
-    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+    margin: 1.2em 0 0.15em; color: #fff; font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 46px; line-height: 1.1; letter-spacing: -1.5px;
   }
-  .hero { display: block; width: 100%; height: auto; border-radius: 10px; margin: 24px 0 36px; }
+  .deck { margin: 0 0 1.2em; color: var(--mint); font-size: 22px; font-style: italic; }
+  .hero { display: block; width: 100%; height: auto; border-radius: 10px; margin: 0 0 36px; }
   h2 {
     margin: 2.2em 0 0.5em; color: var(--lime); font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
     font-size: 28px; line-height: 1.25; letter-spacing: -0.5px;
@@ -64,6 +65,8 @@
   @media (max-width: 600px) {
     body { font-size: 18px; }
     h2 { font-size: 24px; }
+    h1 { font-size: 34px; }
+    .deck { font-size: 19px; }
   }
 </style>
 </head>
@@ -71,7 +74,8 @@
 <div class="wrap">
   <nav class="mono"><a href="https://markusvankempen.github.io/">&larr; markusvankempen.github.io</a></nav>
   <h1>Writing for an AI Reader</h1>
-  <img class="hero" src="images/banner-floor75.png" alt="Banner: two cartoon robots pass a document with a green check between them while a person looks on with a magnifying glass. Title: Writing for an AI Reader." width="1500" height="500">
+  <p class="deck">Who checks the work when both ends are machines?</p>
+  <img class="hero" src="images/feature-image-notext.png" alt="Two cartoon robots at desks pass a document with a green check between them. One says &quot;All tests pass!&quot;, the other says &quot;Looks good to me!&quot;. A person leans in with a magnifying glass." width="1600" height="900">
   <article>
 <p>The call came back green. The model said done. The answer was still wrong.</p>
 <p>I did this to myself. A tool I built, <code>create_ticket</code>, came back 201 Created and the ticket existed. The requester on the ticket was the bot's own service account, because my code quietly used that when nobody passed a customer email. Every reply went to the bot. The customer never heard back.</p>
