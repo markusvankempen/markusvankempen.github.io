@@ -36,13 +36,11 @@
   nav { padding: 22px 0 0; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
   nav a { color: var(--mint); text-decoration: none; }
   nav a:hover { color: var(--lime); }
-  .eyebrow { margin: 34px 0 6px; font-size: 14px; font-weight: 700; letter-spacing: 4px; color: var(--mint); text-transform: uppercase; }
   h1 {
-    margin: 0 0 14px; color: #fff; font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
-    font-size: 40px; line-height: 1.15; letter-spacing: -1px;
+    position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0;
+    overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
   }
-  .byline { margin: 0 0 28px; font-size: 15px; color: var(--lime); }
-  .hero { display: block; width: 100%; height: auto; border-radius: 10px; margin: 0 0 36px; }
+  .hero { display: block; width: 100%; height: auto; border-radius: 10px; margin: 24px 0 36px; }
   h2 {
     margin: 2.2em 0 0.5em; color: var(--lime); font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
     font-size: 28px; line-height: 1.25; letter-spacing: -0.5px;
@@ -65,7 +63,6 @@
   footer p { margin: 0 0 0.6em; }
   @media (max-width: 600px) {
     body { font-size: 18px; }
-    h1 { font-size: 30px; }
     h2 { font-size: 24px; }
   }
 </style>
@@ -73,9 +70,7 @@
 <body>
 <div class="wrap">
   <nav class="mono"><a href="https://markusvankempen.github.io/">&larr; markusvankempen.github.io</a></nav>
-  <p class="eyebrow mono">Filed from Floor 7&frac12;</p>
   <h1>Writing for an AI Reader: Who Checks the Work When Both Ends Are Machines?</h1>
-  <p class="byline mono">Markus van Kempen &middot; October 2026</p>
   <img class="hero" src="images/banner-floor75.png" alt="Banner: two cartoon robots pass a document with a green check between them while a person looks on with a magnifying glass. Title: Writing for an AI Reader." width="1500" height="500">
   <article>
 <p>The dashboard was green. Every test passed. The answer was still wrong.</p>
@@ -152,9 +147,10 @@
 <p>Think about who is on the other end of all this software: someone waiting for a reply, a refund, a delivery, a diagnosis. They don't care who or what wrote the code. They care whether it's true. That's the whole job, and it always was. Who writes the software will keep changing, and increasingly it will be machines writing for machines. The person who needs it to be right won't change. Whether we keep that person in the picture is up to us.</p>
 <h2>An invitation</h2>
 <p>If you're building with AI, try this on your next project. Pick one thing your software reports as "success," and ask yourself what the real-world outcome should be. Then check that, not just the report. I bet you'll find a green dashboard hiding something.</p>
-<p>And if you find one, I'd love to hear about it. Find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>. No bug 🐛 too small, no syntax too weird.</p>
-<p>Cheers,
+<p>And if you find one, I'd love to hear about it. Find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<p>Cheers,<br />
 Markus</p>
+<p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
 <hr />
 <p><em>Full disclosure: AI helped me draft this piece. The opinions and the stories are mine, and I checked every line, which is kind of the point.</em></p>
   </article>
