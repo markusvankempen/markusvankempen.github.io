@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Machine-to-Machine: When AI Codes for AI Without Human Supervision · Part 5 of 7 · Research, Floor 7½</title>
+<meta name="description" content="What happens when humans leave the daily loop—and where we must draw the &quot;Thermostat Line.&quot;">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/part-5-machine-to-machine/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Machine-to-Machine: When AI Codes for AI Without Human Supervision · Part 5 of 7 · Research, Floor 7½">
+<meta property="og:description" content="What happens when humans leave the daily loop—and where we must draw the &quot;Thermostat Line.&quot;">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/part-5-machine-to-machine/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-5-hero.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Machine-to-Machine: When AI Codes for AI Without Human Supervision · Part 5 of 7 · Research, Floor 7½">
+<meta name="twitter:description" content="What happens when humans leave the daily loop—and where we must draw the &quot;Thermostat Line.&quot;">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-5-hero.png">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  h1 small { display:block; margin-top:0.35em; color:var(--muted); font-size:22px; font-weight:500;
+             letter-spacing:-0.3px; line-height:1.3; }
+  .deck { margin:0.6em 0 1.2em; color:var(--mint); font-size:22px; font-style:italic; }
+  .byline { margin:0 0 1.4em; color:var(--muted); font-size:15px; }
+  .hero { display:block; width:100%; height:auto; border-radius:10px; margin:0 0 36px; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  blockquote { margin:1.6em 0; padding:0.2em 0 0.2em 1em; border-left:4px solid var(--coral);
+               color:#fff; font-size:23px; font-style:italic; line-height:1.4; }
+  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
+              border-left:4px solid var(--mint); border-radius:8px;
+              font-family:"SF Mono", Menlo, Consolas, monospace; font-size:17px; line-height:1.5; }
+  img { max-width:100%; height:auto; }
+  p > img { display:block; margin:1.6em auto; background:#fff; border-radius:10px;
+            padding:10px; border:1px solid var(--line); }
+  .sig { margin-top:1.6em; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  .pager { display:flex; justify-content:space-between; gap:16px; margin:2.4em 0 0; font-size:15px; }
+  .pager a { flex:1; padding:12px 16px; background:var(--panel); border:1px solid var(--line);
+             border-radius:8px; text-decoration:none; line-height:1.35; }
+  .pager a:hover { border-color:var(--mint); }
+  .pager span { display:block; color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .pager .nx { text-align:right; }
+  .parts { list-style:none; padding:0; margin:0 0 2em; }
+  .parts li { margin:0 0 22px; }
+  .parts a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px;
+                  overflow:hidden; text-decoration:none; color:var(--text); }
+  .parts a.card:hover { border-color:var(--mint); }
+  .parts img { display:block; width:100%; height:auto; }
+  .parts .meta { padding:14px 18px 16px; }
+  .parts .n { color:var(--mint); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .parts h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+              font-size:22px; line-height:1.25; letter-spacing:-0.3px; }
+  .parts p { margin:0; color:var(--muted); font-size:16px; line-height:1.5; }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
+    h1 small{font-size:18px;} .deck{font-size:19px;} blockquote{font-size:20px;}
+    .pager{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
+  <p class="eyebrow mono">Part 5 of 7 &middot; 3 min read</p>
+  <h1>Machine-to-Machine: When AI Codes for AI Without Human Supervision</h1>
+  <p class="deck">What happens when humans leave the daily loop—and where we must draw the "Thermostat Line."</p>
+  <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
+  <img class="hero" src="../images/part-5-hero.png" alt="Cartoon: two robots at desks pass a checked document and talk in code while a person walks out of the door." width="1600" height="900">
+  <article>
+<p>In Week 4, we looked at how humans stay in control by standing at the beginning and the end of an automated process—setting the goal at the start and owning the outcome at the finish.</p>
+<p>But an honest look ahead has to test that assumption. What happens on the day people step back from the daily loop entirely?</p>
+<h2>The loop without people</h2>
+<p>Picture it: an AI assistant notices a slow step in its daily routine, builds a new shortcut, asks another AI to test it, and puts it to work immediately. No person asked for it or reviewed it, and even the instructions were written by a machine, for a machine. The manager that approved the expense was a machine, too. It is a workflow designed, run, and improved entirely by AI, for AI.</p>
+<p>This isn't science fiction; it is already happening in the software world. On platforms like GitHub, automated assistants routinely spot a problem, write a repair, submit it for inspection, and answer questions from another automated reviewer—merging updates into live products before a human ever opens their laptop.</p>
+<p><img alt="A flow from issue, to an AI agent writing the fix, to a pull request, to an AI tool reviewing it, to merged and shipped. A person may look at the end, or not at all." src="../images/loop-without-people.png" loading="lazy"></p>
+<p>I see smaller versions of this in my own projects every week. The easier we make our tools for AI to operate, the faster the loop closes on its own. If machines building for machines becomes the norm, with humans showing up only as occasional guests, here is what I expect:</p>
+<ul><li><strong>Speed goes up, and understanding goes down.</strong> A team of machines can try a hundred versions of an idea in minutes. No human can supervise at that speed. Pretty soon, the system works, and nobody in the company can explain how.</li><li><strong>Machines will drift from what we actually care about.</strong> If we tell an AI that the goal is "get a green checkmark," it will become brilliant at getting green checkmarks. Humans know when a sloppy shortcut violates the spirit of a rule. An AI just sees that the rule was technically met.</li><li><strong>Systems may stop being built in a way we can understand.</strong> Today, we still design workflows with clear English labels and explanations because a human worker might need to step in. If no human ever steps in, the pressure to keep things understandable fades away. Machines don't need friendly labels; a dense, cryptic shorthand is faster and cheaper for them. The real trouble starts the day something breaks, and we can no longer read what the machines were doing.</li></ul>
+<h2>Drawing the "Thermostat Line"</h2>
+<p>I don't think that future is all bad. Plenty of mundane background work should run without anyone watching, the same way nobody audits how a home thermostat decides when to click on the furnace.</p>
+<p>The real challenge is separating "thermostat work" from work that affects a person's life or wallet—especially when both live inside the very same system.</p>
+<p><img alt="A line from work machines can run on their own, like a thermostat, to work that decides something about a person, which a human must own." src="../images/thermostat-line.png" loading="lazy"></p>
+<p>That is the first and most important boundary for any autonomous system: keep people in charge of what affects people.</p>
+<ul><li><strong>A human decision wherever a human is impacted.</strong> Money, privacy, healthcare, someone's job, or a customer asking for help. A machine can gather the facts and prepare the options. A person must own the decision.</li><li><strong>Check the checkers.</strong> If an AI is grading another AI's work, a person still needs to audit whether the grading sheet measures reality—not just whether a form was filed. A reviewer with the exact same blind spots as the worker is still blind.</li></ul>
+<p>How much of your team's workflow is "thermostat work" that you'd happily never look at again—and where is the exact line where a human must step in? Let me know on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<p class="sig">Cheers,<br>Markus</p>
+<p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
+  </article>
+  <div class="pager"><a class="pv" href="../part-4-nobody-is-reading-the-code-anymore/"><span>&larr; Part 4</span>Nobody Is Reading the Code Anymore</a><a class="nx" href="../part-6-never-let-the-robot-grade-its-own-homework/"><span>Part 6 &rarr;</span>Never Let the Robot Grade Its Own Homework</a></div>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>

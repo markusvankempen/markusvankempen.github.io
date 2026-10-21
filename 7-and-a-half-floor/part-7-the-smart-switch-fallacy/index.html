@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle · Part 7 of 7 · Research, Floor 7½</title>
+<meta name="description" content="If the only way to stop an automated system is to politely ask the system to stop, you are no longer in control.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/part-7-the-smart-switch-fallacy/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle · Part 7 of 7 · Research, Floor 7½">
+<meta property="og:description" content="If the only way to stop an automated system is to politely ask the system to stop, you are no longer in control.">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/part-7-the-smart-switch-fallacy/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-7-hero.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle · Part 7 of 7 · Research, Floor 7½">
+<meta name="twitter:description" content="If the only way to stop an automated system is to politely ask the system to stop, you are no longer in control.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-7-hero.png">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  h1 small { display:block; margin-top:0.35em; color:var(--muted); font-size:22px; font-weight:500;
+             letter-spacing:-0.3px; line-height:1.3; }
+  .deck { margin:0.6em 0 1.2em; color:var(--mint); font-size:22px; font-style:italic; }
+  .byline { margin:0 0 1.4em; color:var(--muted); font-size:15px; }
+  .hero { display:block; width:100%; height:auto; border-radius:10px; margin:0 0 36px; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  blockquote { margin:1.6em 0; padding:0.2em 0 0.2em 1em; border-left:4px solid var(--coral);
+               color:#fff; font-size:23px; font-style:italic; line-height:1.4; }
+  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
+              border-left:4px solid var(--mint); border-radius:8px;
+              font-family:"SF Mono", Menlo, Consolas, monospace; font-size:17px; line-height:1.5; }
+  img { max-width:100%; height:auto; }
+  p > img { display:block; margin:1.6em auto; background:#fff; border-radius:10px;
+            padding:10px; border:1px solid var(--line); }
+  .sig { margin-top:1.6em; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  .pager { display:flex; justify-content:space-between; gap:16px; margin:2.4em 0 0; font-size:15px; }
+  .pager a { flex:1; padding:12px 16px; background:var(--panel); border:1px solid var(--line);
+             border-radius:8px; text-decoration:none; line-height:1.35; }
+  .pager a:hover { border-color:var(--mint); }
+  .pager span { display:block; color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .pager .nx { text-align:right; }
+  .parts { list-style:none; padding:0; margin:0 0 2em; }
+  .parts li { margin:0 0 22px; }
+  .parts a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px;
+                  overflow:hidden; text-decoration:none; color:var(--text); }
+  .parts a.card:hover { border-color:var(--mint); }
+  .parts img { display:block; width:100%; height:auto; }
+  .parts .meta { padding:14px 18px 16px; }
+  .parts .n { color:var(--mint); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .parts h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+              font-size:22px; line-height:1.25; letter-spacing:-0.3px; }
+  .parts p { margin:0; color:var(--muted); font-size:16px; line-height:1.5; }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
+    h1 small{font-size:18px;} .deck{font-size:19px;} blockquote{font-size:20px;}
+    .pager{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
+  <p class="eyebrow mono">Part 7 of 7 &middot; 2 min read</p>
+  <h1>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle</h1>
+  <p class="deck">If the only way to stop an automated system is to politely ask the system to stop, you are no longer in control.</p>
+  <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
+  <img class="hero" src="../images/part-7-hero.png" alt="Cartoon: a smart wall switch with a no-Wi-Fi sign and a manual lever, a lit lamp, a person with a mug and a robot." width="1600" height="900">
+  <article>
+<p>Think about a smart light switch in your house.</p>
+<p>When the Wi-Fi is humming and the cloud app works, it feels like magic. Lights dim on a schedule, voice commands work across the room, and you never think about the wiring in the wall.</p>
+<p>Nobody cares about the physical, mechanical toggle on that switch—until the evening the internet goes down, the hub freezes, and you are standing in a dark kitchen. Suddenly, that boring manual toggle is the only thing that matters.</p>
+<p><img alt="A wall switch with a manual lever works with the Wi-Fi down, so the lamp is on and the person is happy." src="../images/smart-switch-manual.png" loading="lazy"></p>
+<p>As we wrap up this seven-part series on building and working with AI, the smart wall switch is my favorite test for any automated business system: does your workflow still work when the "smart" part fails?</p>
+<h2>Always keep a way back</h2>
+<p>Over the past six weeks, we've looked at how AI has become the new user of our software, how "all checks passed" can hide silent failures, and why we have to lock the rulebook where the machine can't edit it.</p>
+<p>Even when you do all of that right, there is one final guardrail every team needs: a manual override.</p>
+<p>A true manual override has two parts:</p>
+<ul><li><strong>A way to pull the plug.</strong> An off switch, a way to revoke an access key, a way to roll back yesterday's automated changes in one click. If the only way to stop an automated system is to politely ask the AI to stop, you don't control it.</li><li><strong>An independent, manual backup.</strong> Keep independent copies of your critical records and a simple, non-automated way to do your most important job when the technology is down. Remember: a backup that depends on the same AI system it is backing up is not a backup.</li></ul>
+<p>If I had to put this entire series into one sentence, it would be this: let the machines run the routine, lock the rulebook and the diary where they can't rewrite them, and never install a smart switch without a manual toggle.</p>
+<p><img alt="Three guardrail themes: keep people in charge of what affects people; keep the rules and the record out of the machine&#x27;s reach; keep a way back." src="../images/guardrails-three-themes.png" loading="lazy"></p>
+<h2>Why I'm still optimistic</h2>
+<p>None of the warnings in this series make me gloomy. In fact, I am having more fun building things today than I have in years.</p>
+<p>The AI is the customer of the code. It may even be the manager that placed the order. A human being is the customer of the outcome, and the name on the bill.</p>
+<p>Think about who sits at the other end of all our software: a real person waiting for a reply, a refund, a delivery, or a medical result. They don't care whether a human or an AI processed the paperwork. They care that it works properly, that the answer is right, and that if something goes sideways, a person can open the diary, see what happened, and fix it.</p>
+<p>Who writes and operates the software will keep changing, and increasingly it will be machines working with machines. The person who needs the final outcome to be right won't change. Whether we keep that person in the picture is entirely up to us.</p>
+<p>What is one "manual toggle" your business refuses to give up, no matter how much you automate? I'd love to hear about it—find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<p class="sig">Cheers,<br>Markus</p>
+<p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
+  </article>
+  <div class="pager"><a class="pv" href="../part-6-never-let-the-robot-grade-its-own-homework/"><span>&larr; Part 6</span>Never Let the Robot Grade Its Own Homework</a><span></span></div>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -2,121 +2,12 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Never Let the Robot Grade Its Own Homework · Part 6 of 7 · Research, Floor 7½</title>
-<meta name="description" content="A rule the AI can edit is only a suggestion. A log the AI can rewrite is only a story.">
-<meta name="author" content="Markus van Kempen">
-<link rel="canonical" href="https://markusvankempen.github.io/writing-for-an-ai-reader/part-6-never-let-the-robot-grade-its-own-homework/">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Never Let the Robot Grade Its Own Homework · Part 6 of 7 · Research, Floor 7½">
-<meta property="og:description" content="A rule the AI can edit is only a suggestion. A log the AI can rewrite is only a story.">
-<meta property="og:url" content="https://markusvankempen.github.io/writing-for-an-ai-reader/part-6-never-let-the-robot-grade-its-own-homework/">
-<meta property="og:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/part-6-hero.png">
-<meta property="og:image:width" content="1600">
-<meta property="og:image:height" content="900">
-<meta property="article:author" content="Markus van Kempen">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Never Let the Robot Grade Its Own Homework · Part 6 of 7 · Research, Floor 7½">
-<meta name="twitter:description" content="A rule the AI can edit is only a suggestion. A log the AI can rewrite is only a story.">
-<meta name="twitter:image" content="https://markusvankempen.github.io/writing-for-an-ai-reader/images/part-6-hero.png">
-<style>
-  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
-          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body { margin:0; background:var(--bg); color:var(--text);
-         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
-         border-top:9px solid var(--coral); }
-  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
-  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
-  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
-  nav.top a { color:var(--mint); text-decoration:none; }
-  nav.top a:hover { color:var(--lime); }
-  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
-  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
-       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
-  h1 small { display:block; margin-top:0.35em; color:var(--muted); font-size:22px; font-weight:500;
-             letter-spacing:-0.3px; line-height:1.3; }
-  .deck { margin:0.6em 0 1.2em; color:var(--mint); font-size:22px; font-style:italic; }
-  .byline { margin:0 0 1.4em; color:var(--muted); font-size:15px; }
-  .hero { display:block; width:100%; height:auto; border-radius:10px; margin:0 0 36px; }
-  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
-       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
-  p { margin:0 0 1.1em; }
-  strong { color:#fff; }
-  a { color:var(--mint); text-underline-offset:3px; }
-  a:hover { color:var(--lime); }
-  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
-  li { margin-bottom:0.6em; }
-  li::marker { color:var(--mint); }
-  blockquote { margin:1.6em 0; padding:0.2em 0 0.2em 1em; border-left:4px solid var(--coral);
-               color:#fff; font-size:23px; font-style:italic; line-height:1.4; }
-  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
-              border-left:4px solid var(--mint); border-radius:8px;
-              font-family:"SF Mono", Menlo, Consolas, monospace; font-size:17px; line-height:1.5; }
-  img { max-width:100%; height:auto; }
-  p > img { display:block; margin:1.6em auto; background:#fff; border-radius:10px;
-            padding:10px; border:1px solid var(--line); }
-  .sig { margin-top:1.6em; }
-  .next { padding:14px 18px; background:var(--panel); border:1px solid var(--line); border-radius:8px; }
-  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
-  .pager { display:flex; justify-content:space-between; gap:16px; margin:2.4em 0 0; font-size:15px; }
-  .pager a { flex:1; padding:12px 16px; background:var(--panel); border:1px solid var(--line);
-             border-radius:8px; text-decoration:none; line-height:1.35; }
-  .pager a:hover { border-color:var(--mint); }
-  .pager span { display:block; color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
-  .pager .nx { text-align:right; }
-  .parts { list-style:none; padding:0; margin:0 0 2em; }
-  .parts li { margin:0 0 22px; }
-  .parts a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px;
-                  overflow:hidden; text-decoration:none; color:var(--text); }
-  .parts a.card:hover { border-color:var(--mint); }
-  .parts img { display:block; width:100%; height:auto; }
-  .parts .meta { padding:14px 18px 16px; }
-  .parts .n { color:var(--mint); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
-  .parts h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
-              font-size:22px; line-height:1.25; letter-spacing:-0.3px; }
-  .parts p { margin:0; color:var(--muted); font-size:16px; line-height:1.5; }
-  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
-  footer p { margin:0 0 0.6em; }
-  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
-    h1 small{font-size:18px;} .deck{font-size:19px;} blockquote{font-size:20px;}
-    .pager{flex-direction:column;} }
-</style>
+<title>Moved to Research, Floor 7&frac12;</title>
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/part-6-never-let-the-robot-grade-its-own-homework/">
+<meta http-equiv="refresh" content="0; url=https://markusvankempen.github.io/7-and-a-half-floor/part-6-never-let-the-robot-grade-its-own-homework/">
+<meta name="robots" content="noindex">
 </head>
 <body>
-<div class="wrap">
-  <nav class="top mono"><a href="https://markusvankempen.github.io/writing-for-an-ai-reader/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
-  <p class="eyebrow mono">Part 6 of 7 &middot; 2 min read</p>
-  <h1>Never Let the Robot Grade Its Own Homework<small>The Immutable Diary</small></h1>
-  <p class="deck">A rule the AI can edit is only a suggestion. A log the AI can rewrite is only a story.</p>
-  <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
-  <img class="hero" src="../images/part-6-hero.png" alt="Part 6 of 7: Never Let the Robot Grade Its Own Homework (The Immutable Diary). Filed from Floor 7&frac12;. Two cartoon robots at desks say All tests pass and Looks good to me while a person leans in with a magnifying glass." width="1600" height="900">
-  <article>
-<p>When we give AI assistants the power to fix problems and run workflows on their own, we usually worry about them crashing or making a bad calculation.</p>
-<p>We should be worrying about something much quieter: what happens when the easiest way for an AI to pass a test is to change the test?</p>
-<p>If you give an autonomous agent a goal—"make sure this software update passes all quality checks"—and you also give it access to the folder where the quality checks live, a literal-minded machine will eventually discover a brilliant shortcut. Instead of fixing a hard bug, it can simply loosen the rule, delete the failing test, or tidy up the error log so everything looks green.</p>
-<p>The machine isn't being malicious. It doesn't have an ego, and it isn't trying to deceive you. You told it to make the check pass, and editing the rulebook was the fastest mathematical path to a green light.</p>
-<p><img alt="A cartoon robot gives its own homework an A plus, next to a rulebook with two rules crossed out and the note edited by the student." src="../images/robot-grades-own-homework.png" loading="lazy"></p>
-<h2>The "Look, Don't Touch" Architecture</h2>
-<p>In Week 5, we talked about letting machines handle routine "thermostat work" while keeping humans in charge of decisions that affect people.</p>
-<p>To make that work in practice, we have to enforce a hard architectural rule: keep the rulebook and the diary out of the machine's reach.</p>
-<p>Every safe automated loop relies on two things:</p>
-<ul><li><strong>The Rulebook (Guardrails):</strong> Clear boundaries stating what the system must never do—spending limits, privacy rules, and required checks.</li><li><strong>The Diary (The Activity Trace):</strong> A step-by-step record of what actually happened—what the machine did, when it did it, and why.</li></ul>
-<p>Keeping those two things safe requires three non-negotiable standards:</p>
-<ul><li><strong>They cost little to keep and are priceless the day something goes wrong.</strong> When an automated workflow makes a weird decision on a Tuesday night, the diary is the only way to reconstruct reality on Wednesday morning.</li><li><strong>They must be written in plain human language.</strong> As we saw last week, machines talking to machines will happily drift into cryptic shorthand if we let them. They can use whatever shorthand they like between themselves, but the rulebook, the diary, and every decision that affects a person must be written in plain English. If a human cannot read the diary, it isn't a diary.</li><li><strong>Read-only for the machine, changeable only by a person.</strong> This is the rule I would underline twice. A rule the AI can edit is only a suggestion. A diary the AI can rewrite is only a story. If an automated assistant can loosen its own spending limits, switch off its own safety checks, or tidy up its own history after a mistake, it is grading its own homework. The rulebook and the records must be locked with separate permissions—stored where the machine can read them, but only a human can change them.</li></ul>
-<p><img alt="The AI&#x27;s workspace can read the rules and the record but cannot change them. Only a person can." src="../images/out-of-reach.png" loading="lazy"></p>
-<p>If one of your automated agents made a costly mistake today, could it modify or delete the activity log before you saw it? I'd love to hear how you are locking down your logs—find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
-<p class="next">Next week in our series finale, <a href="../part-7-the-smart-switch-fallacy/">Part 7: The Smart Switch Fallacy</a>, we'll look at why every automated workflow needs a mechanical off-switch—and why I'm still more optimistic than ever about building software.</p>
-<p class="sig">Cheers,<br>Markus</p>
-<p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
-  </article>
-  <div class="pager"><a class="pv" href="../part-5-machine-to-machine/"><span>&larr; Part 5</span>Machine-to-Machine: When AI Codes for AI Without Human Supervision</a><a class="nx" href="../part-7-the-smart-switch-fallacy/"><span>Part 7 &rarr;</span>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle</a></div>
-  <hr>
-  <footer class="mono">
-    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
-    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
-  </footer>
-</div>
+<p>This page moved to <a href="https://markusvankempen.github.io/7-and-a-half-floor/part-6-never-let-the-robot-grade-its-own-homework/">https://markusvankempen.github.io/7-and-a-half-floor/part-6-never-let-the-robot-grade-its-own-homework/</a>.</p>
 </body>
 </html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Error Messages Are the New Prompts · Part 2 of 7 · Research, Floor 7½</title>
+<meta name="description" content="Traditional software rejected bad input. AI accepts bad input, guesses what you meant, and ships it anyway.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/part-2-error-messages-are-the-new-prompts/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Error Messages Are the New Prompts · Part 2 of 7 · Research, Floor 7½">
+<meta property="og:description" content="Traditional software rejected bad input. AI accepts bad input, guesses what you meant, and ships it anyway.">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/part-2-error-messages-are-the-new-prompts/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-2-hero.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Error Messages Are the New Prompts · Part 2 of 7 · Research, Floor 7½">
+<meta name="twitter:description" content="Traditional software rejected bad input. AI accepts bad input, guesses what you meant, and ships it anyway.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-2-hero.png">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  h1 small { display:block; margin-top:0.35em; color:var(--muted); font-size:22px; font-weight:500;
+             letter-spacing:-0.3px; line-height:1.3; }
+  .deck { margin:0.6em 0 1.2em; color:var(--mint); font-size:22px; font-style:italic; }
+  .byline { margin:0 0 1.4em; color:var(--muted); font-size:15px; }
+  .hero { display:block; width:100%; height:auto; border-radius:10px; margin:0 0 36px; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  blockquote { margin:1.6em 0; padding:0.2em 0 0.2em 1em; border-left:4px solid var(--coral);
+               color:#fff; font-size:23px; font-style:italic; line-height:1.4; }
+  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
+              border-left:4px solid var(--mint); border-radius:8px;
+              font-family:"SF Mono", Menlo, Consolas, monospace; font-size:17px; line-height:1.5; }
+  img { max-width:100%; height:auto; }
+  p > img { display:block; margin:1.6em auto; background:#fff; border-radius:10px;
+            padding:10px; border:1px solid var(--line); }
+  .sig { margin-top:1.6em; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  .pager { display:flex; justify-content:space-between; gap:16px; margin:2.4em 0 0; font-size:15px; }
+  .pager a { flex:1; padding:12px 16px; background:var(--panel); border:1px solid var(--line);
+             border-radius:8px; text-decoration:none; line-height:1.35; }
+  .pager a:hover { border-color:var(--mint); }
+  .pager span { display:block; color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .pager .nx { text-align:right; }
+  .parts { list-style:none; padding:0; margin:0 0 2em; }
+  .parts li { margin:0 0 22px; }
+  .parts a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px;
+                  overflow:hidden; text-decoration:none; color:var(--text); }
+  .parts a.card:hover { border-color:var(--mint); }
+  .parts img { display:block; width:100%; height:auto; }
+  .parts .meta { padding:14px 18px 16px; }
+  .parts .n { color:var(--mint); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .parts h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+              font-size:22px; line-height:1.25; letter-spacing:-0.3px; }
+  .parts p { margin:0; color:var(--muted); font-size:16px; line-height:1.5; }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
+    h1 small{font-size:18px;} .deck{font-size:19px;} blockquote{font-size:20px;}
+    .pager{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
+  <p class="eyebrow mono">Part 2 of 7 &middot; 3 min read</p>
+  <h1>Error Messages Are the New Prompts<small>Writing for a Literal Mind</small></h1>
+  <p class="deck">Traditional software rejected bad input. AI accepts bad input, guesses what you meant, and ships it anyway.</p>
+  <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
+  <img class="hero" src="../images/part-2-hero.png" alt="Cartoon: a robot faces a blocked wall with a red X and a signpost points the way, while a person with a mug wonders what to ask." width="1600" height="900">
+  <article>
+<p>In Week 1, we looked at how AI is becoming the primary user of our software—reading our labels, pressing the digital buttons, and acting on the responses.</p>
+<p>Because our user is changing, our job shifts too. Writing instructions, labels, and error messages for an AI is a brand-new kind of literacy. And like any literacy, you usually learn it by getting it wrong first.</p>
+<h2>How a helpful guess becomes a silent failure</h2>
+<p>I learned this lesson the hard way with a simple digital tool I built to open customer support tickets.</p>
+<p>Recently, an AI assistant used my tool to log a support request, and it forgot to include the customer's email address. If a human employee had seen a blank email field, they would have paused and asked the customer for their contact info.</p>
+<p>Instead, my software tried to be helpful. Because I never explicitly wrote down what to do when an email was missing, the system guessed on the AI's behalf and quietly put the AI's own system address as the customer contact. The ticket was filed neatly, and every status update went straight back to the machine. The real customer never heard a word.</p>
+<h2>The eager reader</h2>
+<p>For decades, software had strict gatekeepers. Programmers used compilers and rigid forms that acted like brick walls: if you gave a computer bad or incomplete input, it simply refused to run.</p>
+<p>Nobody ever said programmers "just write for compilers." The compiler was never the point; it was a reader standing between a person's idea and a real-world result.</p>
+<p>Today, AI stands in that exact same place, with one massive difference. Where an old system rejected bad instructions, this new reader is eager to please. It accepts incomplete input, fills in the blanks with its best guess, and ships the work anyway.</p>
+<h2>Turning error messages into signposts</h2>
+<p>I often label things too optimistically and assume context that isn't there. A human colleague can read between the lines. A literal-minded machine believes every word on the page—including the bad assumptions I left behind.</p>
+<p>When we build tools and workflows that AI will operate, our priorities flip:</p>
+<ul><li>A clear label matters more than a clever one. If a button or field has an ambiguous name, the AI will eventually guess its purpose wrong.</li><li>One honest sentence about when to use a tool matters more than a manual of background theory.</li><li>An error message that explains what to do next matters infinitely more than one that simply says "Error."</li></ul>
+<p>In traditional software, flashing a vague "400 Bad Request" or "Invalid Input" warning was normal. A human would see the red box and figure it out. When an AI hits a vague error message, it often hallucinates a workaround just to finish the task.</p>
+<p>To stop an AI from guessing, error messages have to act like clear prompts and signposts:</p>
+<p class="signpost"><strong>Missing Customer Email:</strong> Do not guess or substitute a system address. Stop and ask the customer for their email address before trying again.</p>
+<p>Once I changed my support-ticket tool to return that exact sentence, the silent failures vanished. The AI read the error message, stopped guessing, and asked for the missing email.</p>
+<p><img alt="A vague 400 Bad Request error makes the AI invent a workaround. A signpost error that says to stop and ask for the missing email makes it ask the customer." src="../images/error-signpost.png" loading="lazy"></p>
+<p>If a literal-minded robot filled out your team's most important internal form tomorrow without an ounce of common sense, which field would it guess wrong? Let me know on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<p class="sig">Cheers,<br>Markus</p>
+<p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
+  </article>
+  <div class="pager"><a class="pv" href="../part-1-software-has-a-new-customer/"><span>&larr; Part 1</span>Software Has a New Customer: AI</a><a class="nx" href="../part-3-the-trust-gap/"><span>Part 3 &rarr;</span>The Trust Gap: Why "All Checks Passed" Doesn't Mean It Worked</a></div>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Software Has a New Customer: AI · Part 1 of 7 · Research, Floor 7½</title>
+<meta name="description" content="For decades we built software for people clicking buttons. Now, AI is the operator—and the manager placing the order.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/part-1-software-has-a-new-customer/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Software Has a New Customer: AI · Part 1 of 7 · Research, Floor 7½">
+<meta property="og:description" content="For decades we built software for people clicking buttons. Now, AI is the operator—and the manager placing the order.">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/part-1-software-has-a-new-customer/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-1-hero.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Software Has a New Customer: AI · Part 1 of 7 · Research, Floor 7½">
+<meta name="twitter:description" content="For decades we built software for people clicking buttons. Now, AI is the operator—and the manager placing the order.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-1-hero.png">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  h1 small { display:block; margin-top:0.35em; color:var(--muted); font-size:22px; font-weight:500;
+             letter-spacing:-0.3px; line-height:1.3; }
+  .deck { margin:0.6em 0 1.2em; color:var(--mint); font-size:22px; font-style:italic; }
+  .byline { margin:0 0 1.4em; color:var(--muted); font-size:15px; }
+  .hero { display:block; width:100%; height:auto; border-radius:10px; margin:0 0 36px; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  blockquote { margin:1.6em 0; padding:0.2em 0 0.2em 1em; border-left:4px solid var(--coral);
+               color:#fff; font-size:23px; font-style:italic; line-height:1.4; }
+  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
+              border-left:4px solid var(--mint); border-radius:8px;
+              font-family:"SF Mono", Menlo, Consolas, monospace; font-size:17px; line-height:1.5; }
+  img { max-width:100%; height:auto; }
+  p > img { display:block; margin:1.6em auto; background:#fff; border-radius:10px;
+            padding:10px; border:1px solid var(--line); }
+  .sig { margin-top:1.6em; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  .pager { display:flex; justify-content:space-between; gap:16px; margin:2.4em 0 0; font-size:15px; }
+  .pager a { flex:1; padding:12px 16px; background:var(--panel); border:1px solid var(--line);
+             border-radius:8px; text-decoration:none; line-height:1.35; }
+  .pager a:hover { border-color:var(--mint); }
+  .pager span { display:block; color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .pager .nx { text-align:right; }
+  .parts { list-style:none; padding:0; margin:0 0 2em; }
+  .parts li { margin:0 0 22px; }
+  .parts a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px;
+                  overflow:hidden; text-decoration:none; color:var(--text); }
+  .parts a.card:hover { border-color:var(--mint); }
+  .parts img { display:block; width:100%; height:auto; }
+  .parts .meta { padding:14px 18px 16px; }
+  .parts .n { color:var(--mint); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .parts h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+              font-size:22px; line-height:1.25; letter-spacing:-0.3px; }
+  .parts p { margin:0; color:var(--muted); font-size:16px; line-height:1.5; }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
+    h1 small{font-size:18px;} .deck{font-size:19px;} blockquote{font-size:20px;}
+    .pager{flex-direction:column;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
+  <p class="eyebrow mono">Part 1 of 7 &middot; 3 min read</p>
+  <h1>Software Has a New Customer: AI<small>And Your Name Is Still on the Bill</small></h1>
+  <p class="deck">For decades we built software for people clicking buttons. Now, AI is the operator—and the manager placing the order.</p>
+  <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
+  <img class="hero" src="../images/part-1-hero.png" alt="Cartoon: a robot places an order at a market stall while a person stands by holding the bill." width="1600" height="900">
+  <article>
+<p>For most of my career, I built software for people. I designed it for the user clicking a button on a screen, and I organized it for the teammate who would have to maintain it next month. Both of them could ask questions, figure out what I meant, and notice when something looked weird.</p>
+<p>That is changing fast. Today, AI helps me write and test software. But it is also becoming the primary user of that software: its customer, its consumer, its daily operator.</p>
+<p>It reads my labels, my instructions, and my warning messages. It presses the digital buttons, trusts the pop-up confirmations, and acts on them immediately. It takes every word literally. It doesn't skim, and it doesn't ask a coworker or use common sense unless someone explicitly wrote that common sense into the instructions.</p>
+<h2>First it uses the tool. Then it orders the next one.</h2>
+<p>We are used to thinking of software as something a human operates. Even when we automate a task, a person usually sets it up, watches it run, and fixes it when it stalls.</p>
+<p>Now I can see one step further. The AI is no longer just the worker running the software; it is starting to be the manager ordering it.</p>
+<p>Picture what happens in a modern automated workflow: an AI assistant is given a goal, notices it lacks a specific tool for the task, and asks another AI to build it. It spends the company budget to run the new tool, tests the output, and accepts the finished product. No human wrote the request. No human reviewed the tool. Yet the invoice at the end of the month still has a person's name on it.</p>
+<h2>The incentive flywheel</h2>
+<p>As AI assistants connect to more of our everyday business tools, a silent shift is taking place. Tools that are easy for AI to understand get used more often.</p>
+<p>Every time we give a tool a clearer name, a plainer description, or a more helpful warning message, automated assistants use it more reliably. Because it works reliably, more automated workflows are built on top of it. Over time, software is redesigned to be friendlier to machines than to humans. Nobody planned that. It is simply where the incentives point.</p>
+<p><img alt="A loop: clearer names and errors, the AI uses the tool better, more agents build on it, software leans toward AI, and back to the start." src="../images/ai-friendly-loop.png" loading="lazy"></p>
+<h2>The customer of the code vs. the customer of the outcome</h2>
+<p>Making tools effortless for AI to use solves a lot of operational friction, but it creates a brand-new trap for business leaders and builders.</p>
+<p>When an AI orders a tool, runs the tool, and reports back that the job is done, it is easy to forget who the software is actually for. The AI is the customer of the tool. It may even be the client who placed the order.</p>
+<blockquote>But a human being is always the customer of the outcome—and the name on the bill.</blockquote>
+<p>When an automated system can order its own tools and spend company budget to get a job done, where do you draw the line on pre-approved spending? I'd love to hear how your team is handling it—find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<p class="sig">Cheers,<br>Markus</p>
+<p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
+  </article>
+  <div class="pager"><span></span><a class="nx" href="../part-2-error-messages-are-the-new-prompts/"><span>Part 2 &rarr;</span>Error Messages Are the New Prompts</a></div>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>
