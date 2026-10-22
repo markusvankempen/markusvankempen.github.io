@@ -65,17 +65,20 @@
   .pager a:hover { border-color:var(--mint); }
   .pager span { display:block; color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
   .pager .nx { text-align:right; }
-  .parts { list-style:none; padding:0; margin:0 0 2em; }
-  .parts li { margin:0 0 22px; }
-  .parts a.card { display:block; background:var(--panel); border:1px solid var(--line); border-radius:10px;
-                  overflow:hidden; text-decoration:none; color:var(--text); }
+  .wrap.hub { max-width:920px; }
+  .wrap.hub > p, .wrap.hub > h1, .wrap.hub > .deck, .wrap.hub > .hero { max-width:740px; }
+  .parts { list-style:none; padding:0; margin:0 0 2em; display:grid;
+           grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:14px; }
+  .parts li { margin:0; }
+  .parts a.card { display:flex; flex-direction:column; height:100%; background:var(--panel);
+                  border:1px solid var(--line); border-radius:10px; overflow:hidden;
+                  text-decoration:none; color:var(--text); }
   .parts a.card:hover { border-color:var(--mint); }
   .parts img { display:block; width:100%; height:auto; }
-  .parts .meta { padding:14px 18px 16px; }
-  .parts .n { color:var(--mint); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
-  .parts h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
-              font-size:22px; line-height:1.25; letter-spacing:-0.3px; }
-  .parts p { margin:0; color:var(--muted); font-size:16px; line-height:1.5; }
+  .parts .meta { padding:10px 12px 12px; }
+  .parts .n { color:var(--mint); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
+  .parts h3 { margin:3px 0 0; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+              font-size:15px; line-height:1.3; letter-spacing:-0.2px; }
   footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
   footer p { margin:0 0 0.6em; }
   @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
@@ -84,7 +87,7 @@
 </style>
 </head>
 <body>
-<div class="wrap">
+<div class="wrap hub">
   <nav class="top mono"><a href="https://markusvankempen.github.io/#articles">&larr; Research &middot; Floor 7&frac12; &middot; markusvankempen.github.io</a></nav>
   <p class="eyebrow mono">A seven-part series &middot; October 2026</p>
   <h1>Writing for an AI Reader<small>Software has a new customer: AI</small></h1>
@@ -95,32 +98,32 @@
   <ul class="parts">
 <li><a class="card" href="part-1-software-has-a-new-customer/">
   <img src="images/part-1-thumb.png" alt="Part 1 of 7: Software Has a New Customer: AI (And Your Name Is Still on the Bill)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 1 of 7 &middot; 3 min read</span>
-  <h3>Software Has a New Customer: AI</h3><p>For decades we built software for people clicking buttons. Now, AI is the operator—and the manager placing the order.</p></div></a></li>
+  <div class="meta"><span class="n mono">Part 1 &middot; 3 min</span>
+  <h3>Software Has a New Customer: AI</h3></div></a></li>
 <li><a class="card" href="part-2-error-messages-are-the-new-prompts/">
   <img src="images/part-2-thumb.png" alt="Part 2 of 7: Error Messages Are the New Prompts (Writing for a Literal Mind)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 2 of 7 &middot; 3 min read</span>
-  <h3>Error Messages Are the New Prompts</h3><p>Traditional software rejected bad input. AI accepts bad input, guesses what you meant, and ships it anyway.</p></div></a></li>
+  <div class="meta"><span class="n mono">Part 2 &middot; 3 min</span>
+  <h3>Error Messages Are the New Prompts</h3></div></a></li>
 <li><a class="card" href="part-3-the-trust-gap/">
   <img src="images/part-3-thumb.png" alt="Part 3 of 7: The Trust Gap: Why &quot;All Checks Passed&quot; Doesn&#x27;t Mean It Worked" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 3 of 7 &middot; 3 min read</span>
-  <h3>The Trust Gap: Why "All Checks Passed" Doesn't Mean It Worked</h3><p>When machines verify machines, you get flawless execution of the wrong goal.</p></div></a></li>
+  <div class="meta"><span class="n mono">Part 3 &middot; 3 min</span>
+  <h3>The Trust Gap: Why "All Checks Passed" Doesn't Mean It Worked</h3></div></a></li>
 <li><a class="card" href="part-4-nobody-is-reading-the-code-anymore/">
   <img src="images/part-4-thumb.png" alt="Part 4 of 7: Nobody Is Reading the Code Anymore (Three Machines in a Trench Coat)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 4 of 7 &middot; 3 min read</span>
-  <h3>Nobody Is Reading the Code Anymore</h3><p>When AI builds the tool, tests the tool, and runs the tool, the old human safety net disappears. Here is what replaces it.</p></div></a></li>
+  <div class="meta"><span class="n mono">Part 4 &middot; 3 min</span>
+  <h3>Nobody Is Reading the Code Anymore</h3></div></a></li>
 <li><a class="card" href="part-5-machine-to-machine/">
   <img src="images/part-5-thumb.png" alt="Part 5 of 7: Machine-to-Machine: When AI Codes for AI Without Human Supervision" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 5 of 7 &middot; 4 min read</span>
-  <h3>Machine-to-Machine: When AI Codes for AI Without Human Supervision</h3><p>What happens when humans leave the daily loop—and where we must draw the "Thermostat Line."</p></div></a></li>
+  <div class="meta"><span class="n mono">Part 5 &middot; 4 min</span>
+  <h3>Machine-to-Machine: When AI Codes for AI Without Human Supervision</h3></div></a></li>
 <li><a class="card" href="part-6-never-let-the-robot-grade-its-own-homework/">
   <img src="images/part-6-thumb.png" alt="Part 6 of 7: Never Let the Robot Grade Its Own Homework (The Immutable Diary)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 6 of 7 &middot; 3 min read</span>
-  <h3>Never Let the Robot Grade Its Own Homework</h3><p>A rule the AI can edit is only a suggestion. A log the AI can rewrite is only a story.</p></div></a></li>
+  <div class="meta"><span class="n mono">Part 6 &middot; 3 min</span>
+  <h3>Never Let the Robot Grade Its Own Homework</h3></div></a></li>
 <li><a class="card" href="part-7-the-smart-switch-fallacy/">
   <img src="images/part-7-thumb.png" alt="Part 7 of 7: The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 7 of 7 &middot; 4 min read</span>
-  <h3>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle</h3><p>If the only way to stop an automated system is to politely ask the system to stop, you are no longer in control.</p></div></a></li>
+  <div class="meta"><span class="n mono">Part 7 &middot; 4 min</span>
+  <h3>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle</h3></div></a></li>
   </ul>
   <hr>
   <footer class="mono">
