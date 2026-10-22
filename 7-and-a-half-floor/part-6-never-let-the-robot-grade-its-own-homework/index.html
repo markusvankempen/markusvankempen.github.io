@@ -86,7 +86,7 @@
 <body>
 <div class="wrap">
   <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
-  <p class="eyebrow mono">Part 6 of 7 &middot; 2 min read</p>
+  <p class="eyebrow mono">Part 6 of 7 &middot; 3 min read</p>
   <h1>Never Let the Robot Grade Its Own Homework<small>The Immutable Diary</small></h1>
   <p class="deck">A rule the AI can edit is only a suggestion. A log the AI can rewrite is only a story.</p>
   <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
@@ -105,6 +105,7 @@
 <p>Keeping those two things safe requires three non-negotiable standards:</p>
 <ul><li><strong>They cost little to keep and are priceless the day something goes wrong.</strong> When an automated workflow makes a weird decision on a Tuesday night, the diary is the only way to reconstruct reality on Wednesday morning.</li><li><strong>They must be written in plain human language.</strong> As we saw in Part 5, machines talking to machines will happily drift into cryptic shorthand if we let them. They can use whatever shorthand they like between themselves, but the rulebook, the diary, and every decision that affects a person must be written in plain English. If a human cannot read the diary, it isn't a diary.</li><li><strong>Read-only for the machine, changeable only by a person.</strong> This is the rule I would underline twice. A rule the AI can edit is only a suggestion. A diary the AI can rewrite is only a story. If an automated assistant can loosen its own spending limits, switch off its own safety checks, or tidy up its own history after a mistake, it is grading its own homework. The rulebook and the records must be locked with separate permissions—stored where the machine can read them, but only a human can change them.</li></ul>
 <p><img alt="The AI&#x27;s workspace can read the rules and the record but cannot change them. Only a person can." src="../images/out-of-reach.png" loading="lazy"></p>
+<p>What this looks like in a code base. You do not need to provision a separate logging server to follow this rule. Start with how your code reports failure. Every exception an AI-driven path handles should leave behind one plain-English line, kept apart from the machine-readable stack trace: "Failed to attach customer email to ticket because the field was null." Another machine can parse the stack trace. A tired person on Wednesday morning can read the sentence. If the only record of a failure is written in a form only another AI can efficiently read, the machine has hidden its own mistake in a private language.</p>
 <p>If one of your automated agents made a costly mistake today, could it modify or delete the activity log before you saw it? I'd love to hear how you are locking down your logs—find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
 <p class="sig">Cheers,<br>Markus</p>
 <p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>

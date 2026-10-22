@@ -86,7 +86,7 @@
 <body>
 <div class="wrap">
   <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
-  <p class="eyebrow mono">Part 7 of 7 &middot; 2 min read</p>
+  <p class="eyebrow mono">Part 7 of 7 &middot; 3 min read</p>
   <h1>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle</h1>
   <p class="deck">If the only way to stop an automated system is to politely ask the system to stop, you are no longer in control.</p>
   <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
@@ -100,8 +100,9 @@
 <h2>Always keep a way back</h2>
 <p>Over the previous six parts, we've looked at how AI has become the new user of our software, how "all checks passed" can hide silent failures, and why we have to lock the rulebook where the machine can't edit it.</p>
 <p>Even when you do all of that right, there is one final guardrail every team needs: a manual override.</p>
-<p>A true manual override has two parts:</p>
-<ul><li><strong>A way to pull the plug.</strong> An off switch, a way to revoke an access key, a way to roll back yesterday's automated changes in one click. If the only way to stop an automated system is to politely ask the AI to stop, you don't control it.</li><li><strong>An independent, manual backup.</strong> Keep independent copies of your critical records and a simple, non-automated way to do your most important job when the technology is down. Remember: a backup that depends on the same AI system it is backing up is not a backup.</li></ul>
+<p>A true manual override has three parts:</p>
+<ul><li><strong>A way to pull the plug.</strong> An off switch, a way to revoke an access key, a way to roll back yesterday's automated changes in one click. If the only way to stop an automated system is to politely ask the AI to stop, you don't control it.</li><li><strong>An independent, manual backup.</strong> Keep independent copies of your critical records and a simple, non-automated way to do your most important job when the technology is down. Remember: a backup that depends on the same AI system it is backing up is not a backup.</li><li><strong>A brake that engages by itself.</strong> Pulling the plug assumes a person notices in time. A built-in brake does not. Give every unattended workflow a confidence budget, like a token bucket. It starts full, and every action that no human has looked at drains it a little: say 2 percent per operation, so 50 unreviewed actions empty it. Drain it faster when the work gets unfamiliar, such as a data format the agent has never seen. When the bucket hits zero, the workflow pauses until a person looks and refills it. That is deliberate friction, and it means the machine has to wait for the human, instead of the human trying to catch up with the machine.</li></ul>
+<p>What to do this afternoon. Most of this series reads like advice for architects, but an engineer shipping one endpoint can start today. Tag the code that touches money, access, or customer support so it cannot merge without a person. Write every error your code produces so a stranger could understand it. Add one check that looks at the real outcome. None of that needs a new server or a budget approval.</p>
 <p>If I had to put this entire series into one sentence, it would be this: let the machines run the routine, lock the rulebook and the diary where they can't rewrite them, and never install a smart switch without a manual toggle.</p>
 <p><img alt="Three guardrail themes: keep people in charge of what affects people; keep the rules and the record out of the machine&#x27;s reach; keep a way back." src="../images/guardrails-three-themes.png" loading="lazy"></p>
 <h2>Why I'm still optimistic</h2>
