@@ -42,6 +42,8 @@
   .hero { display:block; width:100%; height:auto; margin:0 0 36px; }
   h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
        font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  h3 { margin:1.8em 0 0.4em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:22px; line-height:1.3; letter-spacing:-0.3px; }
   p { margin:0 0 1.1em; }
   strong { color:#fff; }
   a { color:var(--mint); text-underline-offset:3px; }
@@ -102,7 +104,6 @@
 <p>Today, AI often plays all three roles in a project: it builds the tool, it inspects the tool, and it is the customer that uses the tool.</p>
 <ul><li>The AI that builds it tells me it's ready, even if it would confuse a real person the moment they touched it.</li><li>The AI that inspects it says all the quality checks passed.</li><li>The AI that uses it tells me the job is finished, even when the real-world outcome is a mess.</li></ul>
 <p>Each machine is confident, each one trusts the other, and nobody is actually looking.</p>
-<p><img alt="Two cartoon robots say All tests pass and Looks good to me while a person sleeps next to a mug. Each one is confident, each one trusts the other, nobody is looking." src="../images/robots-trust-each-other.png" loading="lazy"></p>
 <p>I felt a sharp version of this recently. I had a control panel with every icon in its proper place, and I asked an AI assistant to add one new tab. The new tab appeared, the automated check asked "Is the new tab there?", and the dashboard flashed a green light. Meanwhile, every single icon on the rest of the screen had quietly vanished. I only caught it because I happened to open the page myself.</p>
 <h2>Why machines have tunnel vision</h2>
 <p>Let me be fair to the machines first. They are much better than I am at the repetitive, exhausting parts of the job. They don't get tired on a Friday afternoon. They read every single line they are handed, and they keep going long after a human's eyes would glaze over.</p>
@@ -110,10 +111,13 @@
 <h2>Where the human job moves</h2>
 <p>The answer isn't to put a human back into every tiny step. That defeats the whole point of automation, and nobody misses reviewing code or spreadsheets line by line at two in the morning.</p>
 <p>Instead, the human job moves to the two ends of the process—and to designing smart tripwires in the middle.</p>
-<p><strong>At the start, intent.</strong> Somebody has to decide what is worth doing and what "success" actually looks like for a real person. A machine cannot define that for itself. When an automated system orders a piece of work on its own, "the system asked for it" is not a business reason. A person still has to own the goal—and the bill.</p>
-<p><strong>In the middle, tripwires that outlive the moment.</strong> Every time I catch an automated mistake, I turn that lesson into a permanent safeguard that keeps working when I'm not watching: a test that verifies the customer actually got an email rather than just checking that a file was created, or a live status board that shows what is really happening. Writing the work is getting cheap. Knowing whether the work is actually right is the new premium skill.</p>
+<h3>At the start, intent</h3>
+<p>Somebody has to decide what is worth doing and what "success" actually looks like for a real person. A machine cannot define that for itself. When an automated system orders a piece of work on its own, "the system asked for it" is not a business reason. A person still has to own the goal—and the bill.</p>
+<h3>In the middle, tripwires that outlive the moment</h3>
+<p>Every time I catch an automated mistake, I turn that lesson into a permanent safeguard that keeps working when I'm not watching: a test that verifies the customer actually got an email rather than just checking that a file was created, or a live status board that shows what is really happening. Writing the work is getting cheap. Knowing whether the work is actually right is the new premium skill.</p>
 <p>Some work has no outcome you can check right away, like an agent tidying data structures in the background for hours. For that I'd use a confidence budget. The task starts with full confidence, and every operation nobody has looked at drains it a little. At zero, the workflow stops and asks. I'll come back to this in Part 7, because it is the cheapest manual override I know.</p>
-<p><strong>At the end, accountability.</strong> Somebody has to own the final outcome and decide who gets access, who can change what, and who is allowed to say "ship it." Automated assistants can do the legwork, but human beings still have to answer when a silent shortcut lets a client down. When that happens, "the AI said it was done" isn't an excuse any of us can give.</p>
+<h3>At the end, accountability</h3>
+<p>Somebody has to own the final outcome and decide who gets access, who can change what, and who is allowed to say "ship it." Automated assistants can do the legwork, but human beings still have to answer when a silent shortcut lets a client down. When that happens, "the AI said it was done" isn't an excuse any of us can give.</p>
 <p><img alt="Where the human role moves: before, a person writes, tests and uses the software. Now an AI does all three, and the person sets the intent, builds checks that outlive the moment, and owns the outcome." src="../images/human-role-shift.png" loading="lazy"></p>
 <p>Have you caught an AI passing its own test while quietly breaking everything right next to it? Share your best story with me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
 <p class="sig">Cheers,<br>Markus</p>
