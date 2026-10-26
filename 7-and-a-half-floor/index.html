@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Software has a new customer: AI · A 7-part series · Research, Floor 7½</title>
-<meta name="description" content="Software has a new customer: AI. A seven-part series from Floor 7½ on what happens to trust when AI writes the software, checks it and uses it, and what humans still have to own.">
+<title>Floor 7½ · Department of Low Overhead · Markus van Kempen</title>
+<meta name="description" content="Floor 7½ is where Markus van Kempen files articles, talks and labs on MCP, AI agents and watsonx Orchestrate, including what broke. Start with the seven-part series on software with a new customer: AI.">
 <meta name="author" content="Markus van Kempen">
 <link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Software has a new customer: AI · A 7-part series · Research, Floor 7½">
-<meta property="og:description" content="Software has a new customer: AI. A seven-part series from Floor 7½ on what happens to trust when AI writes the software, checks it and uses it, and what humans still have to own.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Floor 7½ · Department of Low Overhead · Markus van Kempen">
+<meta property="og:description" content="Floor 7½ is where Markus van Kempen files articles, talks and labs on MCP, AI agents and watsonx Orchestrate, including what broke. Start with the seven-part series on software with a new customer: AI.">
 <meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/">
-<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/feature-image.png">
-<meta property="og:image:width" content="1600">
-<meta property="og:image:height" content="900">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/floor-75-banner.jpg">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="720">
 <meta property="article:author" content="Markus van Kempen">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Software has a new customer: AI · A 7-part series · Research, Floor 7½">
-<meta name="twitter:description" content="Software has a new customer: AI. A seven-part series from Floor 7½ on what happens to trust when AI writes the software, checks it and uses it, and what humans still have to own.">
-<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/feature-image.png">
+<meta name="twitter:title" content="Floor 7½ · Department of Low Overhead · Markus van Kempen">
+<meta name="twitter:description" content="Floor 7½ is where Markus van Kempen files articles, talks and labs on MCP, AI agents and watsonx Orchestrate, including what broke. Start with the seven-part series on software with a new customer: AI.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/floor-75-banner.jpg">
 <style>
   :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
           --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
@@ -81,52 +81,72 @@
   .parts .n { color:var(--mint); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
   .parts h3 { margin:3px 0 0; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
               font-size:15px; line-height:1.3; letter-spacing:-0.2px; }
+  .wrap.land { max-width:920px; }
+  .wrap.land > p, .wrap.land > h1, .wrap.land > h2, .wrap.land > .deck { max-width:740px; }
+  .banner { display:block; width:100%; height:auto; margin:1.4em 0 0.4em; border-radius:10px; }
+  .feature { display:grid; grid-template-columns:1.1fr 1fr; gap:0; margin:0 0 2.2em; background:var(--panel);
+             border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .feature img { display:block; width:100%; height:100%; object-fit:contain; background:#fff; }
+  .feature .txt { padding:20px 22px 22px; }
+  .feature h3 { margin:6px 0 8px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+                font-size:26px; line-height:1.2; letter-spacing:-0.5px; }
+  .feature p { margin:0 0 0.9em; font-size:17px; line-height:1.55; }
+  .btn { display:inline-block; padding:10px 18px; background:var(--lime); color:#0f1f18; border-radius:8px;
+         font-family:-apple-system,"Segoe UI",system-ui,sans-serif; font-size:15px; font-weight:600; text-decoration:none; }
+  .btn:hover { background:#fff; color:#0f1f18; }
+  .tiles { list-style:none; padding:0; margin:0 0 2em; display:grid;
+           grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:14px; }
+  .tiles li { margin:0; }
+  .tiles a.card { display:flex; flex-direction:column; height:100%; background:var(--panel); border:1px solid var(--line);
+                  border-radius:10px; overflow:hidden; text-decoration:none; color:var(--text); }
+  .tiles a.card:hover { border-color:var(--mint); }
+  .tiles img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; }
+  .tiles .meta { padding:12px 14px 14px; }
+  .tiles .n { color:var(--mint); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
+  .tiles h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif; font-size:18px; line-height:1.3; }
+  .tiles p { margin:0; font-size:15px; line-height:1.5; color:var(--muted); }
   footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
   footer p { margin:0 0 0.6em; }
   @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
     h1 small{font-size:18px;} .deck{font-size:19px;} blockquote{font-size:20px;}
-    .pager{flex-direction:column;} }
+    .pager{flex-direction:column;} .feature{grid-template-columns:1fr;} .feature h3{font-size:22px;} }
 </style>
 </head>
 <body>
-<div class="wrap hub">
-  <nav class="top mono"><a href="https://markusvankempen.github.io/#articles">&larr; Research &middot; Floor 7&frac12; &middot; markusvankempen.github.io</a></nav>
-  <p class="eyebrow mono">A seven-part series &middot; October 2026</p>
-  <h1>Software has a new customer: AI</h1>
-  <p class="deck">AI writes the code, and more and more it is the one who ordered it. Your name is still on the bill.</p>
-  <img class="hero" src="images/feature-image-notext.png" alt="Two cartoon robots at desks pass a document with a green check between them. One says All tests pass, the other says Looks good to me. A person leans in with a magnifying glass." width="1600" height="900">
-  <p>The call came back green. The model said done. The answer was still wrong.</p>
-  <p>This series follows that one failure from a support-ticket tool to a bigger question: what changes when AI writes the software, checks it, and becomes the client who ordered it? One idea per part, in order.</p>
-  <ul class="parts">
-<li><a class="card" href="part-1-software-has-a-new-customer/">
-  <img src="images/part-1-thumb.png" alt="Part 1 of 7: Software Has a New Customer: AI (And Your Name Is Still on the Bill)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 1 &middot; 3 min</span>
-  <h3>Software Has a New Customer: AI</h3></div></a></li>
-<li><a class="card" href="part-2-error-messages-are-the-new-prompts/">
-  <img src="images/part-2-thumb.png" alt="Part 2 of 7: Error Messages Are the New Prompts (Writing for a Literal Mind)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 2 &middot; 4 min</span>
-  <h3>Error Messages Are the New Prompts</h3></div></a></li>
-<li><a class="card" href="part-3-the-trust-gap/">
-  <img src="images/part-3-thumb.png" alt="Part 3 of 7: The Trust Gap: Why &quot;All Checks Passed&quot; Doesn&#x27;t Mean It Worked" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 3 &middot; 3 min</span>
-  <h3>The Trust Gap: Why "All Checks Passed" Doesn't Mean It Worked</h3></div></a></li>
-<li><a class="card" href="part-4-nobody-is-reading-the-code-anymore/">
-  <img src="images/part-4-thumb.png" alt="Part 4 of 7: Nobody Is Reading the Code Anymore (Three Machines in a Trench Coat)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 4 &middot; 3 min</span>
-  <h3>Nobody Is Reading the Code Anymore</h3></div></a></li>
-<li><a class="card" href="part-5-machine-to-machine/">
-  <img src="images/part-5-thumb.png" alt="Part 5 of 7: Machine-to-Machine: When AI Codes for AI Without Human Supervision" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 5 &middot; 4 min</span>
-  <h3>Machine-to-Machine: When AI Codes for AI Without Human Supervision</h3></div></a></li>
-<li><a class="card" href="part-6-never-let-the-robot-grade-its-own-homework/">
-  <img src="images/part-6-thumb.png" alt="Part 6 of 7: Never Let the Robot Grade Its Own Homework (The Immutable Diary)" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 6 &middot; 3 min</span>
-  <h3>Never Let the Robot Grade Its Own Homework</h3></div></a></li>
-<li><a class="card" href="part-7-the-smart-switch-fallacy/">
-  <img src="images/part-7-thumb.png" alt="Part 7 of 7: The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle" width="960" height="540" loading="lazy">
-  <div class="meta"><span class="n mono">Part 7 &middot; 4 min</span>
-  <h3>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle</h3></div></a></li>
+<div class="wrap land">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/#articles">&larr; Research &middot; markusvankempen.github.io</a></nav>
+  <img class="banner" src="images/floor-75-strip.jpg" alt="Floor 7½, Department of Low Overhead. No bug too small, no syntax too weird. A developer at a desk on a floor between 7 and 8, with a giant green hand reaching down from above." width="1500" height="250">
+  <p class="eyebrow mono">Filed from Floor 7&frac12; &middot; October 2026</p>
+  <h1>Welcome to Floor 7&frac12;</h1>
+  <p class="deck">The ceilings are a bit low, the coffee is questionable, and it is where the interesting stuff happens: between the official floors.</p>
+  <p>I am Markus. I have spent 25+ years building things at IBM, and lately that is mostly MCP servers, AI agents and watsonx Orchestrate. I post here about what I build, the code behind it, and what I learned along the way, including what broke.</p>
+  <p>No polished happy-path demos. If something returned 201 Created and still went to the wrong person, you will read about it here.</p>
+
+  <h2>Start here</h2>
+  <div class="feature">
+    <a href="series/"><img src="images/feature-image-notext.png" alt="Two cartoon robots at desks pass a document with a green check between them. One says All tests pass, the other says Looks good to me. A person leans in with a magnifying glass." width="1600" height="900" style="background:#fff"></a>
+    <div class="txt">
+      <span class="n mono" style="color:var(--mint);font-size:11px;letter-spacing:1.5px;text-transform:uppercase">A seven-part series &middot; 24 min</span>
+      <h3>Software has a new customer: AI</h3>
+      <p>AI writes the code, and more and more it is the one who ordered it. Your name is still on the bill. One idea per part, from a ticket tool that said 201 Created to the manual switch every automated workflow needs.</p>
+      <a class="btn" href="series/">Read the series</a>
+    </div>
+  </div>
+
+  <h2>More from the floor</h2>
+  <ul class="tiles">
+<li><a class="card" href="https://markusvankempen.github.io/linuxfoundation-mcp-dev-summit/#1" target="_blank" rel="noopener">
+  <img src="images/mcp-banner.jpg" alt="" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Talk &middot; MCP Dev Summit Toronto</span><h3>MCP as a Platform</h3><p>What I learned building a portfolio of MCP servers. One server teaches you the protocol. A portfolio teaches you what MCP actually is.</p></div></a></li><li><a class="card" href="https://markusvankempen.github.io/wxo-labs/" target="_blank" rel="noopener">
+  <img src="images/wxo-labs.png" alt="" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Hands-on &middot; 14 labs</span><h3>WXO Labs: from zero to hero</h3><p>Build your first Python tool, then MCP, SSO and enterprise integrations in watsonx Orchestrate. Every lab is something you build.</p></div></a></li><li><a class="card" href="https://github.com/markusvankempen/mcp-ticket-demo" target="_blank" rel="noopener">
+  <img src="images/ticket-demo.png" alt="" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Open source &middot; Code</span><h3>mcp-ticket-demo</h3><p>Every example from the talk in one small MCP server you can clone tonight. It is also where the 201 Created that went to the wrong person was born.</p></div></a></li>
   </ul>
+
+  <h2>Mind your head</h2>
+  <p>That is the floor. New posts land whenever something works, breaks, or does both. If you are stuck on something, a tool that will not import, an agent that picks the wrong tool, a 403 that makes no sense, find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>. I like to help.</p>
+  <p class="sig">No bug &#128027; too small, no syntax too weird<br>Cheers,<br>Markus</p>
   <hr>
   <footer class="mono">
     <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>

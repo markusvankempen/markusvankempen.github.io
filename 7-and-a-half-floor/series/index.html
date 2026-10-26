@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Software has a new customer: AI · A 7-part series · Research, Floor 7½</title>
+<meta name="description" content="Software has a new customer: AI. A seven-part series from Floor 7½ on what happens to trust when AI writes the software, checks it and uses it, and what humans still have to own.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/series/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Software has a new customer: AI · A 7-part series · Research, Floor 7½">
+<meta property="og:description" content="Software has a new customer: AI. A seven-part series from Floor 7½ on what happens to trust when AI writes the software, checks it and uses it, and what humans still have to own.">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/series/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/feature-image.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Software has a new customer: AI · A 7-part series · Research, Floor 7½">
+<meta name="twitter:description" content="Software has a new customer: AI. A seven-part series from Floor 7½ on what happens to trust when AI writes the software, checks it and uses it, and what humans still have to own.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/feature-image.png">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  h1 small { display:block; margin-top:0.35em; color:var(--muted); font-size:22px; font-weight:500;
+             letter-spacing:-0.3px; line-height:1.3; }
+  .deck { margin:0.6em 0 1.2em; color:var(--mint); font-size:22px; font-style:italic; }
+  .byline { margin:0 0 1.4em; color:var(--muted); font-size:15px; }
+  .hero { display:block; width:100%; height:auto; margin:0 0 36px; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  h3 { margin:1.8em 0 0.4em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:22px; line-height:1.3; letter-spacing:-0.3px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  blockquote { margin:1.6em 0; padding:0.2em 0 0.2em 1em; border-left:4px solid var(--coral);
+               color:#fff; font-size:23px; font-style:italic; line-height:1.4; }
+  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
+              border-left:4px solid var(--mint); border-radius:8px;
+              font-family:"SF Mono", Menlo, Consolas, monospace; font-size:17px; line-height:1.5; }
+  img { max-width:100%; height:auto; }
+  p > img { display:block; margin:1.6em auto; background:#fff; border-radius:10px;
+            padding:10px; border:1px solid var(--line); }
+  .sig { margin-top:1.6em; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  .pager { display:flex; justify-content:space-between; gap:16px; margin:2.4em 0 0; font-size:15px; }
+  .pager a { flex:1; padding:12px 16px; background:var(--panel); border:1px solid var(--line);
+             border-radius:8px; text-decoration:none; line-height:1.35; }
+  .pager a:hover { border-color:var(--mint); }
+  .pager span { display:block; color:var(--muted); font-size:12px; letter-spacing:2px; text-transform:uppercase; }
+  .pager .nx { text-align:right; }
+  .wrap.hub { max-width:920px; }
+  .wrap.hub > p, .wrap.hub > h1, .wrap.hub > .deck, .wrap.hub > .hero { max-width:740px; }
+  .parts { list-style:none; padding:0; margin:0 0 2em; display:grid;
+           grid-template-columns:repeat(auto-fill, minmax(200px, 1fr)); gap:14px; }
+  .parts li { margin:0; }
+  .parts a.card { display:flex; flex-direction:column; height:100%; background:var(--panel);
+                  border:1px solid var(--line); border-radius:10px; overflow:hidden;
+                  text-decoration:none; color:var(--text); }
+  .parts a.card:hover { border-color:var(--mint); }
+  .parts img { display:block; width:100%; height:auto; }
+  .parts .meta { padding:10px 12px 12px; }
+  .parts .n { color:var(--mint); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
+  .parts h3 { margin:3px 0 0; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+              font-size:15px; line-height:1.3; letter-spacing:-0.2px; }
+  .wrap.land { max-width:920px; }
+  .wrap.land > p, .wrap.land > h1, .wrap.land > h2, .wrap.land > .deck { max-width:740px; }
+  .banner { display:block; width:100%; height:auto; margin:1.4em 0 0.4em; border-radius:10px; }
+  .feature { display:grid; grid-template-columns:1.1fr 1fr; gap:0; margin:0 0 2.2em; background:var(--panel);
+             border:1px solid var(--line); border-radius:12px; overflow:hidden; }
+  .feature img { display:block; width:100%; height:100%; object-fit:contain; background:#fff; }
+  .feature .txt { padding:20px 22px 22px; }
+  .feature h3 { margin:6px 0 8px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+                font-size:26px; line-height:1.2; letter-spacing:-0.5px; }
+  .feature p { margin:0 0 0.9em; font-size:17px; line-height:1.55; }
+  .btn { display:inline-block; padding:10px 18px; background:var(--lime); color:#0f1f18; border-radius:8px;
+         font-family:-apple-system,"Segoe UI",system-ui,sans-serif; font-size:15px; font-weight:600; text-decoration:none; }
+  .btn:hover { background:#fff; color:#0f1f18; }
+  .tiles { list-style:none; padding:0; margin:0 0 2em; display:grid;
+           grid-template-columns:repeat(auto-fill, minmax(260px, 1fr)); gap:14px; }
+  .tiles li { margin:0; }
+  .tiles a.card { display:flex; flex-direction:column; height:100%; background:var(--panel); border:1px solid var(--line);
+                  border-radius:10px; overflow:hidden; text-decoration:none; color:var(--text); }
+  .tiles a.card:hover { border-color:var(--mint); }
+  .tiles img { display:block; width:100%; height:auto; aspect-ratio:16/9; object-fit:cover; }
+  .tiles .meta { padding:12px 14px 14px; }
+  .tiles .n { color:var(--mint); font-size:11px; letter-spacing:1.5px; text-transform:uppercase; }
+  .tiles h3 { margin:4px 0 6px; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif; font-size:18px; line-height:1.3; }
+  .tiles p { margin:0; font-size:15px; line-height:1.5; color:var(--muted); }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;}
+    h1 small{font-size:18px;} .deck{font-size:19px;} blockquote{font-size:20px;}
+    .pager{flex-direction:column;} .feature{grid-template-columns:1fr;} .feature h3{font-size:22px;} }
+</style>
+</head>
+<body>
+<div class="wrap hub">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Floor 7&frac12; &middot; all articles</a></nav>
+  <p class="eyebrow mono">A seven-part series &middot; October 2026</p>
+  <h1>Software has a new customer: AI</h1>
+  <p class="deck">AI writes the code, and more and more it is the one who ordered it. Your name is still on the bill.</p>
+  <img class="hero" src="../images/feature-image-notext.png" alt="Two cartoon robots at desks pass a document with a green check between them. One says All tests pass, the other says Looks good to me. A person leans in with a magnifying glass." width="1600" height="900">
+  <p>The call came back green. The model said done. The answer was still wrong.</p>
+  <p>This series follows that one failure from a support-ticket tool to a bigger question: what changes when AI writes the software, checks it, and becomes the client who ordered it? One idea per part, in order.</p>
+  <ul class="parts">
+<li><a class="card" href="../part-1-software-has-a-new-customer/">
+  <img src="../images/part-1-thumb.png" alt="Part 1 of 7: Software Has a New Customer: AI (And Your Name Is Still on the Bill)" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Part 1 &middot; 3 min</span>
+  <h3>Software Has a New Customer: AI</h3></div></a></li>
+<li><a class="card" href="../part-2-error-messages-are-the-new-prompts/">
+  <img src="../images/part-2-thumb.png" alt="Part 2 of 7: Error Messages Are the New Prompts (Writing for a Literal Mind)" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Part 2 &middot; 4 min</span>
+  <h3>Error Messages Are the New Prompts</h3></div></a></li>
+<li><a class="card" href="../part-3-the-trust-gap/">
+  <img src="../images/part-3-thumb.png" alt="Part 3 of 7: The Trust Gap: Why &quot;All Checks Passed&quot; Doesn&#x27;t Mean It Worked" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Part 3 &middot; 3 min</span>
+  <h3>The Trust Gap: Why "All Checks Passed" Doesn't Mean It Worked</h3></div></a></li>
+<li><a class="card" href="../part-4-nobody-is-reading-the-code-anymore/">
+  <img src="../images/part-4-thumb.png" alt="Part 4 of 7: Nobody Is Reading the Code Anymore (Three Machines in a Trench Coat)" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Part 4 &middot; 3 min</span>
+  <h3>Nobody Is Reading the Code Anymore</h3></div></a></li>
+<li><a class="card" href="../part-5-machine-to-machine/">
+  <img src="../images/part-5-thumb.png" alt="Part 5 of 7: Machine-to-Machine: When AI Codes for AI Without Human Supervision" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Part 5 &middot; 4 min</span>
+  <h3>Machine-to-Machine: When AI Codes for AI Without Human Supervision</h3></div></a></li>
+<li><a class="card" href="../part-6-never-let-the-robot-grade-its-own-homework/">
+  <img src="../images/part-6-thumb.png" alt="Part 6 of 7: Never Let the Robot Grade Its Own Homework (The Immutable Diary)" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Part 6 &middot; 3 min</span>
+  <h3>Never Let the Robot Grade Its Own Homework</h3></div></a></li>
+<li><a class="card" href="../part-7-the-smart-switch-fallacy/">
+  <img src="../images/part-7-thumb.png" alt="Part 7 of 7: The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle" width="960" height="540" loading="lazy">
+  <div class="meta"><span class="n mono">Part 7 &middot; 4 min</span>
+  <h3>The Smart Switch Fallacy: Why Every AI Workflow Needs a Manual Toggle</h3></div></a></li>
+  </ul>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>
