@@ -91,7 +91,7 @@
 <body>
 <div class="wrap">
   <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
-  <p class="eyebrow mono">Part 2 of 7 &middot; 3 min read</p>
+  <p class="eyebrow mono">Part 2 of 7 &middot; 4 min read</p>
   <h1>Error Messages Are the New Prompts<small>Writing for a Literal Mind</small></h1>
   <p class="deck">Traditional software rejected bad input. AI accepts bad input, guesses what you meant, and ships it anyway.</p>
   <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
@@ -115,8 +115,10 @@
 <p class="signpost"><strong>Warning:</strong> 201 Created, but the requester is the bot's own service account, so every reply goes to the bot and not the customer. Next: call create_ticket again with the real customer's email.</p>
 <p>The description stops the mistake before it happens. The signpost catches the one that gets past it, and tells the agent what to do next instead of just saying something went wrong.</p>
 <p><img alt="A vague 400 Bad Request error makes the AI invent a workaround. A signpost error that says to stop and ask for the missing email makes it ask the customer." src="../images/error-signpost.png" loading="lazy"></p>
+<p>There was a catch I didn't see at first. Read that signpost again. It says to call again with the real customer's email, but never says what to do if the agent doesn't have one. An agent in a hurry will simply guess again. And every signpost I write well for a machine is one more problem a person never hears about: the agent reads it, fixes itself, and moves on. For a badly formatted date, that's fine. For a fact only a human knows, it isn't.</p>
+<p>So I changed it. The signpost now says: if you know the customer's email, call again with it. If you don't, ask the user. Do not guess. Either way, tell the user the ticket belongs to the bot. Write the message for the machine, but make sure a person hears about the problem.</p>
 <p>Notice what I didn't change. The call still returns 201. I kept it that way so I can show the scar in my talks, and it means an agent in a hurry can still read right past the warning. That gap is what Part 3 is about.</p>
-<p>I expect that within a few years most error messages will be read by a machine first, and by a person only when the machine gives up. Write them for that reader.</p>
+<p>I expect that within a few years most error messages will be read by a machine first, and by a person only when the machine gives up. Write them for that reader, and teach it when to give up.</p>
 <p>If a literal-minded robot filled out your team's most important internal form tomorrow without an ounce of common sense, which field would it guess wrong? Let me know on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
 <p class="sig">Cheers,<br>Markus</p>
 <p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
