@@ -97,12 +97,12 @@
   <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
   <img class="hero" src="../images/part-3-hero.png" alt="Cartoon: a big green check on a monitor, a dashed gap, and unread mail that never reaches a sleeping customer." width="1600" height="671">
   <article>
-<p>The dashboard showed a green checkmark. The AI assistant said the job was done. The result was still wrong.</p>
-<p>In Part 2, I shared how an AI assistant used one of my customer support tools, left out the customer's email address, and quietly put its own system address on the form instead. Every reply went straight to the bot, while the real customer sat in the dark.</p>
-<p>What bothered me most wasn't that the AI made a mistake. What bothered me was why nobody caught it: every single automated check along the way reported that everything was fine.</p>
-<p>Nobody lied. Nothing crashed. Our automated check only asked whether a support ticket was created, not whether a human customer actually got a reply.</p>
+<p>My tool reported success. The AI assistant said the job was done. The result was still wrong.</p>
+<p>In Part 2, I shared how an AI assistant used one of my customer support tools and left out the customer's email address, and how my tool quietly filled in the bot's own address instead. Every reply went straight to the bot, while the real customer sat in the dark.</p>
+<p>What bothered me most wasn't the mistake itself. What bothered me was why nobody caught it: every signal I had said everything was fine.</p>
+<p>Nobody lied. Nothing crashed. The tool said "201 Created," the ticket existed, and the AI said done. All three proved that a ticket was created. None of them asked whether a customer could actually get a reply.</p>
 <p><img alt="Left: the tool reports 201 Created, the ticket exists and the model says done. Right: the ticket&#x27;s requester is the bot&#x27;s own account, so every reply goes to the bot and the customer never hears back." src="../images/green-dashboard.png" loading="lazy"></p>
-<p>I didn't mean to stop checking. The green light on the dashboard and the AI's confident "done" were convenient, and I took them as the final answer.</p>
+<p>I didn't mean to stop checking. The green 201 and the AI's confident "done" were convenient, and I took them as the final answer.</p>
 <h2>Two completely different sentences</h2>
 <p>I call this the trust gap.</p>
 <p>"The checklist is complete" and "the right thing happened" are two very different sentences. When a machine checks another machine, it is brilliant at measuring the first sentence and completely blind to the second. The result is flawless execution of the wrong goal.</p>

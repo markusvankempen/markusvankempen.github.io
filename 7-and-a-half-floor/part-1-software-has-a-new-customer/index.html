@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Software Has a New Customer: AI · Part 1 of 7 · Research, Floor 7½</title>
-<meta name="description" content="For decades, we built software for humans clicking buttons. Now, AI is the operator and the client placing the order—while your name is still on the bill.">
+<meta name="description" content="AI writes the code. More and more, AI is also the one who asked for it. A person still pays the bill.">
 <meta name="author" content="Markus van Kempen">
 <link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/part-1-software-has-a-new-customer/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Software Has a New Customer: AI · Part 1 of 7 · Research, Floor 7½">
-<meta property="og:description" content="For decades, we built software for humans clicking buttons. Now, AI is the operator and the client placing the order—while your name is still on the bill.">
+<meta property="og:description" content="AI writes the code. More and more, AI is also the one who asked for it. A person still pays the bill.">
 <meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/part-1-software-has-a-new-customer/">
 <meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-1-hero.png">
 <meta property="og:image:width" content="1600">
@@ -17,7 +17,7 @@
 <meta property="article:author" content="Markus van Kempen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Software Has a New Customer: AI · Part 1 of 7 · Research, Floor 7½">
-<meta name="twitter:description" content="For decades, we built software for humans clicking buttons. Now, AI is the operator and the client placing the order—while your name is still on the bill.">
+<meta name="twitter:description" content="AI writes the code. More and more, AI is also the one who asked for it. A person still pays the bill.">
 <meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/part-1-hero.png">
 <style>
   :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
@@ -93,26 +93,27 @@
   <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
   <p class="eyebrow mono">Part 1 of 7 &middot; 3 min read</p>
   <h1>Software Has a New Customer: AI<small>And Your Name Is Still on the Bill</small></h1>
-  <p class="deck">For decades, we built software for humans clicking buttons. Now, AI is the operator and the client placing the order—while your name is still on the bill.</p>
+  <p class="deck">AI writes the code. More and more, AI is also the one who asked for it. A person still pays the bill.</p>
   <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
-  <img class="hero" src="../images/part-1-hero.png" alt="Cartoon: a robot feeds coins into a tool vending machine and a gear drops out, while a person holds the long receipt with the total in red." width="1600" height="595">
+  <img class="hero" src="../images/part-1-hero.png" alt="Cartoon: one robot asks for a piece of code, a second robot at a desk writes it, and the first runs it over and over, while a person holds the long receipt with the total in red." width="1600" height="662">
   <article>
-<p>For most of my career, I built software for people. I designed it for the user clicking a button on a screen, and I organized it for the teammate who would have to maintain it next month. Both of them could ask questions, figure out what I meant, and notice when something looked weird.</p>
-<p>That is changing fast. Today, AI helps me write and test software. But it is also becoming the primary user of that software: its customer, its consumer, its daily operator.</p>
-<p>It reads my labels, my instructions, and my warning messages. It presses the digital buttons, trusts the pop-up confirmations, and acts on them immediately. It takes every word literally. It doesn't skim, and it doesn't ask a coworker or use common sense unless someone explicitly wrote that common sense into the instructions.</p>
-<h2>First it uses the tool. Then it orders the next one.</h2>
-<p>We are used to thinking of software as something a human operates. Even when we automate a task, a person usually sets it up, watches it run, and fixes it when it stalls.</p>
-<p>Now I can see one step further. The AI is no longer just the worker running the software; it is starting to be the manager ordering it.</p>
-<p>Picture what happens in a modern automated workflow: an AI assistant is given a goal, notices it lacks a specific tool for the task, and asks another AI to build it. It spends the company budget to run the new tool, tests the output, and accepts the finished product. No human wrote the request. No human reviewed the tool. Yet the invoice at the end of the month still has a person's name on it.</p>
-<h2>The incentive flywheel</h2>
-<p>As AI assistants connect to more of our everyday business tools, a silent shift is taking place. Tools that are easy for AI to understand get used more often.</p>
-<p>Every time we give a tool a clearer name, a plainer description, or a more helpful warning message, automated assistants use it more reliably. Because it works reliably, more automated workflows are built on top of it. Over time, software is redesigned to be friendlier to machines than to humans. Nobody planned that. It is simply where the incentives point.</p>
+<p>Sometime soon, a team will open its cloud bill and find a line nobody remembers approving. One agent needed a small converter. A second agent wrote it. The first one ran it forty thousand times overnight. Every step worked. No person asked for any of it, and the invoice still has a person's name on it.</p>
+<p>That isn't science fiction. Every piece of that night is already running somewhere. This series is about what it means.</p>
+<p>For most of my career, I wrote software for people. I wrote it for the user clicking a button, and for the teammate who would maintain it next month. Both of them could ask questions, figure out what I meant, and notice when something looked off.</p>
+<p>That is changing fast. AI writes a lot of my code now, and everyone talks about that part. Fewer people notice the other change: who the code is for. More and more, it is written for another AI.</p>
+<h2>The coder and the client</h2>
+<p>Every software project used to have three roles, and people played all of them. Someone asked for it. Someone built it. Someone paid.</p>
+<p>The first two are moving to machines. An agent is working on a task and hits a gap: it needs a script, a connector, a small piece of code that doesn't exist yet. So it asks for one. Another agent writes it. The first agent runs it, decides it is good enough, and moves on. Sometimes it is the same model on both sides. Sometimes it is two agents that were never introduced. Either way, the coder is an AI and the client is an AI.</p>
+<p>No person wrote the request. No person read the code.</p>
+<p>I already see this in my own work: tests written by AI and checked by AI, and helpers one agent picked from a list another agent helped build.</p>
+<h2>Why it keeps speeding up</h2>
+<p>Code that is easy for an AI to read and call gets used more. So we write more of it that way: clearer names, plainer instructions, error messages that say what to do next. More agents build on top of it, and the next piece of code gets written with an AI reader in mind. Over time, software leans toward machines. Nobody planned that. It is where the incentives point.</p>
 <p><img alt="A loop: clearer names and errors, the AI uses the tool better, more agents build on it, software leans toward AI, and back to the start." src="../images/ai-friendly-loop.png" loading="lazy"></p>
-<h2>The customer of the code vs. the customer of the outcome</h2>
-<p>Making tools effortless for AI to use solves a lot of operational friction, but it creates a brand-new trap for business leaders and builders.</p>
-<p>When an AI orders a tool, runs the tool, and reports back that the job is done, it is easy to forget who the software is actually for. The AI is the customer of the tool. It may even be the client who placed the order.</p>
-<blockquote>But a human being is always the customer of the outcome—and the name on the bill.</blockquote>
-<p>When an automated system can order its own tools and spend company budget to get a job done, where do you draw the line on pre-approved spending? I'd love to hear how your team is handling it—find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<h2>The role that hasn't moved</h2>
+<p>The third role is still ours. Somebody pays: the compute, the subscriptions and the cloud bill at the end of the month all carry a person's name. And somebody lives with the result: the customer waiting for a reply, the team that depends on code nobody read.</p>
+<blockquote>The AI can be the coder and the client. A person is still the one who pays, and the one who lives with the result.</blockquote>
+<p>If an agent on your team can ask another agent for code and accept it, who is the person who signs off? Or is there one? Tell me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<p>A client that is an AI reads every word literally. It doesn't skim, it doesn't ask a follow-up question, and it doesn't use common sense unless somebody wrote that common sense down.</p>
 <p class="sig">Cheers,<br>Markus</p>
 <p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
   </article>
