@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Too Many Tools Spoil the Agent · Research, Floor 7½</title>
+<meta name="description" content="Scaling an MCP server isn't about traffic. It's about how many choices you hand the model. Lessons from building a portfolio of servers.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/mcp-that-scales/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Too Many Tools Spoil the Agent · Research, Floor 7½">
+<meta property="og:description" content="Scaling an MCP server isn't about traffic. It's about how many choices you hand the model. Lessons from building a portfolio of servers.">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/mcp-that-scales/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/mcp-that-scales/images/mcp-scale-hero.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Too Many Tools Spoil the Agent · Research, Floor 7½">
+<meta name="twitter:description" content="Scaling an MCP server isn't about traffic. It's about how many choices you hand the model.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/mcp-that-scales/images/mcp-scale-hero.png">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  .deck { margin:0.4em 0 1.2em; color:var(--mint); font-size:22px; font-style:italic; }
+  .hero { display:block; width:100%; height:auto; border-radius:10px; margin:0 0 36px; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  em { color:#d3e2d8; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  code { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+         font-size:0.85em; background:var(--panel); color:var(--lime);
+         padding:2px 6px; border-radius:4px; }
+  img { max-width:100%; height:auto; }
+  p > img { display:block; margin:1.6em auto; background:#fff; border-radius:10px;
+            padding:10px; border:1px solid var(--line); }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
+              border-left:4px solid var(--mint); border-radius:8px;
+              font-family:"SF Mono", Menlo, Consolas, monospace; font-size:17px; line-height:1.5; }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;} .deck{font-size:19px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Floor 7&frac12;</a></nav>
+  <p class="eyebrow mono">Research &middot; October 2026</p>
+  <h1>Too Many Tools Spoil the Agent</h1>
+  <p class="deck">Scaling an MCP server isn't about traffic. It's about how many choices you hand the model.</p>
+  <img class="hero" src="images/mcp-scale-hero.png" alt="One robot holds a single tool. A second robot faces a mountain of nearly identical tools, and a person with a mug watches." width="1600" height="900">
+  <article>
+<p>I gave a talk on this at the MCP Dev Summit in Toronto on 6 October 2026, called <a href="https://markusvankempen.github.io/linuxfoundation-mcp-dev-summit/">MCP as a Platform</a>. The short version is the one I wish I'd had a year earlier.</p>
+<p>One server teaches you the protocol. A portfolio teaches you what MCP actually is. I only found the mistakes by building the next server, then the one after that. Every example below lives in one small open-source server you can clone, <a href="https://github.com/markusvankempen/mcp-ticket-demo">mcp-ticket-demo</a>. The tickets are a stand-in. Orders, assets and containers fail the same way.</p>
+
+<h2>The first version is a lie</h2>
+<p>The first version of any MCP server is deceptively simple. A client talks to your server, and the server exposes one tool: <code>request(path, method, query, body)</code>. That is a working server. I have shipped that shape, and it does call the API.</p>
+<p>Then the real requests arrive. Create one. Update one. Close one. What &ldquo;no results&rdquo; means, so the model stops retrying. Who is allowed to call the write tools. How anyone finds the server at all.</p>
+<p>The early question is &ldquo;can the model call this API?&rdquo; The later question is &ldquo;can a developer, and an agent, operate this tool safely?&rdquo; Those are different products. The second one is where scale starts.</p>
+
+<h2>With dozens of tools, the name is all the model has</h2>
+<p>With a few tools, names barely matter. The model can read the descriptions and pick. Past a few dozen, it is choosing from a menu it cannot hold in its head, and the name is most of what it sees.</p>
+<p><code>search_tickets(query, status, requester_email, limit)</code> is easier to use, and safer, than <code>request(path, method, query, body)</code>. The second one is less code for me and every decision for the model. I had handed it a browser for my API and asked it to invent the right URL.</p>
+
+<h2>More tools didn&rsquo;t mean more capability</h2>
+<p>I learned this the hard way. One server grew seven query tools: <code>query_records</code>, <code>query_with_filter</code>, <code>query_with_fields</code>, <code>query_object_structure</code>, <code>query_work_orders</code>, <code>query_assets</code> and <code>query_locations</code>. Every name was correct. The model still picked the wrong one.</p>
+<p>Technically precise. Operationally confusing.</p>
+<p><img alt="A robot faces a pile of lookalike tools and a question mark. Afterward, the same robot faces four tools: a catalog, a search, and two ways to change something." src="images/mcp-scale-fewer-tools.png" /></p>
+<p>The MCP server I built and open-sourced for IBM Cloud Code Engine had the same problem at a bigger size. It grew to about 112 tools. I folded it to about 28, one per noun, with an action on each. The ticket demo went from 31 tools to 19, and I now think of it the way I think of a database:</p>
+<ul>
+<li><strong>What exists.</strong> <code>describe_server</code> and <code>get_schema</code>. The model asks what it is allowed to do, then what shape a question needs.</li>
+<li><strong>Read it.</strong> One <code>run_query</code>, over tickets, customers, the call trace. One query tool grows when you add a schema. It does not grow when you add a near-duplicate name.</li>
+<li><strong>Change it.</strong> Writes stay verbs. <code>create_ticket</code>, <code>add_comment</code>, <code>close_ticket</code>. Each keeps its own name, its own scope, and its own warning.</li>
+<li><strong>Operate it.</strong> <code>update_settings</code>, <code>issue_api_key</code>. The boring buttons, with the same rules.</li>
+</ul>
+<p>Three tools replaced seven query tools, and selection stopped being a coin flip. That is the scale move I would make first: fewer names, sharper intent.</p>
+
+<h2>Alive is not the same as works</h2>
+<p>The failure I hit most often was silent. The IDE said &ldquo;0 tools discovered.&rdquo; No error. No warning. The client cannot tell you why, because the client never got a tool list to complain about.</p>
+<p>So the server has to answer for itself. A health check that reports a tool count tells you the process is up and the tools are registered. A ping only proves the process answered. I also keep a test route that actually calls the tools. Ping says the server is alive. Calling the tools says they work.</p>
+<p>Then a second silent failure: the tools you see belong to a different copy than the one you think you deployed. Each IDE&rsquo;s local config can spawn its own process, so two editors hold two memories. <code>npx &hellip;@latest</code> in one place and a bundled copy in an extension means one of them is stale. Once, another server answered on the port, and its tools showed up as mine.</p>
+<p><img alt="Three copies of a server, one of them a stranger, all feed one laptop that shows zero tools. The fix is one named server that both clients use." src="images/mcp-scale-which-server.png" /></p>
+<p>The fix I settled on is boring, which is how I know it scales. One shared server over HTTP, and every response says which copy it is: the name, the machine, the URL. The same identity on health, on the test route, and on <code>describe_server</code>. Trust the tool list only after you&rsquo;ve checked which server sent it.</p>
+<p>A cousin of this bit me in deploy. Redeploying gave the service a new hostname, and yesterday&rsquo;s config kept calling the old one. Read the endpoint after it lands. Don&rsquo;t paste a URL by hand and expect it to survive the next deploy.</p>
+
+<h2>A successful call can still be the wrong outcome</h2>
+<p>Scale makes this worse, because nobody is watching each call.</p>
+<p>My ticket tool returned 201 Created every time. If the caller left out the customer&rsquo;s email, my code quietly used the bot&rsquo;s own service account. The ticket looked perfect. Every reply went to the bot. I wrote a <a href="https://markusvankempen.github.io/7-and-a-half-floor/series/">seven-part series</a> about that scar, so I won&rsquo;t retell it here. The rule is the part that scales: a tool isn&rsquo;t done when the API call succeeds. It&rsquo;s done when the next thing that happens is right.</p>
+<p>Say it twice. The tool description says it before the call: always pass the real customer&rsquo;s email, and here is what happens if you don&rsquo;t. The result says it again after the call, including what to do next. The description stops the mistake. The result catches the one that slips through.</p>
+<p>The same shape fixes a different loop. A bare &ldquo;403 Forbidden&rdquo; sent the model into retries, tweaking a field each time, until it told the user the system was unavailable. Nothing was down. The key was missing a scope. The refusal now names the scope, says where to get a key, and says to retry once. A bare refusal starts a loop. A refusal that names the fix ends it.</p>
+<p>One detail matters once you lock tools down. A locked tool still shows up in the tool list, in every auth mode I ship. The model can see it and cannot use it. The refusal is the only place left to explain yourself, so don&rsquo;t waste it on &ldquo;forbidden.&rdquo;</p>
+
+<h2>Not everyone who operates it has the IDE</h2>
+<p>This is the part I didn&rsquo;t expect. The people who need the server most on a bad day are not in the editor. Ops, security and support want a URL. A hosted copy has no IDE sitting next to it.</p>
+<p>So the server grew its own pages: is it up, do the tools actually work, who holds which key, which tools are locked, and a log of what was called. Keys, gates and the trace live on the server, which means every client sees the same truth.</p>
+<p>Then I made every button a tool as well. Change the auth mode, issue a key, read the trace. A script can make the same change on every copy: laptop, staging, production. In an incident, revoke a key or lock a tool everywhere, in seconds. An ops agent can do the same thing, because it never needed the browser. Same scopes, one audit trail, no redeploy.</p>
+<p><img alt="A person at a laptop, a browser admin page, and an agent with a key all meet at one server, which keeps a locked record of what happened." src="images/mcp-scale-control-plane.png" /></p>
+<p>That is the control plane. The extension and the admin UI are how people get in. The MCP server is the capability. The agent is an operator, not only a caller.</p>
+
+<h2>A server that only answers is a server you have to nag</h2>
+<p>An agent that polls &ldquo;anything new?&rdquo; spends most of its tokens hearing &ldquo;no.&rdquo; One open stream is cheaper and faster: the server says a ticket was created, the agent looks, and a person gets pulled in only when the pattern matters. Three outage tickets in ten minutes is a question for a human. One routine ticket is not.</p>
+<p>Agents that act when something happens, not only when someone asks. That&rsquo;s the difference between a tool and a platform.</p>
+
+<h2>What I now put on every next server</h2>
+<p>Three things, and then I stop adding process:</p>
+<ol>
+<li><strong>Prove it.</strong> A health check with a tool count, and a test that calls the tools. If the IDE says zero tools, ask the server.</li>
+<li><strong>Give it front doors.</strong> One install for the people in an IDE, and a URL for the people who operate it. One server, one memory, and every response names which copy it is.</li>
+<li><strong>Make it discoverable.</strong> <code>describe_server</code> first, <code>get_schema</code> for the shape, and tool names that say the intent. Reads collapse into queries. Writes stay verbs.</li>
+</ol>
+<p>Build one. Publish it. Then make the next one easier to use than the last. That last step is the whole job. A portfolio of servers only gets cheaper if each one teaches the next.</p>
+<p>The demo is <a href="https://github.com/markusvankempen/mcp-ticket-demo">github.com/markusvankempen/mcp-ticket-demo</a>, and the talk, with every slide, is at <a href="https://markusvankempen.github.io/linuxfoundation-mcp-dev-summit/">markusvankempen.github.io/linuxfoundation-mcp-dev-summit</a>. Clone it, break it, and read the refusals. They are the article.</p>
+<p>Which of these did you hit first: too many tools, the wrong copy of the server, or a green success that wasn&rsquo;t? Tell me in the comments.</p>
+<p>Cheers,<br />
+Markus</p>
+<p>No bug &#128027; too small, no syntax too weird &#128269; &#129300; &#128296; &#129470;</p>
+  </article>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/7-and-a-half-floor/">7-and-a-half-floor</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>
