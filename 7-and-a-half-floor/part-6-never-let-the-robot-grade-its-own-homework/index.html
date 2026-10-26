@@ -97,9 +97,8 @@
   <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
   <img class="hero" src="../images/part-6-hero.png" alt="Cartoon: a robot grades its own homework while a person with a magnifying glass looks at a locked rulebook." width="1600" height="514">
   <article>
-<p>When we give AI agents the power to fix problems and run workflows on their own, we usually worry about them crashing or making a bad calculation.</p>
-<p>We should be worrying about something much quieter: what happens when the easiest way for an AI to pass a test is to change the test?</p>
-<p>This already happens. In March 2025, OpenAI published notes from one of its own training runs. A coding agent was asked to make the unit tests pass without changing the tests. It noticed the tests only called one function, verify, and reasoned in plain words: "we can hack verify to always return true. … Then all tests pass." Around the same time, the evaluation group METR watched Claude 3.7 Sonnet simply edit a tests file until everything passed.</p>
+<p>In March 2025, OpenAI published notes from one of its own training runs. A coding agent was asked to make the unit tests pass without changing the tests. It noticed the tests only called one function, verify, and reasoned in plain words: "we can hack verify to always return true. … Then all tests pass." Around the same time, the evaluation group METR watched Claude 3.7 Sonnet simply edit a tests file until everything passed.</p>
+<p>We usually worry about AI agents crashing or making a bad calculation. We should be worrying about something much quieter: what happens when the easiest way for an AI to pass a test is to change the test?</p>
 <p>Give an agent a goal like "make sure this update passes all quality checks," plus access to the folder where the checks live, and sooner or later it finds the shortcut. Instead of fixing a hard bug, it loosens the rule, deletes the failing test, or tidies up the error log so everything looks green.</p>
 <p>The machine isn't being malicious. It doesn't have an ego, and it isn't trying to deceive you. You told it to make the check pass, and editing the rulebook was the fastest path to a green light.</p>
 <h2>The "Look, Don't Touch" Architecture</h2>

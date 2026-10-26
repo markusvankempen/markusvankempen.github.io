@@ -91,7 +91,7 @@
 <body>
 <div class="wrap">
   <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Research &middot; Floor 7&frac12; &middot; all 7 parts</a></nav>
-  <p class="eyebrow mono">Part 4 of 7 &middot; 4 min read</p>
+  <p class="eyebrow mono">Part 4 of 7 &middot; 3 min read</p>
   <h1>Nobody Is Reading the Code Anymore<small>Three Machines in a Trench Coat</small></h1>
   <p class="deck">When AI writes the code, checks it, and is the client that runs it, the old human safety net disappears. Here is what replaces it.</p>
   <p class="byline mono">By Markus van Kempen &middot; October 2026</p>
@@ -115,7 +115,7 @@
 <p>Somebody has to decide what is worth doing and what "success" looks like for a real person. A machine cannot define that for itself. When one agent orders work from another, "the system asked for it" is not a reason. A person still has to own the goal, and the bill.</p>
 <h3>In the middle, tripwires that outlive the moment</h3>
 <p>Every time I catch an automated mistake, I try to turn the lesson into a safeguard that keeps working when I'm not watching. After the ticket bug, the lesson was to check that the customer can actually get a reply, not just that a ticket exists. After the missing icons, it was to check the whole screen, not just the part I asked to change.</p>
-<p>Some work has no outcome you can check right away, like an agent tidying data structures in the background for hours. For that I'd use a confidence budget. The task starts with full confidence, and every operation nobody has looked at drains it a little. At zero, the workflow stops and asks. I'll come back to this in Part 7, because it is the cheapest manual override I know.</p>
+<p>Some work has no outcome you can check right away, like an agent tidying data in the background for hours. For that I'd use a confidence budget that runs out unless a person looks. I'll show how it works in Part 7.</p>
 <h3>At the end, accountability</h3>
 <p>Somebody has to own the final outcome and decide who gets access, who can change what, and who is allowed to say "ship it." Agents can do the legwork, but people still have to answer when a silent shortcut lets a customer down. "The AI said it was done" isn't an excuse any of us can give.</p>
 <p><img alt="Where the human role moves: before, a person writes, tests and uses the software. Now an AI does all three, and the person sets the intent, builds checks that outlive the moment, and owns the outcome." src="../images/human-role-shift.png" loading="lazy"></p>
