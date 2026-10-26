@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From Scratch to watsonx Orchestrate: What Building MCP Servers Taught Me · Research, Floor 7½</title>
+<meta name="description" content="From a 40-line first server to a portfolio on npm, the VS Code Marketplace, and watsonx Orchestrate. What I learned building MCP servers — from the MCP Dev Summit Toronto.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/from-scratch-to-watsonx-orchestrate/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="From Scratch to watsonx Orchestrate: What Building MCP Servers Taught Me">
+<meta property="og:description" content="From a 40-line first server to a portfolio on npm, the VS Code Marketplace, and watsonx Orchestrate. What I learned building MCP servers.">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/from-scratch-to-watsonx-orchestrate/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/mcp-banner.jpg">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="From Scratch to watsonx Orchestrate: What Building MCP Servers Taught Me">
+<meta name="twitter:description" content="From a 40-line first server to a portfolio on npm, the VS Code Marketplace, and watsonx Orchestrate.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/mcp-banner.jpg">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  .deck { margin:0.4em 0 1.4em; color:var(--mint); font-size:22px; font-style:italic; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  h3 { margin:1.8em 0 0.4em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:22px; line-height:1.3; letter-spacing:-0.3px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  em { color:#d3e2d8; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  code { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+         font-size:0.85em; background:var(--panel); color:var(--lime);
+         padding:2px 6px; border-radius:4px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px;
+        padding:16px 18px; overflow-x:auto; font-family:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+        font-size:15px; line-height:1.55; color:var(--text); margin:0 0 1.4em; }
+  pre code { background:none; padding:0; font-size:inherit; color:inherit; border-radius:0; }
+  blockquote { margin:1.6em 0; padding:0.2em 0 0.2em 1em; border-left:4px solid var(--coral);
+               color:#fff; font-size:21px; font-style:italic; line-height:1.4; }
+  table { width:100%; border-collapse:collapse; margin:0 0 1.4em; font-size:17px; }
+  th { text-align:left; padding:8px 12px; background:var(--panel); color:var(--lime);
+       font-family:-apple-system,"Segoe UI",system-ui,sans-serif; font-weight:600;
+       border-bottom:2px solid var(--line); }
+  td { padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  .signpost { margin:1.2em 0 1.4em; padding:14px 18px; background:var(--panel); border:1px solid var(--line);
+              border-left:4px solid var(--mint); border-radius:8px; font-size:17px; line-height:1.5; }
+  img { max-width:100%; height:auto; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  .note { font-size:15px; color:var(--muted); border-top:1px solid var(--line); margin-top:2em; padding-top:1em; }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;} .deck{font-size:19px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Floor 7&frac12;</a></nav>
+  <p class="eyebrow mono">Research &middot; October 2026 &middot; 20 min read</p>
+  <h1>From Scratch to watsonx Orchestrate</h1>
+  <p class="deck">What building MCP servers taught me — and how the same server plugs into watsonx Orchestrate.</p>
+  <div class="signpost mono">
+    <strong>Resources:</strong>
+    &nbsp;<a href="https://markusvankempen.github.io/linuxfoundation-mcp-dev-summit/">Slides</a>
+    &nbsp;&middot;&nbsp;<a href="https://github.com/markusvankempen/mcp-ticket-demo">mcp-ticket-demo on GitHub</a>
+    &nbsp;&middot;&nbsp;<a href="https://markusvankempen.github.io/wxo-labs/blog/index.html">WXO Labs blog series</a>
+  </div>
+  <article>
+
+<p>The first MCP server I wrote was about forty lines. It worked on the first try. That should have worried me.</p>
+<p>At <a href="https://events.linuxfoundation.org/mcp-dev-summit-toronto/program/schedule/?id=1282401">MCP Dev Summit Toronto</a> I spent 25 minutes on what happened after that first try: the servers that came next, the bugs that only showed up once real people and real agents used them, and the things I now build into every server on day one.</p>
+<p>This post is the written version, with one thing the talk didn&rsquo;t have time for: <strong>how the same server plugs into watsonx Orchestrate</strong>, which is where most of my MCP work actually ends up.</p>
+
+<hr>
+
+<h2>Part 1 · Building one from scratch</h2>
+
+<h3>The first version is deceptively simple</h3>
+<p>Here is the shape almost everyone starts with, me included:</p>
+<pre>client → MCP server → your API
+             |
+             +-- tool: request(path, method, query, body)</pre>
+<p>One generic tool that forwards whatever the model asks for. It&rsquo;s the least code for me, and it hands every decision to the model: which path, which verb, which fields. With five tools the model guesses right. With fifty, the name and the description are all it has.</p>
+<p>So the first rewrite is always the same: <strong>name the tool after what the human wants, not after the HTTP call underneath.</strong> <code>search_tickets(query, status, requester_email, limit)</code> is easier to use and safer than <code>request()</code>. The intent is in the name; the choices are in the brackets.</p>
+<p>The stack I use today is boring on purpose: the official <a href="https://github.com/modelcontextprotocol/typescript-sdk">MCP TypeScript SDK</a> (stdio, Streamable HTTP and SSE transports), Zod for input and output schemas so a bad call is refused before my code runs, and Express for a few extra HTTP pages on the same port. In Python, FastMCP in the official SDK is the same shape. Start with the official SDK for your language; add a framework once you know what you&rsquo;re missing.</p>
+<p>The running example is a small support-ticket server. Tickets are only the stand-in &mdash; swap them for orders, assets or containers and every lesson below holds. The three seed tickets in the demo are three mistakes from this post:</p>
+<pre>TCK-1001  open     0 tools discovered after I registered the server
+TCK-1002  pending  Customer never got the reply — ticket looks fine in the API
+TCK-1003  solved   mcp.json worked yesterday, 404 today</pre>
+
+<hr>
+
+<h2>Part 2 · The lessons, in the order they hit me</h2>
+
+<h3>1. Prove it&rsquo;s up &mdash; and that it works</h3>
+<p>The IDE said <strong>0 tools discovered</strong>. No error. No warning. I couldn&rsquo;t tell broken from empty.</p>
+<p>My case: I&rsquo;d handed a cloud runner a path from my laptop. A missing file reads as an empty tool list, silently.</p>
+<p>The fix is two plain HTTP endpoints next to <code>/mcp</code>:</p>
+<pre>$ curl -s localhost:8787/health?format=json
+{ "ok": true, "version": "3.1.0", "tools": 19 }
+
+$ curl -s localhost:8787/test?format=json
+{ "ok": true, "steps": [ { "name": "run_query tickets", "ok": true }, … ] }</pre>
+<p><code>/health</code> reports the tool count from the server&rsquo;s side, so when the client shows zero and the server says 19, you know it&rsquo;s the connection. <code>/test</code> actually calls the tools. MCP&rsquo;s <code>ping</code> only proves the process answered. <strong>Alive is not works.</strong></p>
+<p>Neither endpoint is in the spec. They&rsquo;re my convention, and they&rsquo;re about ten lines of code.</p>
+
+<h3>2. Easy to ship and use</h3>
+<p>Before I fixed this, curl was the debugger: <code>curl /health</code>, <code>curl /tools</code>, hand-edit <code>mcp.json</code>, restart the IDE, still zero tools, repeat. Every IDE had its own config file, and &ldquo;is it my config or your code?&rdquo; became a meeting.</p>
+<p>The answer was distribution, not documentation. I bundled the server inside a VS Code extension (<a href="https://marketplace.visualstudio.com/items?itemName=MarkusvanKempen.lf-mcp-summit-demo">LF MCP Demo</a>): one install ships the server, one click writes <code>mcp.json</code> for VS Code, Cursor, Bob, Windsurf and Cline, and <strong>Diagnose</strong> runs the same checks I used to do by hand, in order, and points at the first one that fails.</p>
+<p>Same server, different wiring: stdio for one developer, Streamable HTTP for a team, SSE for older clients. On a laptop with <code>npx</code>, in a Podman container, or on IBM Cloud Code Engine. The tools and schemas don&rsquo;t change.</p>
+
+<h3>3. Which server answers?</h3>
+<p>Once the same server ran in several places at once, the client happily listed the tools of <strong>whatever answered</strong>. Each IDE&rsquo;s stdio config spawned its own copy with its own memory. An <code>npx &hellip;@latest</code> in one IDE disagreed with the bundled copy in the extension. Once, a completely different MCP server was on my port and its tools showed up as mine.</p>
+<p>Two fixes. HTTP became the default, so the IDE, the UI and the extension all share one process. And every copy now says <em>which</em> copy it is, on <code>/health</code>, <code>/test</code>, <code>/tools</code> and in <code>describe_server</code>:</p>
+<pre>{ "service": "mcp-ticket-demo",
+  "instance": { "label": "local", "id": "my-laptop.local", "url": "http://127.0.0.1:8787" } }</pre>
+
+<h3>4. When OK wasn&rsquo;t OK</h3>
+<p>This one still stings. <code>create_ticket</code> returned <code>201 Created</code> every single time. But when no email was passed, the code fell back to the API&rsquo;s service account &mdash; so the bot owned the ticket, every reply went to the bot, and the customer never heard back. The package went down the storm drain; technically it left the truck.</p>
+<p>The other failure was a bare <code>403</code>. The model read it like a typo, tweaked a field, retried, retried again, and finally told the user &ldquo;the system is unavailable.&rdquo;</p>
+<p>What fixed both:</p>
+<ul>
+<li><strong>Before the call, in the description:</strong> <em>&ldquo;ALWAYS pass requester_email &mdash; the real customer&rsquo;s email. If you leave it out, the bot owns the ticket.&rdquo;</em></li>
+<li><strong>After the call, in the result:</strong> a <code>warning</code> and a <code>next</code> field with the exact call to make instead.</li>
+<li><strong>Errors that teach:</strong> <em>&ldquo;key has scopes [read] but create_ticket requires the write scope. Issue a key with that scope on /admin, then retry once.&rdquo;</em> The model stops looping and asks the human for a key.</li>
+</ul>
+<blockquote>A tool isn&rsquo;t done when the API call succeeds. It&rsquo;s done when the next thing that happens is right.</blockquote>
+
+<h3>5. Past a hundred tools</h3>
+<p>On my Maximo work I ended up with <code>query_records</code>, <code>query_with_filter</code>, <code>query_with_fields</code>, <code>query_work_orders</code>, <code>query_assets</code>&hellip; Every name correct. The model still picked wrong. Near-identical names don&rsquo;t add choice; they dilute it.</p>
+<p>The fix is to think of the tools like a database. <strong>Reads are queries. Writes stay verbs.</strong></p>
+<table>
+<thead><tr><th>What you want</th><th>Tools</th></tr></thead>
+<tbody>
+<tr><td>What exists?</td><td><code>describe_server</code>, <code>get_schema</code></td></tr>
+<tr><td>Read it</td><td><code>run_query</code> with a schema: tickets, customers, trace</td></tr>
+<tr><td>Change it</td><td><code>create_ticket</code>, <code>add_comment</code>, <code>close_ticket</code></td></tr>
+<tr><td>Operate it</td><td><code>update_settings</code>, <code>issue_api_key</code></td></tr>
+</tbody>
+</table>
+<p>My Code Engine MCP server went from about 112 tools to 28 this way. The ticket demo went from 31 to 19. The win is clearer choices, not fewer bytes.</p>
+
+<h3>6&ndash;8. Control plane, remote configuration, and a server that talks back</h3>
+<p>The last three boxes are where a server stops being &ldquo;an integration&rdquo; and starts being a platform:</p>
+<ul>
+<li><strong>A control plane.</strong> The server grew its own UI &mdash; <code>/admin</code> for auth mode, keys, scopes and tool gates; <code>/log</code> for the audit trail and call trace. Because the person rotating a key at 2 a.m. is often ops or security, not a developer with the IDE open, and a hosted copy has no editor next to it.</li>
+<li><strong>Remote configuration.</strong> Every <code>/admin</code> button became a tool too (<code>update_settings</code>, <code>issue_api_key</code>, &hellip;). One script makes the same change on every copy. An ops agent can rotate keys without a browser. Same scopes, same audit trace.</li>
+<li><strong>The server talks back.</strong> Instead of the agent asking &ldquo;anything new?&rdquo; on a loop, the server pushes <code>ticket.*</code> events over a standard MCP logging stream. The third &ldquo;checkout is down&rdquo; ticket in ten minutes can wake an agent, which comments &ldquo;known incident&rdquo; on all three, and pages a human with one question.</li>
+</ul>
+
+<hr>
+
+<h2>Part 3 · Taking it to watsonx Orchestrate</h2>
+<p>Everything above I learned in an IDE. Most of it matters even more once the client is an enterprise agent platform. watsonx Orchestrate (WXO) speaks MCP natively: you add an MCP server as a <strong>toolkit</strong> with the Agent Developer Kit (ADK), and its tools become tools your agents can use.</p>
+<p>There are three ways in: two with the ADK CLI, and one with no CLI at all.</p>
+
+<h3>Option A &middot; Local toolkit: Orchestrate runs your server</h3>
+<p>Orchestrate starts your server inside its own runtime and talks to it over <strong>stdio</strong>. You can point it at an npm or PyPI package, or upload a local folder.</p>
+<p>From npm, pinned to v3.1.0:</p>
+<pre>orchestrate toolkits add --kind mcp \
+  --name ticket-demo \
+  --description "Support tickets: describe_server first, then get_schema and run_query" \
+  --command "npx -y mcp-ticket-demo@3.1.0" \
+  --tools "*"</pre>
+<p>From a local folder:</p>
+<pre>orchestrate toolkits add --kind mcp \
+  --name ticket-demo \
+  --description "Support tickets: describe_server first, then get_schema and run_query" \
+  --package_root ./mcp-ticket-demo/server \
+  --command "node src/index.js" \
+  --tools "*"</pre>
+<p><strong>ADK 2.0 note:</strong> the old <code>orchestrate toolkits import</code> command is now <code>orchestrate toolkits add</code>. <code>import</code> now means importing from a YAML file. Older tutorials, including some of mine, still say <code>import</code>.</p>
+<p><strong>This is where TCK-1001 came from.</strong> <code>--package_root</code> gets zipped and uploaded; the command runs <em>relative to it</em>. Give it an absolute path from your laptop and Orchestrate is looking at <code>/Users/me/&hellip;</code> on a machine that has never heard of you. The import doesn&rsquo;t crash. You just get zero tools. Ship the package, run from a relative path.</p>
+<p>Two more things from Part 2 that matter here:</p>
+<ul>
+<li><strong>stdout is the protocol.</strong> A stray <code>console.log</code> in a stdio server corrupts the JSON-RPC stream. Log to stderr (<code>console.error</code>).</li>
+<li><strong>Secrets come in as environment variables.</strong> Attach a connection with <code>--app-id</code>, and each key and value in it is exposed to your server as an env var. No keys in the command line, no keys in the package.</li>
+</ul>
+
+<h3>Option B &middot; Remote toolkit: your server, your URL</h3>
+<p>If the server already runs somewhere &mdash; Render, Code Engine, Kubernetes, OpenShift &mdash; point Orchestrate at the URL and pick the transport explicitly:</p>
+<pre>orchestrate toolkits add --kind mcp \
+  --name ticket-demo-remote \
+  --description "Support tickets (hosted copy)" \
+  --url "https://&lt;your-app&gt;.&lt;region&gt;.codeengine.appdomain.cloud/mcp" \
+  --transport "streamable_http" \
+  --tools "*" \
+  --app-id "ticket-demo-key"</pre>
+<p>Supported transports are <code>sse</code> and <code>streamable_http</code>. There&rsquo;s no automatic fallback between them; choose one. For a team or CI, this is the one I use: one URL, secrets server-side, and the server&rsquo;s own <code>/health</code>, <code>/test</code> and <code>/admin</code> pages right next to it.</p>
+
+<h3>Option C &middot; No CLI: add the hosted server in the Orchestrate UI</h3>
+<p>You don&rsquo;t need the ADK at all for a server that&rsquo;s already hosted. If it has a public URL, you can add it straight from the browser:</p>
+<ol>
+<li><strong>Build &rarr; Agent Builder</strong>, open your agent, and go to <strong>Toolset</strong>.</li>
+<li><strong>Add tool &rarr; MCP server &rarr; Add MCP server</strong>, and pick <strong>Remote MCP</strong>.</li>
+<li>Give it a <strong>name</strong> and a <strong>description</strong>, paste the <strong>MCP server URL</strong>, and choose the <strong>transport</strong>: Streamable HTTP for the ticket demo, SSE for older servers.</li>
+<li>If the server needs a key, attach a <strong>connection</strong> (created under <strong>Manage &rarr; Connections</strong>).</li>
+<li><strong>Connect.</strong> Orchestrate calls <code>tools/list</code> and shows every tool the server offers. Select the ones this agent needs and <strong>Add to agent</strong>.</li>
+</ol>
+<p>Want the same server in several agents? Add it once at the system level (<strong>All tools &rarr; Add tool &rarr; MCP server &rarr; Manage MCP servers</strong>) and import the tools from there.</p>
+<p>Both of my hosted copies work this way:</p>
+<pre>https://mcp-ticket-demo.onrender.com/mcp
+https://mcp-ticket-demo.29m5mrru3s3n.ca-tor.codeengine.appdomain.cloud/mcp</pre>
+<p>They run in <code>write</code> mode: discovery and reads are open, so Orchestrate can list the tools with no key, and the write tools answer with a refusal that names the scope until you attach a key.</p>
+<p>Two things I learned doing it this way:</p>
+<ul>
+<li><strong>Wake the server first.</strong> Orchestrate waits about 30 seconds for the tool list. A free Render service sleeps when idle and can take longer than that to wake up. Open <code>/health</code> in another tab first, wait for the JSON, then click Connect.</li>
+<li><strong>Re-read the descriptions after import.</strong> The agent picks tools from the description field. If the server&rsquo;s own descriptions are good &mdash; <code>create_ticket</code> warning about <code>requester_email</code>, <code>describe_server</code> saying &ldquo;call me first&rdquo; &mdash; you shouldn&rsquo;t have to edit them. That&rsquo;s the whole argument for putting the manual in the metadata.</li>
+</ul>
+
+<h3>Why the lessons matter more in Orchestrate</h3>
+<p>Reading the ADK docs after the talk, I kept nodding. Several of the scars line up one-to-one.</p>
+<p><strong>Import validates schemas, not behaviour.</strong> During import, the ADK connects, waits up to 30 seconds for <code>tools/list</code>, and checks the schemas for structural correctness. It does not run your tools. A clean import tells you exactly as much as <code>ping</code> does: something answered. That&rsquo;s why <code>/test</code> exists. Run it before you import, and again after every deploy.</p>
+<p><strong>Discovery has to stay open.</strong> A 4xx during import fails the import. In the ticket demo, <code>tools/list</code> and <code>describe_server</code> stay open in every auth mode, and locked tools still show up, locked. Hide a tool and the agent assumes it doesn&rsquo;t exist and invents a workaround. Show it locked and the refusal explains what&rsquo;s needed.</p>
+<p><strong>The description is the manual.</strong> An Orchestrate agent picks tools the same way an IDE model does: name, description, input schema. The <code>requester_email</code> warning, the <code>next</code> hints and the refusals that name the fix aren&rsquo;t IDE niceties. They&rsquo;re how an agent with no human watching the trace avoids opening tickets for the bot.</p>
+<p><strong>Know which caller you&rsquo;re serving.</strong> Orchestrate always sends trace context (<code>traceparent</code>, <code>tracestate</code>) through its MCP gateway, and you can opt in to <code>tenant_id</code> and <code>agent_id</code> headers when you add the toolkit. Put those in your audit trail.</p>
+<p><strong>Hostnames move.</strong> TCK-1003, &ldquo;mcp.json worked yesterday, 404 today&rdquo;, was a redeploy that gave the service a new hostname. A remote toolkit bakes in a URL the same way. Read the endpoint after each deploy; don&rsquo;t paste it by hand. And keep the YAML version of the toolkit in git so <code>orchestrate toolkits import -f</code> can rebuild it in CI.</p>
+<p><strong>Fewer, clearer tools travel better.</strong> Every tool you import is one more choice for the agent. <code>describe_server &rarr; get_schema &rarr; run_query</code> imports cleanly, and <code>--tools</code> lets you import only what a given agent needs.</p>
+
+<hr>
+
+<h2>Part 4 · Where to go next in WXO Labs</h2>
+<p>The <a href="https://markusvankempen.github.io/wxo-labs/blog/index.html">WXO Labs blog series</a> is 16 hands-on parts from your first Python tool to SSO and enterprise integrations. These four are the MCP path:</p>
+<table>
+<thead><tr><th>Part</th><th>Post</th><th>Picks up from the talk</th></tr></thead>
+<tbody>
+<tr><td>7</td><td><a href="https://markusvankempen.github.io/wxo-labs/blog/lab7-mcp-basics/index.html">Getting Started with MCP in watsonx Orchestrate</a></td><td>Prove it&rsquo;s up &mdash; stdio transport and the &ldquo;0 tools found&rdquo; bug</td></tr>
+<tr><td>8</td><td><a href="https://markusvankempen.github.io/wxo-labs/blog/lab8-mcp-advanced-user-context/index.html">Passing User Context and Bearer Tokens to Sidecars</a></td><td>When OK wasn&rsquo;t OK &mdash; whose identity is the call made with?</td></tr>
+<tr><td>15</td><td><a href="https://markusvankempen.github.io/wxo-labs/blog/lab15-remote-mcp-code-engine/index.html">Remote Containerized MCP Servers on IBM Cloud Code Engine</a></td><td>Easy to ship and use &mdash; from the laptop to a shared URL</td></tr>
+<tr><td>16</td><td><a href="https://markusvankempen.github.io/wxo-labs/blog/lab16-planning-analytics-mcp/index.html">IBM Planning Analytics (TM1) MCP Integration</a></td><td>Past a hundred tools &mdash; a real enterprise API</td></tr>
+</tbody>
+</table>
+<p>If you&rsquo;re new to Orchestrate, start at <a href="https://markusvankempen.github.io/wxo-labs/blog/getting-started-watsonx-orchestrate/index.html">Part 1</a> and come back to Part 7. If you already have an MCP server, go straight to 7 and 15.</p>
+
+<hr>
+
+<h2>What carries to your next server</h2>
+<p>Three things. They work the same in an IDE and in Orchestrate.</p>
+<ol>
+<li><strong>Prove it.</strong> <code>/health</code> with a tool count, and a <code>/test</code> that calls the tools.</li>
+<li><strong>Make it easy to ship and use.</strong> Bundle the server in an IDE extension, give operators a UI, and give Orchestrate a package with a relative path or a URL that doesn&rsquo;t move.</li>
+<li><strong>Make it discoverable.</strong> <code>describe_server</code> first, <code>get_schema</code> for the shape, tool names that say the intent, and errors that name the fix.</li>
+</ol>
+<p>None of this needed a spec change. Some of it probably should become standard.</p>
+
+<hr>
+
+<h2>Try it tonight</h2>
+<pre>git clone https://github.com/markusvankempen/mcp-ticket-demo
+cd mcp-ticket-demo/server
+npm install
+npm run http
+# then open http://127.0.0.1:8787/health, /test and /admin (demo / demo)</pre>
+<p>Then add it to Orchestrate &mdash; Option A with the ADK, or Option C in the UI with one of the hosted URLs if you&rsquo;d rather not install anything &mdash; ask your agent <em>&ldquo;Show me all tickets and their status&rdquo;</em>, and read the three subjects that come back. Each one is a mistake I made so you don&rsquo;t have to.</p>
+<p>Then break it on purpose: call <code>create_ticket</code> without <code>requester_email</code> and see who owns the ticket. Flip <code>/admin</code> to <code>write</code> mode and read the refusal. That&rsquo;s the whole talk in two calls.</p>
+<p>What will your next server teach the agent? Leave a comment, open an issue on <a href="https://github.com/markusvankempen/mcp-ticket-demo/issues">the repo</a>, or find me on <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a>.</p>
+<p>No bug &#128027; too small, no syntax too weird &#128269; &#129300; &#128296; &#129470;</p>
+<p>Cheers,<br>Markus</p>
+
+<p class="note">The MCP servers, extensions and labs mentioned here are my personal open-source projects. They are not IBM products and are not officially supported IBM software. ADK commands are from the <a href="https://developer.watson-orchestrate.ibm.com/tools/toolkits/remote_mcp_toolkits">remote</a> and <a href="https://developer.watson-orchestrate.ibm.com/tools/toolkits/local_mcp_toolkits">local</a> MCP toolkit docs; check them against the version you run.</p>
+
+  </article>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/7-and-a-half-floor/">7-and-a-half-floor</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>

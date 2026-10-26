@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Great Inversion: Nearly 40 Years of Software Engineering in Reverse · Research, Floor 7½</title>
+<meta name="description" content="How code went from cathedral to sketch, and what's still left for us humans. From a RAM test on an Amiga in 1988 to judging code a machine wrote in 2026.">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/the-great-inversion/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Great Inversion: Nearly 40 Years of Software Engineering in Reverse">
+<meta property="og:description" content="How code went from cathedral to sketch, and what's still left for us humans.">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/the-great-inversion/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/floor-75-banner.jpg">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Great Inversion: Nearly 40 Years of Software Engineering in Reverse">
+<meta name="twitter:description" content="How code went from cathedral to sketch, and what's still left for us humans.">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/floor-75-banner.jpg">
+<style>
+  :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
+          --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body { margin:0; background:var(--bg); color:var(--text);
+         font-family: Georgia, "Times New Roman", serif; font-size:20px; line-height:1.65;
+         border-top:9px solid var(--coral); }
+  .mono { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width:740px; margin:0 auto; padding:0 22px; }
+  nav.top { padding:22px 0 0; font-size:14px; letter-spacing:2px; text-transform:uppercase; }
+  nav.top a { color:var(--mint); text-decoration:none; }
+  nav.top a:hover { color:var(--lime); }
+  .eyebrow { margin:1.6em 0 0; color:var(--mint); font-size:14px; letter-spacing:3px; text-transform:uppercase; }
+  h1 { margin:0.3em 0 0.15em; color:#fff; font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:46px; line-height:1.1; letter-spacing:-1.5px; }
+  .deck { margin:0.4em 0 1.4em; color:var(--mint); font-size:22px; font-style:italic; }
+  h2 { margin:2.2em 0 0.5em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:28px; line-height:1.25; letter-spacing:-0.5px; }
+  h3 { margin:1.8em 0 0.4em; color:var(--lime); font-family:-apple-system,"Segoe UI",system-ui,sans-serif;
+       font-size:22px; line-height:1.3; letter-spacing:-0.3px; }
+  p { margin:0 0 1.1em; }
+  strong { color:#fff; }
+  em { color:#d3e2d8; }
+  a { color:var(--mint); text-underline-offset:3px; }
+  a:hover { color:var(--lime); }
+  ul, ol { margin:0 0 1.4em; padding-left:1.3em; }
+  li { margin-bottom:0.6em; }
+  li::marker { color:var(--mint); }
+  code { font-family:"SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+         font-size:0.85em; background:var(--panel); color:var(--lime);
+         padding:2px 6px; border-radius:4px; }
+  pre { background:var(--panel); border:1px solid var(--line); border-radius:8px;
+        padding:16px 18px; overflow-x:auto; font-family:"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+        font-size:15px; line-height:1.55; color:var(--text); margin:0 0 1.4em; }
+  pre code { background:none; padding:0; font-size:inherit; color:inherit; border-radius:0; }
+  table { width:100%; border-collapse:collapse; margin:0 0 1.4em; font-size:17px; }
+  th { text-align:left; padding:8px 12px; background:var(--panel); color:var(--lime);
+       font-family:-apple-system,"Segoe UI",system-ui,sans-serif; font-weight:600;
+       border-bottom:2px solid var(--line); }
+  td { padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
+  tr:last-child td { border-bottom:none; }
+  img { max-width:100%; height:auto; }
+  hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
+  footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
+  footer p { margin:0 0 0.6em; }
+  @media (max-width:600px) { body{font-size:18px;} h2{font-size:24px;} h1{font-size:34px;} .deck{font-size:19px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Floor 7&frac12;</a></nav>
+  <p class="eyebrow mono">Research &middot; October 2026</p>
+  <h1>The Great Inversion</h1>
+  <p class="deck">Nearly 40 years of software engineering in reverse. How code went from cathedral to sketch, and what&rsquo;s still left for us humans.</p>
+  <article>
+
+<p>In 1988, as a teenager, I hung around and helped GIGATRON.</p>
+<p>GIGATRON was a hardware startup in Germany that ran, quite literally, out of a living room. No job titles. We just showed up and built things. The hardware team made RAM expansion boards for the Amiga 500 and 1000, and I wrote the software that told customers whether their new memory actually worked: <a href="https://github.com/markusvankempen/amiga-ram-test">RAM-TEST</a>. It walked the expansion RAM with alternating bit patterns and told you exactly which chip on the board had failed.</p>
+<p>Almost forty years later I was digging through old backups and found traces of it. A binary here, a source fragment there. Just enough to recognize it. And just enough to make me realize how completely the job of writing software has flipped since then.</p>
+<p>Back then, if you wanted documentation, a new API, or a new way of building things, you needed a plane ticket. I packed a bag for Amiga DevCon, walked the massive halls at CeBIT, and later sat in sessions at Lotusphere, SAPPHIRE, and SAP TechEd. You came home with a canvas bag full of 3.5-inch floppies, binder manuals, and pages of handwritten notes.</p>
+<p>If your code crashed, there was no search bar. You stepped through it in your head, spent hours in a debugger, or called a friend late at night.</p>
+<p>I&rsquo;ve been going through my own archives lately: floppy images, old IDE workspaces, <a href="https://github.com/markusvankempen">my GitHub repositories</a>, and <a href="https://www.slideshare.net/MarkusVanKempen">my SlideShare decks</a>. What I see isn&rsquo;t a steady improvement in tools. It&rsquo;s a complete reversal of the relationship between the developer and the code.</p>
+
+<h2>Act I: Everything Lived in Your Head</h2>
+<p>Before the internet, code was built almost entirely inside the developer&rsquo;s mind. Your reference library was the stack of books next to the CRT monitor.</p>
+<p>Because information was scarce, knowledge ran deep. Writing a RAM test meant knowing the memory map, the chip layout on the board, and exactly how the 68000 behaved, from memory or from a binder. Every line was a direct, manual translation of what you wanted into what the machine would do. You were the architect, the bricklayer, and the compiler&rsquo;s sanity check, all at once.</p>
+
+<h2>Act II: The Digital Scavenger</h2>
+<p>Then the web arrived, and conference keynotes turned into downloads. The job changed from inventing everything yourself to finding the right pieces and fitting them together.</p>
+<p>My SlideShare account is a pretty good record of that era: 28 decks, most of them written so that someone else could find them and reuse them. I posted my <a href="https://www.slideshare.net/slideshow/2013-asug-session2213portalrolebasenavigationv5/44501799">SAP portal role-based navigation</a> session from ASUG 2013, <a href="https://www.slideshare.net/slideshow/sapteched-2015-ux114-building-custom-sap-fiori-apps-using-sap-web-ide/54325256">Building custom SAP Fiori apps using SAP Web IDE</a> from SAP TechEd 2015, <a href="https://www.slideshare.net/slideshow/connecting-devices-to-the-ibm-iot-via-mqtt-session-1231-ibminsight2015/54440555">Connecting devices to IBM IoT via MQTT</a> from IBM Insight 2015, and the <a href="https://www.slideshare.net/slideshow/world-of-watson-handsonlab/89391894">World of Watson hands-on lab</a>. My most-viewed deck is <a href="https://www.slideshare.net/slideshow/connecting-nest-via-mqtt/44388455">Connecting NEST via MQTT</a>, with about 6,000 views. Those were people doing exactly what I was doing: looking for someone who had already solved their problem.</p>
+<p>In between, I spent years in enterprise mobile, including SAP Mobile, where tight memory, short battery life, and offline sync forced you to write lean, disciplined code. When the compiler threw something cryptic, I searched Stack Overflow. When I needed a pattern, I cloned a GitHub repo. And I gave back what I could: <a href="https://github.com/markusvankempen/SAP-Fiori-Example-App">SAP Fiori sample apps</a>, <a href="https://github.com/markusvankempen/iot-nodered">Node-RED flows for IBM IoT</a>, and a whole series of <a href="https://github.com/markusvankempen/PimpMyTJBot">TJBot recipes</a>.</p>
+<p>It&rsquo;s also how I taught. Every TechWednesday at Six Nations Polytechnic, we&rsquo;d take a sample, wire up a Raspberry Pi or an ESP8266, and make it do something new. Find it, adapt it, connect it.</p>
+<p>But through all of that, the human was still the engine. We went out into the world, gathered the pieces, brought them home, and soldered them into something that worked.</p>
+
+<h2>Act III: The Great Inversion</h2>
+<p>Today, that direction has completely reversed.</p>
+<p>Large language models have read the open-source code, the docs, the conference decks (very likely including some of mine), and they write functions, scaffolds, and test suites in seconds. I no longer go out into the world to gather code. The code comes to me.</p>
+<p>You can see the break in my own GitHub. Here are the repositories I created each year, forks excluded:</p>
+<pre>Repositories created per year
+2014  █████                                      5
+2015  █████████████████                         17
+2016  ██████████                                10
+2017  ███████████████████                       19
+2018  ██████                                     6
+2019  ███████                                    7
+2020  █████████                                  9
+2021  ██                                         2
+2022  ████                                       4
+2023  ███                                        3
+2024                                             0
+2025  █                                          1
+2026  ████████████████████████████████████████  40  (January–September)</pre>
+<p>In the first nine months of 2026 I created more repositories than in the previous eight years combined. I know a repo count is a crude measure, so look at what&rsquo;s inside. My open-source <a href="https://github.com/markusvankempen/code-engine-mcp-server">Code Engine MCP server</a> is on npm, the VS Code Marketplace, and the MCP Registry. My <a href="https://github.com/markusvankempen/zendesk-mcp">Zendesk MCP server</a> ships to both npm and PyPI. <a href="https://github.com/markusvankempen/ESP32-Traffic-Paxcounter">ESP32-Traffic-Paxcounter</a> is on firmware version 4. There&rsquo;s even an Alexa skill that tells the time with a line from a book. I didn&rsquo;t suddenly get more hours in the day. The cost of turning an idea into working code collapsed.</p>
+<p>And my role flipped with it:</p>
+<table>
+<thead><tr><th></th><th>Then</th><th>Now</th></tr></thead>
+<tbody>
+<tr><td><strong>Workflow</strong></td><td>Search the world &rarr; write code &rarr; test</td><td>AI writes code &rarr; I test &rarr; a second model reviews &rarr; I tune the prompt</td></tr>
+<tr><td><strong>My role</strong></td><td>Builder and syntax writer</td><td>Test bench, runtime, and edge-case hunter</td></tr>
+<tr><td><strong>Direction</strong></td><td>Pulling knowledge in</td><td>Checking generated output</td></tr>
+<tr><td><strong>Code</strong></td><td>A cathedral: precious, guarded, refactored</td><td>A sketch: cheap, disposable, regenerated</td></tr>
+<tr><td><strong>What matters</strong></td><td>Knowing the syntax</td><td>Clear prompts, good tests, and knowing what &ldquo;working&rdquo; really means</td></tr>
+</tbody>
+</table>
+<p>Today I&rsquo;m basically the AI&rsquo;s real-world runtime. It proposes the code. I run it, have a second model review it, catch the made-up parameters and the security holes, paste the error logs back in, and go around again until it actually works.</p>
+
+<h3>What a bug looked like, then and now</h3>
+<p>The easiest way to show the flip is with the bugs themselves.</p>
+<p><strong>1988: one missing character.</strong> On the Amiga, you wrote code in a plain text editor, compiled it, and rebooted to test it. No red squiggles, no autocomplete. RAM-TEST itself was written in assembly, but here&rsquo;s the same kind of mistake in C (a reconstruction, not the original source):</p>
+<pre>/* check the A500 trapdoor RAM, 512 KB starting at $C00000 */
+#define PATTERN 0xAAAAAAAAUL
+#define WORDS   0x20000L              /* 131,072 longwords */
+
+unsigned long *ram = (unsigned long *)0xC00000;
+long i;
+
+for (i = 0; i &lt; WORDS; i++)
+    ram[i] = PATTERN;                 /* write the pattern */
+
+for (i = 0; i &lt; WORDS; i++) {
+    if (ram[i] = PATTERN)             /* BUG: '=' should be '==' */
+        continue;                     /* looks fine, next word */
+    report_bad_chip(i);
+}</pre>
+<p>One missing <code>=</code>. Instead of <em>comparing</em> each memory cell to the pattern, the code <em>writes</em> the pattern into it, and the result is always true. The compiler was perfectly happy. The program runs, and every chip passes, including the broken ones. Finding that meant printing the listing, stepping through it in your head, and going around the edit, compile, reboot, retest cycle again and again.</p>
+<p>And when a mistake was really bad, you didn&rsquo;t get an error message. You got this:</p>
+<pre>Software Failure.    Press left mouse button to continue.
+         Guru Meditation #00000004.0000AAC0</pre>
+<p><strong>2015: the IDE catches the typos.</strong> By the time I was building SAP Fiori apps in JavaScript, a mistake like that took seconds to fix. SAP Web IDE, and later VS Code with a linter, underlined it while I was still typing:</p>
+<pre>webapp/controller/Main.controller.js
+   9:62  error  Missing semicolon                               semi
+  14:13  error  Unexpected assignment within an 'if' statement  no-cond-assign
+  17:21  error  'oModle' is not defined                         no-undef</pre>
+<p>The kind of bug that could eat an evening in 1988 now got a red underline before I had finished typing the line.</p>
+<p>The hard bugs had moved to runtime. Things like <code>Uncaught TypeError: Cannot read property 'getModel' of undefined</code>, followed by a trip to Stack Overflow to find out why.</p>
+<p><strong>In between: a staircase, then a cliff.</strong> For about thirty years, every new tool made <em>me</em> a faster writer of code. IDEs caught my typos. Frameworks like Bootstrap and SAPUI5 handed me the skeleton. And Node-RED took IoT prototyping to a whole new level: instead of writing drivers and MQTT plumbing, you wired a few nodes together and had a working demo in an afternoon. That&rsquo;s how I built most of my IoT demos, and why I shared a <a href="https://github.com/markusvankempen/node-red-bluemix-starter">Node-RED starter for Bluemix</a> so others could skip the setup too.</p>
+<p>But all of those tools had one thing in common: I was still the author. Then, in just a few years, AI went from suggesting my next line to writing, running, and fixing the whole thing. Every earlier step helped <em>me</em> write the code. This one writes it <em>for</em> me. That&rsquo;s not another step on the staircase. That&rsquo;s the inversion.</p>
+<p><strong>2026: I barely look at the syntax.</strong> Today the thing I actually write is the prompt. For the ferry counter, it looks something like this:</p>
+<pre>Add direction detection to the dual-LiDAR counter.
+A car joining the ferry lineup breaks beam B first, then beam A.
+Ignore anything that blocks a beam for less than 40 ms (rain, birds).
+Never block the LoRaWAN send loop.
+Write tests for: a car joining, a car leaving, a person walking
+through, and a car that stops halfway between the beams.</pre>
+<p>That prompt is the real source code now. The lines that matter aren&rsquo;t syntax. They&rsquo;re the details only someone who has stood at that roadside knows: the rain, the birds, and the car that stops between the beams because the lineup is full.</p>
+<p>Then I run the tests, and I have a second model review the first model&rsquo;s work:</p>
+<pre>test_car_joining .............. PASS
+test_car_leaving .............. PASS
+test_pedestrian ............... PASS
+test_car_stops_between_beams .. FAIL  expected count=1, got 2
+
+Review (second model): the state machine returns to ST_IDLE on a
+timeout while beam B is still blocked, so the same car is counted
+again when it drives off. Stay in WAIT_CLEAR until both beams clear.</pre>
+<p>One machine wrote the code, a different machine explained the bug, and my job was knowing that a car stopping between the beams is a real case worth testing. I haven&rsquo;t hunted a missing semicolon in months. What I care about now is the prompt, the tests, and whether a second opinion agrees.</p>
+
+<h3>Code Is No Longer Precious</h3>
+<p>This was the hardest part for me to accept: code is no longer an asset you protect.</p>
+<p>For most of my career, code was a cathedral. I never threw RAM-TEST away. I rewrote it, version after version, because every version had cost real effort. Deleting a week of manual refactoring felt like burning money.</p>
+<p>Today, when an AI-generated version goes off track, I don&rsquo;t spend hours debugging it line by line. I delete it and start over. Rebuilding takes minutes, not weeks.</p>
+<p>My GitHub has a small monument to this. On February 27, 2026, I created <a href="https://github.com/markusvankempen/wxo-toolkit-vsc">wxo-toolkit-vsc</a>, a VS Code extension for IBM watsonx Orchestrate. Three days later I marked it <strong>deprecated</strong> and replaced it with a cleaner rebuild: <a href="https://github.com/markusvankempen/WxO-ToolBox-vsc">WxO-ToolBox-vsc</a>. In 1988, abandoning a working tool after three days would have been unthinkable. In 2026, it was simply the fastest way to the better version.</p>
+<p>The important part: <strong>deleting the code didn&rsquo;t delete the progress.</strong> The first version was an experiment, and it left me with what I call <em>tester&rsquo;s knowledge</em>: I now knew the edge cases, the API quirks, and the places where my first idea was wrong. I kept the learnings, threw away the syntax, and asked for a cleaner build.</p>
+<pre>+-------------------------------------------------------------------+
+|                  THE EPHEMERAL FEEDBACK LOOP                      |
++-------------------------------------------------------------------+
+|  1. Prompt Intent  --&gt;  AI Generates Draft Code                   |
+|  2. Human Tests    --&gt;  Exposes Edge Cases &amp; Invalid Code         |
+|  3. Cross-Check    --&gt;  A Second AI Model Reviews the Code        |
+|  4. Nuke Code      --&gt;  Retain "Tester's Knowledge" (Learnings)   |
+|  5. Re-Prompt      --&gt;  Generate Production-Grade Architecture    |
++-------------------------------------------------------------------+</pre>
+
+<h2>Act IV: Where the Machine Still Needs Us</h2>
+<p>So if the AI writes the code and we test it, what&rsquo;s next?</p>
+<p>I think we&rsquo;re hitting the limits of plain code generation. These models are great at patterns they&rsquo;ve seen before. They struggle with physical hardware, messy real-world signals, and closed platforms they can&rsquo;t look inside.</p>
+
+<h3>Closed platforms: I&rsquo;ve seen this movie before</h3>
+<p>In 2014 I got Google Glass before most people had heard of it. I built apps for it: a <a href="https://github.com/markusvankempen/GlassStopWatch">stopwatch</a>, some <a href="https://github.com/markusvankempen/GlassWork">work tools</a>, and a <a href="https://github.com/markusvankempen/GoogleGlass-LiveCard-Mqtt-to-IBMIot">LiveCard that sent MQTT messages to the IBM IoT cloud</a>. I biked with it and ran with it. My honest field notes: voice commands don&rsquo;t work in the wind, it rebooted a few times, and my Garmin still won.</p>
+<p>But the hardware wasn&rsquo;t what held Glass back. The platform was: gated APIs, approval friction, and very little room to hack under the hood.</p>
+<p>AI can go the same way. If it stays locked inside closed, black-box products, developers become passive prompt-checkers. If it&rsquo;s built on open standards like the Model Context Protocol (MCP), open models, and runtimes you can inspect, developers stay the architects.</p>
+<p>That&rsquo;s why so much of my 2026 has gone into MCP. I built and open-sourced MCP servers for <a href="https://github.com/markusvankempen/maximo-mcp-ai-integration-options">IBM Maximo</a>, <a href="https://github.com/markusvankempen/code-engine-mcp-server">IBM Cloud Code Engine</a>, and <a href="https://github.com/markusvankempen/zendesk-mcp">Zendesk</a>, because I wanted them to exist. They&rsquo;re personal projects, not IBM products. And I made the case for <a href="https://markusvankempen.github.io/linuxfoundation-mcp-dev-summit/">MCP as a platform</a> at the Linux Foundation MCP Dev Summit. Glass taught me what a closed platform costs developers. MCP is the opposite bet.</p>
+
+<h3>The physical world doesn&rsquo;t care how plausible your code looks</h3>
+<p>I learned this one the hard way, long before AI. In 2016 I automated my entire house: LIFX bulbs, the Nest, a Raspberry Pi, Node-RED, all running through Bluemix. I even ripped out the kitchen light switches. Then the internet went down while I was away on a business trip, and my wife couldn&rsquo;t turn on the lights. You can imagine the call I received. I had to un-automate everything, and I wrote about it publicly under the title <em>&ldquo;Can too much automation lead to divorce?&rdquo;</em>. I probably should have left the light switches in place.</p>
+<p>The lesson stuck: the real world is where clever software goes to get humbled. And it&rsquo;s exactly where AI-generated code struggles most.</p>
+<p>I&rsquo;ve spent years at that edge, from <a href="https://www.slideshare.net/slideshow/animal-tracking-using-watson-iot-and-lorawan/89398145">tracking animals with LoRaWAN</a> to <a href="https://github.com/markusvankempen/LoraWAN-Traffic-Decrypt-and-Decode-using-Node-RED">decrypting LoRaWAN packets in Node-RED</a>. Today it&rsquo;s <a href="https://github.com/markusvankempen/ESP32-Traffic-Paxcounter">ESP32-Traffic-Paxcounter</a>, which uses two LiDAR sensors on an ESP32 to count cars, estimate their speed and length, and predict the ferry lineup, and <a href="https://github.com/markusvankempen/FerryLight">FerryLight</a>, a real-time tracker for the Englishtown &harr; Jersey Cove cable ferry in Cape Breton, Nova Scotia. People in the community check it before they drive to the ferry.</p>
+<p>An LLM can make up a function and still pass a mock test. On the side of a road in Cape Breton, timing interrupts, electrical noise, and dropped LoRaWAN packets don&rsquo;t care how plausible the code looks. A car either broke both laser beams in the right order or it didn&rsquo;t. Somebody has to stand there and check. That&rsquo;s still us.</p>
+<p>I saw this coming a while ago. At <a href="https://www.slideshare.net/slideshow/myhackmit2023challengetothestudentspdf-c175/265322474">HackMIT 2023</a>, the challenge I set for the students was to connect generative AI to the real world. Three years later, that&rsquo;s where the interesting problems are.</p>
+
+<h2>What&rsquo;s Left for Us</h2>
+<p>Looking back nearly forty years, the friction of typing syntax has all but vanished. The need for real engineering judgment hasn&rsquo;t. If anything, it matters more.</p>
+<p>I started with a RAM test on an Amiga in a living room. I went through binders and floppies, enterprise mobile, and years of scavenging on SlideShare and GitHub. Today I mostly judge code a machine wrote. What I never handed over is deciding what&rsquo;s worth building, and whether it really works when a real car drives past a real sensor.</p>
+<p>Full disclosure: AI helped me draft this article. I checked every fact against my own repositories and decks, which is kind of the point.</p>
+<p>If you&rsquo;ve been writing code long enough to have your own RAM-TEST in a box somewhere, I&rsquo;d love to hear what your inversion looked like. And if you&rsquo;re about to delete your first AI-generated prototype: go ahead. Keep the learnings.</p>
+<p>Cheers,<br>Markus</p>
+<p>No bug &#128027; too small, no syntax too weird &#128269; &#129300; &#128296; &#129470;</p>
+  </article>
+  <hr>
+  <footer class="mono">
+    <p>Research &middot; Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/7-and-a-half-floor/">7-and-a-half-floor</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>
