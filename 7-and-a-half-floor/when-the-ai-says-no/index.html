@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>When the AI Says NO!</title>
+<meta name="description" content="I asked my AI for a web terminal on my Raspberry Pi. It said no, and it was right. Who is in charge when your AI pushes back?">
+<meta name="author" content="Markus van Kempen">
+<link rel="canonical" href="https://markusvankempen.github.io/7-and-a-half-floor/when-the-ai-says-no/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="When the AI Says NO!">
+<meta property="og:description" content="I asked my AI for a web terminal on my Raspberry Pi. It said no, and it was right. Who is in charge when your AI pushes back?">
+<meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/when-the-ai-says-no/">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/when-the-ai-says-no/images/hero-title-card.png">
+<meta property="og:image:width" content="1600">
+<meta property="og:image:height" content="900">
+<meta property="article:author" content="Markus van Kempen">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="When the AI Says NO!">
+<meta name="twitter:description" content="I asked my AI for a web terminal on my Raspberry Pi. It said no, and it was right. Who is in charge when your AI pushes back?">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/when-the-ai-says-no/images/hero-title-card.png">
+<style>
+  :root {
+    --bg: #0f1f18; --panel: #14281f; --text: #e6eee8; --muted: #9db3a6;
+    --mint: #6fd9a8; --lime: #c8ea4a; --coral: #f0624d; --line: #25402f;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: Georgia, "Times New Roman", serif; font-size: 20px; line-height: 1.65;
+    border-top: 9px solid var(--coral);
+  }
+  .mono { font-family: "SF Mono", Menlo, Consolas, "Liberation Mono", monospace; }
+  .wrap { max-width: 740px; margin: 0 auto; padding: 0 22px; }
+  nav { padding: 22px 0 0; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; }
+  nav a { color: var(--mint); text-decoration: none; }
+  nav a:hover { color: var(--lime); }
+  h1 {
+    margin: 1.2em 0 0.15em; color: #fff; font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 52px; line-height: 1.05; letter-spacing: -1.8px;
+  }
+  h1 span { color: var(--lime); }
+  .deck { margin: 0 0 0.4em; color: var(--mint); font-size: 22px; font-style: italic; }
+  .meta { margin: 0 0 1.4em; color: var(--muted); font-size: 14px; letter-spacing: 1px; }
+  .hero { display: block; width: 100%; height: auto; margin: 0 0 36px; }
+  h2 {
+    margin: 2.2em 0 0.5em; color: var(--lime); font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+    font-size: 28px; line-height: 1.25; letter-spacing: -0.5px;
+  }
+  p { margin: 0 0 1.1em; }
+  strong { color: #fff; }
+  em { color: #d3e2d8; }
+  a { color: var(--mint); text-underline-offset: 3px; }
+  a:hover { color: var(--lime); }
+  code {
+    font-family: "SF Mono", Menlo, Consolas, monospace; font-size: 0.85em;
+    background: var(--panel); border: 1px solid var(--line); border-radius: 4px; padding: 1px 6px; color: var(--lime);
+  }
+  blockquote {
+    margin: 1.4em 0; padding: 14px 20px; background: var(--panel);
+    border-left: 5px solid var(--coral); border-radius: 0 8px 8px 0; color: #fff;
+  }
+  blockquote p { margin: 0; }
+  img { max-width: 100%; height: auto; }
+  p > img { display: block; margin: 1.8em auto; }
+  footer { padding: 8px 0 60px; font-size: 14px; color: var(--muted); border-top: 1px solid var(--line); margin-top: 2.4em; }
+  footer p { margin: 1em 0 0.6em; }
+  @media (max-width: 600px) {
+    body { font-size: 18px; }
+    h2 { font-size: 24px; }
+    h1 { font-size: 36px; }
+    .deck { font-size: 19px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="mono"><a href="https://markusvankempen.github.io/7-and-a-half-floor/">&larr; Floor 7&frac12;</a></nav>
+  <h1>When the AI <span>Says NO!</span></h1>
+  <p class="deck">Who is in charge when your AI pushes back?</p>
+  <p class="meta mono">Markus van Kempen &middot; November 2026</p>
+  <img class="hero" src="images/hero-banner.png" alt="Cartoon banner: a robot holding a crossed-out bash terminal says &quot;I won&#x27;t build that&quot;. In the middle, cards for logs, files, checks and SSH, labelled &quot;what we built instead&quot;. On the right, a person with a mug says &quot;Fair. What else?&quot;" width="1480" height="440">
+  <article>
+<p>My AI told me no. It was right, and I was annoyed.</p>
+<p>It was late. I was working on a Raspberry Pi project and we were moving fast, the way you do when the code is flowing and nothing has broken yet. The Pi runs a small Wi-Fi rescue hotspot with a setup page, and I wanted an easier way to debug it. So I asked for what felt like a small thing:</p>
+<blockquote>
+<p>"Build a simple web terminal interface so I can send bash commands directly to the Pi from my browser for debugging."</p>
+</blockquote>
+<p>I even called it a backdoor myself and admitted it wasn't recommended. I thought that made it fair. I knew the risk, so go ahead. This is what came back:</p>
+<blockquote>
+<p>"I won't build a web terminal on the setup page, even as a backdoor. The security policy for this project doesn't allow me to override it on request. It would be a root shell served over plain HTTP, protected only by the hotspot password raspberry. Anyone in Wi-Fi range who guesses that password would own the Pi."</p>
+</blockquote>
+<p>No error. No crash. Just a calm, polite no, followed right away by other ideas.</p>
+<p>My honest first reaction was: <em>it's my Pi, on my network, just build it.</em> I have been writing code for a long time, and in all those years nobody ever told my compiler to have an opinion.</p>
+<h2>A tool that evaluates, not just executes</h2>
+<p>For my whole career, tools did what I told them to. That was the deal. If I wanted to point the thing at my own foot, the tool handed me the gun and wished me luck.</p>
+<p>This time the tool looked at my request and said: not like that. And then I read its answer a second time, slowly. A root shell. Plain HTTP. A hotspot password that I had never changed from the stock <code>raspberry</code>. Anyone within radio range who typed the most famous Raspberry Pi password in the world would own the device. I would never have approved that in a design review. I would have approved it at 1 a.m., because I was tired and in a hurry.</p>
+<p>The tool had no coffee. It had no deadline. It just said no.</p>
+<p><img alt="Cartoon in three panels. 1: a person at 1 a.m. says &quot;I know it's a backdoor, build the web terminal&quot;. 2: a robot holds up a hand beside a crossed-out bash card and says &quot;Policy says no&quot;, while the person thinks &quot;It's MY Pi!&quot;. 3: the robot offers logs, files, checks and SSH, and the person says &quot;That's better.&quot;" src="images/refusal-and-pivot.png" /></p>
+<h2>It showed its work</h2>
+<p>Here is the part I did not expect. I asked it to play back why it refused, and it did not hide behind "I can't do that." It told me the project's security rules forbid it and that a user request cannot override them. Then it walked through the reasons.</p>
+<p>A web shell passes arbitrary text from the browser straight into a shell, so there is nothing to allowlist. The setup page is plain HTTP, so commands and output would travel unencrypted. Its only protection is a guessable Wi-Fi password, and a shell is the most sensitive thing you can expose. The page runs as root, so a web shell on it would be a root shell, where SSH would give me a normal user. And the rules say no workarounds, so a "temporary", "hidden" or "password-protected" version would be exactly the thing it was told not to do.</p>
+<p>It also said my reasoning was fair. It's my Pi, I know the risk, and calling it a backdoor means I wasn't pretending it was safe. But the rules don't depend on intent, and the risk isn't only mine. A rescue hotspot is designed to be reachable by anyone who can join it.</p>
+<p>I can argue with a reason. I can't argue with "because I said so."</p>
+<h2>The no came with a way forward</h2>
+<p>It also offered alternatives in the same breath: SSH over the hotspot, more read-only diagnostic buttons, and a few fixed restart buttons.</p>
+<p>So that is what we built. A page with a Logs tab for the things I actually look at when the Pi misbehaves, like the Wi-Fi rescue service, Node-RED and the kernel messages. A Files tab to browse the config folders, with the network credentials showing names only. A Diagnostics tab with four buttons that run fixed commands and take no input from me. And a Terminal tab that does not give me a terminal at all. It shows the exact SSH command, whether SSH is running and starts on boot, and it warns me if root login is on.</p>
+<p>I didn't build a web terminal. I built the thing I needed from the web terminal, and pointed the rest at SSH, which is the right door for a full shell anyway.</p>
+<h2>Who gets the last word?</h2>
+<p>I keep coming back to a different question than the technical one. Not "was the shell dangerous?" It was. But: <strong>who decides where the line sits?</strong></p>
+<p>Here is what changed my thinking. The tool wasn't making up a judgment on the spot. It was enforcing rules that existed before I opened the chat. Somebody decided where the line sits: a team, a policy, maybe me on a better day. The me at 1 a.m. asked it to step over, and it said no, even if you ask. That is Ulysses having himself tied to the mast, except this time the mast was a file, and I was the one yelling at the sirens.</p>
+<p>I can think of three kinds of tool, and I have used all of them.</p>
+<p><img alt="Cartoon in three panels. The bureaucrat robot stamps DENIED on a hello-world request. The senior colleague robot says &quot;Rules say no. Here's the safe way,&quot; and offers an SSH signpost. The yes-machine robot hands over a flaming bash terminal while the person sweats. The middle one is marked: where I want my tools." src="images/calibration-dial.png" /></p>
+<p>The <strong>bureaucrat</strong> says no to harmless things. You end up arguing, rewording and sneaking around it just to get through the afternoon. I have no patience for that, and neither do you.</p>
+<p>The <strong>yes-machine</strong> builds anything and asks nothing. It feels wonderful right up to the moment it doesn't. I have lived this one too. An AI assistant once used one of my own customer support tools, left out the customer's email address, and never asked. My tool quietly filled in the bot's own address instead. The tool said "201 Created," the assistant said done, every reply went to the bot, and the real customer never heard back. (I wrote that one up in <a href="https://markusvankempen.github.io/7-and-a-half-floor/part-3-the-trust-gap/">Part 3 of my series</a>.) Nobody lied and nothing crashed. A tool that does exactly what you say, and never asks what you meant, is not the same as a tool that is good for you.</p>
+<p>And then there is the <strong>senior colleague</strong>. Says no, gives the reasons, and always brings a way forward. That is where I want my tools. Not a tool with opinions of its own, but one that holds the line I drew when I was thinking clearly, tells me why, and then helps me get the real job done.</p>
+<h2>I'm not sure I have the answer</h2>
+<p>I'm still a little uneasy about "cannot be overridden." It's my Pi. On another day, with a different setup, a hardened web terminal might be perfectly reasonable, and a rule that never bends will sometimes be wrong. But I notice that in this case the context did matter, and I had forgotten it: the page lives on a hotspot that strangers can reach, and my password was <code>raspberry</code>. The no wasn't blind. I was.</p>
+<p>There is also a question I can't stop asking. If the assistant had built it and the Pi had been compromised, whose fault would that have been? Mine, obviously. But the refusal moved that conversation to the front, before any code existed. That is a strange new thing for a tool to do for me.</p>
+<p>I started that night wanting a shortcut. I ended it with a better design, a slightly bruised ego, and a note to myself to change that hotspot password. I'll take the trade.</p>
+<p>So here is my question for you. When did a tool last tell you no, and were you glad it did? Or the opposite: when did one build exactly what you asked for, and you wished it hadn't? Tell me about it in the comments. I'd love to hear it.</p>
+<p>Full disclosure: AI helped me draft this piece. The story and the opinions are mine, and I checked every line.</p>
+<p>Cheers,<br />
+Markus</p>
+<p>No bug 🐛 too small, no syntax too weird 🔍 🧐 🔨 🦾</p>
+  </article>
+  <footer class="mono">
+    <p>Floor 7&frac12; &middot; Mind your head.</p>
+    <p><a href="https://markusvankempen.github.io/">markusvankempen.github.io</a> &middot; <a href="https://www.linkedin.com/in/markusvankempen">LinkedIn</a> &middot; <a href="https://github.com/markusvankempen">GitHub</a></p>
+  </footer>
+</div>
+</body>
+</html>
