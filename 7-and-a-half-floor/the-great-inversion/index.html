@@ -11,12 +11,12 @@
 <meta property="og:title" content="The Great Inversion: Nearly 40 Years of Software Engineering in Reverse">
 <meta property="og:description" content="How code went from cathedral to sketch, and what's still left for us humans.">
 <meta property="og:url" content="https://markusvankempen.github.io/7-and-a-half-floor/the-great-inversion/">
-<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/floor-75-banner.jpg">
+<meta property="og:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/great-inversion-banner-wide.jpg">
 <meta property="article:author" content="Markus van Kempen">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="The Great Inversion: Nearly 40 Years of Software Engineering in Reverse">
 <meta name="twitter:description" content="How code went from cathedral to sketch, and what's still left for us humans.">
-<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/floor-75-banner.jpg">
+<meta name="twitter:image" content="https://markusvankempen.github.io/7-and-a-half-floor/images/great-inversion-banner-wide.jpg">
 <style>
   :root { --bg:#0f1f18; --panel:#14281f; --text:#e6eee8; --muted:#9db3a6;
           --mint:#6fd9a8; --lime:#c8ea4a; --coral:#f0624d; --line:#25402f; }
@@ -60,6 +60,7 @@
   td { padding:8px 12px; border-bottom:1px solid var(--line); vertical-align:top; }
   tr:last-child td { border-bottom:none; }
   img { max-width:100%; height:auto; }
+  .illustration { display:block; width:100%; height:auto; margin:2em 0; }
   hr { border:0; border-top:1px solid var(--line); margin:2.4em 0 1.4em; }
   footer { padding:8px 0 60px; font-size:14px; color:var(--muted); }
   footer p { margin:0 0 0.6em; }
@@ -72,6 +73,7 @@
   <p class="eyebrow mono">Research &middot; October 2026</p>
   <h1>The Great Inversion</h1>
   <p class="deck">Nearly 40 years of software engineering in reverse. How code went from cathedral to sketch, and what&rsquo;s still left for us humans.</p>
+  <img class="illustration" src="../images/great-inversion-banner-wide.jpg" alt="The Great Inversion: a programmer at a vintage computer alongside a robot at a laptop and a person examining its work." width="1500" height="500">
   <article>
 
 <p>In 1988, as a teenager, I hung around and helped GIGATRON.</p>
@@ -95,6 +97,7 @@
 <h2>Act III: The Great Inversion</h2>
 <p>Today, that direction has completely reversed.</p>
 <p>Large language models have read the open-source code, the docs, the conference decks (very likely including some of mine), and they write functions, scaffolds, and test suites in seconds. I no longer go out into the world to gather code. The code comes to me.</p>
+<img class="illustration" src="../images/feature-image-notext.png" alt="Two robots pass a checked document between them while a person looks closer with a magnifying glass." width="1600" height="900" loading="lazy">
 <p>You can see the break in my own GitHub. Here are the repositories I created each year, forks excluded:</p>
 <pre>Repositories created per year
 2014  █████                                      5
@@ -202,6 +205,7 @@ again when it drives off. Stay in WAIT_CLEAR until both beams clear.</pre>
 
 <h3>The physical world doesn&rsquo;t care how plausible your code looks</h3>
 <p>I learned this one the hard way, long before AI. In 2016 I automated my entire house: LIFX bulbs, the Nest, a Raspberry Pi, Node-RED, all running through Bluemix. I even ripped out the kitchen light switches. Then the internet went down while I was away on a business trip, and my wife couldn&rsquo;t turn on the lights. You can imagine the call I received. I had to un-automate everything, and I wrote about it publicly under the title <em>&ldquo;Can too much automation lead to divorce?&rdquo;</em>. I probably should have left the light switches in place.</p>
+<img class="illustration" src="../images/part-7-hero.png" alt="A person and a robot stand beside a lamp and a light switch with a disconnected Wi-Fi symbol." width="1600" height="640" loading="lazy">
 <p>The lesson stuck: the real world is where clever software goes to get humbled. And it&rsquo;s exactly where AI-generated code struggles most.</p>
 <p>I&rsquo;ve spent years at that edge, from <a href="https://www.slideshare.net/slideshow/animal-tracking-using-watson-iot-and-lorawan/89398145">tracking animals with LoRaWAN</a> to <a href="https://github.com/markusvankempen/LoraWAN-Traffic-Decrypt-and-Decode-using-Node-RED">decrypting LoRaWAN packets in Node-RED</a>. Today it&rsquo;s <a href="https://github.com/markusvankempen/ESP32-Traffic-Paxcounter">ESP32-Traffic-Paxcounter</a>, which uses two LiDAR sensors on an ESP32 to count cars, estimate their speed and length, and predict the ferry lineup, and <a href="https://github.com/markusvankempen/FerryLight">FerryLight</a>, a real-time tracker for the Englishtown &harr; Jersey Cove cable ferry in Cape Breton, Nova Scotia. People in the community check it before they drive to the ferry.</p>
 <p>An LLM can make up a function and still pass a mock test. On the side of a road in Cape Breton, timing interrupts, electrical noise, and dropped LoRaWAN packets don&rsquo;t care how plausible the code looks. A car either broke both laser beams in the right order or it didn&rsquo;t. Somebody has to stand there and check. That&rsquo;s still us.</p>
