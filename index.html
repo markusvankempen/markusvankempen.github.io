@@ -151,8 +151,8 @@
                             </a>
                         </div>
                         <div class="hero__stats">
-                            <div class="hero__stat"><span class="stat__value" data-target="25">25</span><span class="stat__label">Extensions &amp; tools</span></div>
-                            <div class="hero__stat"><span class="stat__value" data-target="8">8</span><span class="stat__label">MCP servers</span></div>
+                            <div class="hero__stat"><span class="stat__value" data-target="29">29</span><span class="stat__label">Extensions &amp; tools</span></div>
+                            <div class="hero__stat"><span class="stat__value" data-target="9">9</span><span class="stat__label">MCP servers</span></div>
                             <div class="hero__stat"><span class="stat__value" data-target="5">5+</span><span class="stat__label">AI IDEs</span></div>
                             <div class="hero__stat"><span class="stat__value stat__value--text">MIT · Apache 2.0</span><span class="stat__label">Open source</span></div>
                         </div>
@@ -583,7 +583,7 @@
                             <div class="cat-header__icon">&#9889;</div>
                             <div>
                                 <h3>MCP servers &amp; remote gateways</h3>
-                                <p>Ticketing, Zendesk, and Code Engine gateways, plus the MCP Dev Summit talk. Maximo, Watsonx, and Quantum servers sit in their own tabs.</p>
+                                <p>Ticketing, reference server, inspector tools, Zendesk, and Code Engine gateways, plus the MCP Dev Summit talk. Maximo, Watsonx, and Quantum servers sit in their own tabs.</p>
                             </div>
                         </div>
                         <div class="how-inline" id="how">
@@ -662,6 +662,70 @@
                                     <a class="ext-card__link" href="https://open-vsx.org/extension/markusvankempen/lf-mcp-summit-demo" target="_blank" rel="noopener">Open VSX</a>
                                     <a class="ext-card__link" href="https://github.com/markusvankempen/mcp-ticket-demo/tree/main/extension" target="_blank" rel="noopener">Extension source</a>
                                     <a class="ext-card__link" href="https://github.com/markusvankempen/mcp-ticket-demo" target="_blank" rel="noopener">GitHub repo</a>
+                                </div>
+                            </div>
+
+                            <!-- MCP Reference Server -->
+                            <div class="ext-card" id="mcp-reference-server">
+                                <span class="ext-card__badge ext-card__badge--mcp">MCP Server · Apache 2.0</span>
+                                <h3 class="ext-card__title">MCP Reference Server</h3>
+                                <p class="ext-card__desc">
+                                    A reference MCP server to check, validate, and test your client, your server, and proposed protocol changes (SEPs) against a running implementation. Run it with
+                                    <code>npx mcp-reference-server</code>. Personal open-source project, not an IBM product.
+                                </p>
+                                <ul class="ext-card__features">
+                                    <li>22 tools, 3 resources, and 5 prompts over stdio, SSE, and Streamable HTTP</li>
+                                    <li>15 specifications and SEP prototypes (groups, skills, tasks, events) behind live switches</li>
+                                    <li>Auth modes, API keys, per-tool gates, rate limiting, and a live call log</li>
+                                    <li>Command line client: <code>status</code>, <code>call</code>, and <code>demo check</code></li>
+                                </ul>
+                                <div class="ext-card__links">
+                                    <a class="ext-card__link" href="https://github.com/markusvankempen/mcp-reference-server" target="_blank" rel="noopener">GitHub repo</a>
+                                    <a class="ext-card__link" href="https://www.npmjs.com/package/mcp-reference-server" target="_blank" rel="noopener">npm</a>
+                                    <a class="ext-card__link" href="#mcp-server-inspector-vscode">Inspector for VS Code</a>
+                                </div>
+                            </div>
+
+                            <!-- MCP Server Inspector for VS Code -->
+                            <div class="ext-card" id="mcp-server-inspector-vscode">
+                                <span class="ext-card__badge ext-card__badge--vscode">VS Code extension · Apache 2.0</span>
+                                <h3 class="ext-card__title">MCP Server Inspector &amp; Spec Auditor</h3>
+                                <p class="ext-card__desc">
+                                    Inspect, validate, and audit any MCP server without leaving the editor. Connect to a server, browse its tools, resources, and prompts, run a tool from a generated arguments file, and score the server
+                                    against the spec. Works in VS Code, Cursor, Antigravity, Bob, and Windsurf.
+                                </p>
+                                <ul class="ext-card__features">
+                                    <li>3-tier spec audit with a 0–100% score and Markdown export</li>
+                                    <li>JSONSchema Draft-07 checks on every tool, plus SEP-1850 safety annotations</li>
+                                    <li>Run Tool with CodeLens, batch dry-runs, README drift, and token budget</li>
+                                    <li>Credentials in SecretStorage, no telemetry, bundled local dev server on 127.0.0.1</li>
+                                </ul>
+                                <div class="ext-card__links">
+                                    <a class="ext-card__link" href="https://marketplace.visualstudio.com/items?itemName=markusvankempen.mcp-server-inspector-auditor" target="_blank" rel="noopener">VS Code Marketplace</a>
+                                    <a class="ext-card__link" href="https://open-vsx.org/extension/markusvankempen/mcp-server-inspector" target="_blank" rel="noopener">Open VSX</a>
+                                    <a class="ext-card__link" href="https://github.com/markusvankempen/mcp-server-inspector-vscode-extension" target="_blank" rel="noopener">GitHub repo</a>
+                                    <a class="ext-card__link" href="#mcp-server-inspector-chrome">Chrome version</a>
+                                </div>
+                            </div>
+
+                            <!-- MCP Server Inspector for Chrome -->
+                            <div class="ext-card" id="mcp-server-inspector-chrome">
+                                <span class="ext-card__badge ext-card__badge--chrome">Chrome extension · Apache 2.0</span>
+                                <h3 class="ext-card__title">MCP Server Inspector &amp; Spec Auditor for Chrome</h3>
+                                <p class="ext-card__desc">
+                                    The same workbench as a Manifest V3 Chrome extension. Point it at a local or remote MCP server and get a spec compliance matrix, tool schema validation, latency, and token sizes in a full-tab
+                                    workbench. Load it unpacked from the repo or grab the packaged build from Releases.
+                                </p>
+                                <ul class="ext-card__features">
+                                    <li>Streamable HTTP and SSE, with a raw JSON-RPC console</li>
+                                    <li>Dynamic tool runner built from each tool's input schema</li>
+                                    <li>Progressive disclosure groups explorer with token-savings estimates</li>
+                                    <li>Zero runtime dependencies and no telemetry</li>
+                                </ul>
+                                <div class="ext-card__links">
+                                    <a class="ext-card__link" href="https://github.com/markusvankempen/mcp-server-inspector-chrome-extension" target="_blank" rel="noopener">GitHub repo</a>
+                                    <a class="ext-card__link" href="https://github.com/markusvankempen/mcp-server-inspector-chrome-extension/releases" target="_blank" rel="noopener">Releases</a>
+                                    <a class="ext-card__link" href="#mcp-server-inspector-vscode">VS Code version</a>
                                 </div>
                             </div>
 
@@ -954,6 +1018,26 @@
                                     <a class="ext-card__link" href="https://github.com/markusvankempen/chrome-stanzaclock" target="_blank" rel="noopener">GitHub repo</a>
                                     <a class="ext-card__link" href="https://github.com/markusvankempen/chrome-stanzaclock/releases/latest" target="_blank" rel="noopener">Latest release</a>
                                     <a class="ext-card__link" href="#esp-wordclock">Hardware companion</a>
+                                </div>
+                            </div>
+
+                            <div class="ext-card" id="retro-clocks">
+                                <span class="ext-card__badge ext-card__badge--chrome">Chrome extension · Apache 2.0</span>
+                                <h3 class="ext-card__title">Retro Clocks</h3>
+                                <p class="ext-card__desc">
+                                    A Chrome new tab clock with a sense of occasion. Split-flap cards and glowing Nixie tubes lead, with Lego bricks, yellow dots, seven-segment digits, and folded-paper origami as other faces. Click the
+                                    clock and the digits scramble, then land back on the time. Companion to Stanza Clock.
+                                </p>
+                                <ul class="ext-card__features">
+                                    <li>Six faces, with an optional flap sound on the split-flap board</li>
+                                    <li>12 or 24-hour, seconds, colon blink, timezone, and date layout</li>
+                                    <li>Colours per face, and per digit on seven-segment, origami, and Lego</li>
+                                    <li>Storage permission only, no analytics, no account</li>
+                                </ul>
+                                <div class="ext-card__links">
+                                    <a class="ext-card__link" href="https://chromewebstore.google.com/detail/retro-clocks/fhheffldajhhmkggbdklhbejfdoglkmh" target="_blank" rel="noopener">Chrome Web Store</a>
+                                    <a class="ext-card__link" href="https://github.com/markusvankempen/chrome-retro-clocks" target="_blank" rel="noopener">GitHub repo</a>
+                                    <a class="ext-card__link" href="#stanza-clock">Word clock</a>
                                 </div>
                             </div>
 
